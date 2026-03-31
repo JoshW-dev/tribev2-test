@@ -67,7 +67,7 @@ def _build_mesh_cache():
 
     # Offset right hemisphere so both are visible side-by-side
     rh_shifted = rh_coords.copy()
-    rh_shifted[:, 0] += 90
+    rh_shifted[:, 0] += 55
 
     n_lh = len(lh_coords)
     coords = np.vstack([lh_coords, rh_shifted])
@@ -228,13 +228,30 @@ def render_interactive_brain(preds: np.ndarray) -> go.Figure:
 
     fig = go.Figure(data=[base])
 
-    # ── Animation frames (only intensity changes per timestep) ───────
+    # ── Animation frames (full mesh per frame for plotly 6 compat) ──
+    frames = []
     for t in range(n_timesteps):
-        fig.add_frame(go.Frame(
-            data=[go.Mesh3d(intensity=np.round(preds[t], 5).tolist())],
+        frames.append(go.Frame(
+            data=[go.Mesh3d(
+                x=mc["x"], y=mc["y"], z=mc["z"],
+                i=mc["i"], j=mc["j"], k=mc["k"],
+                intensity=np.round(preds[t], 5).tolist(),
+                intensitymode="vertex",
+                colorscale="RdBu_r",
+                cmin=-abs_max, cmax=abs_max,
+                colorbar=dict(
+                    title=dict(text="Activation", font=dict(size=14)),
+                    thickness=18, len=0.6, x=1.02,
+                    tickfont=dict(size=11),
+                ),
+                lighting=dict(ambient=0.55, diffuse=0.7, specular=0.15, roughness=0.5),
+                lightposition=dict(x=100, y=200, z=0),
+                flatshading=False,
+                hoverinfo="skip",
+            )],
             name=str(t),
-            traces=[0],
         ))
+    fig.frames = frames
 
     # ── Slider + Play/Pause controls ─────────────────────────────────
     steps = [
@@ -313,7 +330,7 @@ def render_interactive_brain(preds: np.ndarray) -> go.Figure:
 # ── Inference entry point ────────────────────────────────────────────
 def run_inference(video, audio, text):
     if MODEL is None:
-        return None, None, None, "\u26a0\ufe0f Model not loaded yet — wait for startup."
+        return None, None, None, None, "\u26a0\ufe0f Model not loaded yet — wait for startup."
 
     kwargs = {}
     input_desc = ""
@@ -329,11 +346,15 @@ def run_inference(video, audio, text):
         kwargs["text_path"] = txt_path
         input_desc = f"Text: {text[:80]}..."
     else:
-        return None, None, None, "\u26a0\ufe0f Please provide a video, audio file, or text."
+        return None, None, None, None, "\u26a0\ufe0f Please provide a video, audio file, or text."
 
     try:
         events = MODEL.get_events_dataframe(**kwargs)
         preds, segments = MODEL.predict(events=events)
+
+        # Save predictions to disk
+        npy_path = Path("predictions.npy")
+        np.save(npy_path, preds)
 
         mean_img, ts_img = render_brain_map(preds)
         brain_fig = render_interactive_brain(preds)
@@ -345,25 +366,26 @@ def run_inference(video, audio, text):
             f"| **Events** | {events.shape[0]} extracted |\n"
             f"| **Predictions** | {preds.shape[0]} timesteps \u00d7 "
             f"{preds.shape[1]:,} vertices |\n"
-            f"| **Activation range** | [{preds.min():.4f}, {preds.max():.4f}] |"
+            f"| **Activation range** | [{preds.min():.4f}, {preds.max():.4f}] |\n"
+            f"| **Saved to** | `{npy_path.resolve()}` |"
         )
-        return mean_img, ts_img, brain_fig, summary
+        return mean_img, ts_img, brain_fig, str(npy_path.resolve()), summary
 
     except Exception as e:
         import traceback
         traceback.print_exc()
-        return None, None, None, f"\u274c **Error:** {e}"
+        return None, None, None, None, f"\u274c **Error:** {e}"
 
 
 def load_npy(npy_file):
     """Visualize a previously saved predictions .npy file."""
     if npy_file is None:
-        return None, None, None, "\u26a0\ufe0f Please upload a .npy file."
+        return None, None, None, None, "\u26a0\ufe0f Please upload a .npy file."
 
     try:
         preds = np.load(npy_file)
         if preds.ndim != 2 or preds.shape[1] != 20484:
-            return None, None, None, (
+            return None, None, None, None, (
                 f"\u274c **Bad shape:** expected (n_timesteps, 20484), "
                 f"got {preds.shape}"
             )
@@ -385,12 +407,12 @@ def load_npy(npy_file):
             f"{preds.shape[1]:,} vertices |\n"
             f"| **Activation range** | [{preds.min():.4f}, {preds.max():.4f}] |"
         )
-        return mean_img, ts_img, brain_fig, summary
+        return mean_img, ts_img, brain_fig, npy_file, summary
 
     except Exception as e:
         import traceback
         traceback.print_exc()
-        return None, None, None, f"\u274c **Error:** {e}"
+        return None, None, None, None, f"\u274c **Error:** {e}"
 
 
 # ── Gradio UI ────────────────────────────────────────────────────────
@@ -428,6 +450,9 @@ def build_ui():
                 load_btn = gr.Button(
                     "\U0001f4c2  Load & Visualize", variant="secondary", size="lg"
                 )
+                npy_download = gr.File(
+                    label="Download predictions (.npy)", interactive=False,
+                )
                 summary_output = gr.Markdown(label="Summary")
 
             with gr.Column(scale=2):
@@ -446,12 +471,12 @@ def build_ui():
         run_btn.click(
             fn=run_inference,
             inputs=[video_input, audio_input, text_input],
-            outputs=[mean_map, timestep_map, interactive_plot, summary_output],
+            outputs=[mean_map, timestep_map, interactive_plot, npy_download, summary_output],
         )
         load_btn.click(
             fn=load_npy,
             inputs=[npy_input],
-            outputs=[mean_map, timestep_map, interactive_plot, summary_output],
+            outputs=[mean_map, timestep_map, interactive_plot, npy_download, summary_output],
         )
 
         gr.Examples(
