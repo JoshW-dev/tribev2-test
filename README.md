@@ -18,7 +18,7 @@ Or manually:
 
 ```bash
 git clone https://github.com/facebookresearch/tribev2.git
-python3.11 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip setuptools wheel
 pip install -e ./tribev2

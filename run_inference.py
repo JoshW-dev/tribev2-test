@@ -3,9 +3,16 @@ TRIBE v2 inference script.
 Accepts a video, audio, or text file and outputs predicted brain responses.
 """
 
+import sys
+from pathlib import Path
+
+# The cloned repo directory "tribev2/" shadows the installed package.
+# Remove the script's parent directory from sys.path so the real package is found.
+_script_dir = str(Path(__file__).resolve().parent)
+sys.path = [p for p in sys.path if p != _script_dir]
+
 import argparse
 import numpy as np
-from pathlib import Path
 from tribev2 import TribeModel
 
 
@@ -21,8 +28,22 @@ def main():
     if not any([args.video, args.audio, args.text]):
         parser.error("Provide at least one of --video, --audio, or --text")
 
+    # The upstream config hardcodes device: cuda for all feature extractors.
+    # Override to cpu when CUDA is not available (e.g. Mac).
+    import torch
+    config_update = None
+    if not torch.cuda.is_available():
+        config_update = {
+            "data.text_feature.device": "cpu",
+            "data.audio_feature.device": "cpu",
+            "data.video_feature.image.device": "cpu",
+            "data.image_feature.image.device": "cpu",
+        }
+
     print("Loading TRIBE v2 model...")
-    model = TribeModel.from_pretrained("facebook/tribev2", cache_folder=args.cache)
+    model = TribeModel.from_pretrained(
+        "facebook/tribev2", cache_folder=args.cache, config_update=config_update
+    )
 
     event_kwargs = {}
     if args.video:
