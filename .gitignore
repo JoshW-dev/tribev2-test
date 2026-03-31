@@ -1,0 +1,7 @@
+.venv/
+cache/
+tribev2/
+*.npy
+__pycache__/
+*.pyc
+.DS_Store
