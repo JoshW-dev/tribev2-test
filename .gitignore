@@ -12,3 +12,12 @@ __pycache__/
 sample.mp4
 sample.wav
 sample.tsv
+.env
+*.mp4
+*.wav
+*.tsv
+paper/figures/
+paper/comparison_data/
+paper/*.html
+paper/*.pdf
+paper/perplexity_deep_research.md

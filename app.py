@@ -39,8 +39,45 @@ FSAVERAGE = None
 _MESH_CACHE = {}   # pre-computed mesh geometry for plotly
 _LAST_PREDS = None  # cache predictions for timestep slider
 _LAST_VIDEO = None  # cache video path for synced playback
+_YEO_LABELS = None  # (20484,) int array mapping vertices to Yeo networks
+_NETWORK_TIMECOURSES = None  # (n_timesteps, 7) mean activation per network
 
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
+
+# ── Yeo 2011 7-Network Atlas ────────────────────────────────────────
+# Canonical network names, colors, and cognitive interpretations
+# Reference: Yeo et al. 2011, J Neurophysiol, doi:10.1152/jn.00338.2011
+
+YEO_NETWORK_NAMES = [
+    "Visual",
+    "Somatomotor",
+    "Dorsal Attention",
+    "Ventral Attention",
+    "Limbic",
+    "Frontoparietal",
+    "Default Mode",
+]
+
+# Canonical colors from Yeo 2011 publication
+YEO_NETWORK_COLORS = [
+    "#781286",  # Visual — purple
+    "#4682B4",  # Somatomotor — steel blue
+    "#00760E",  # Dorsal Attention — green
+    "#C43AFA",  # Ventral Attention — violet
+    "#DCF8A4",  # Limbic — cream/yellow-green
+    "#E69422",  # Frontoparietal — orange
+    "#CD3E4E",  # Default Mode — red
+]
+
+COGNITIVE_INTERPRETATIONS = {
+    0: ("Visual processing", "Predicted activity in visual cortex — estimated engagement with visual features of the stimulus (color, shape, motion, faces, scenes)."),
+    1: ("Somatomotor processing", "Predicted activity in sensorimotor cortex — estimated processing of bodily sensations, tactile information, or motor representations."),
+    2: ("Directed attention", "Predicted activity in dorsal attention network — estimated top-down spatial attention and voluntary focus on specific stimulus features."),
+    3: ("Salience detection", "Predicted activity in ventral attention/salience network — estimated detection of behaviorally relevant or unexpected stimulus events."),
+    4: ("Emotional/limbic response", "Predicted activity in limbic network — estimated emotional or affective processing, including reward and memory-related responses."),
+    5: ("Cognitive control", "Predicted activity in frontoparietal control network — estimated higher-order reasoning, decision-making, or working memory engagement."),
+    6: ("Internal/reflective processing", "Predicted activity in default mode network — estimated self-referential thought, semantic processing, or narrative comprehension."),
+}
 
 
 # ── Results persistence ──────────────────────────────────────────────
@@ -419,6 +456,9 @@ def load_model():
     # Pre-load and cache the combined mesh for the interactive viewer
     _build_mesh_cache()
 
+    # Load Yeo 7-network atlas for cognitive analysis
+    _load_yeo_labels()
+
 
 def _build_mesh_cache():
     """Load both hemispheres, offset the right, and cache for plotly."""
@@ -452,6 +492,553 @@ def _build_mesh_cache():
         "j": faces[:, 1].tolist(),
         "k": faces[:, 2].tolist(),
     }
+
+
+# ── Yeo Atlas Loading ────────────────────────────────────────────────
+def _load_yeo_labels() -> np.ndarray:
+    """Load or compute per-vertex Yeo 7-network labels on fsaverage5."""
+    global _YEO_LABELS
+    cache_path = RESULTS_DIR / "yeo7_labels.npy"
+
+    if cache_path.exists():
+        _YEO_LABELS = np.load(cache_path).astype(int).ravel()
+        print(f"Loaded cached Yeo labels: {(_YEO_LABELS > 0).sum()} labelled vertices")
+        return _YEO_LABELS
+
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    print("Projecting Yeo 2011 7-network atlas to fsaverage5...")
+    yeo_atlas = datasets.fetch_atlas_yeo_2011()
+
+    # Project volumetric atlas to surface per hemisphere
+    from nilearn.surface import vol_to_surf
+    labels_parts = []
+    for hemi in ["left", "right"]:
+        proj = vol_to_surf(
+            yeo_atlas["maps"],
+            FSAVERAGE[f"pial_{hemi}"],
+            interpolation="nearest_most_frequent",
+        )
+        labels_parts.append(np.round(proj).astype(int))
+
+    _YEO_LABELS = np.concatenate(labels_parts).ravel()  # ensure (20484,)
+    np.save(cache_path, _YEO_LABELS)
+    print(f"Yeo labels computed and cached: {(_YEO_LABELS > 0).sum()} labelled vertices")
+    return _YEO_LABELS
+
+
+# ── Network Analysis ────────────────────────────────────────────────
+def compute_network_timecourses(preds: np.ndarray, labels: np.ndarray) -> np.ndarray:
+    """Compute mean activation per Yeo network per timestep.
+
+    Returns (n_timesteps, 7) array. Network index 0 = Visual, ..., 6 = Default Mode.
+    """
+    n_timesteps = preds.shape[0]
+    timecourses = np.zeros((n_timesteps, 7))
+    for net_idx in range(7):
+        mask = labels == (net_idx + 1)  # Yeo labels are 1-indexed; 0 = unassigned
+        if mask.any():
+            timecourses[:, net_idx] = preds[:, mask].mean(axis=1)
+    return timecourses
+
+
+def interpret_cognitive_state(timecourses: np.ndarray) -> list[dict]:
+    """Derive cognitive state interpretations from network activations.
+
+    Returns one dict per timestep with dominant network and interpretation.
+    """
+    results = []
+    for t in range(timecourses.shape[0]):
+        activations = timecourses[t]
+        # Use absolute values for dominance (both + and - activations are meaningful)
+        abs_act = np.abs(activations)
+        ranked = np.argsort(abs_act)[::-1]
+        dominant = ranked[0]
+        secondary = ranked[1]
+
+        short_label, long_desc = COGNITIVE_INTERPRETATIONS[dominant]
+
+        # Detect compound state: if top-2 are within 20% of each other
+        if abs_act[dominant] > 0 and abs_act[secondary] / abs_act[dominant] > 0.8:
+            sec_label, _ = COGNITIVE_INTERPRETATIONS[secondary]
+            short_label = f"{short_label} + {sec_label}"
+
+        results.append({
+            "timestep": t,
+            "dominant_network": YEO_NETWORK_NAMES[dominant],
+            "dominant_index": int(dominant),
+            "dominant_activation": float(activations[dominant]),
+            "interpretation": short_label,
+            "description": long_desc,
+            "secondary_network": YEO_NETWORK_NAMES[secondary],
+            "all_activations": activations.tolist(),
+        })
+    return results
+
+
+# ── Cognitive Visualizations ─────────────────────────────────────────
+def plot_network_timecourses(timecourses: np.ndarray) -> go.Figure:
+    """Plotly line chart: 7 network activations over time."""
+    fig = go.Figure()
+    for i in range(7):
+        fig.add_trace(go.Scatter(
+            x=list(range(timecourses.shape[0])),
+            y=timecourses[:, i],
+            mode="lines",
+            name=YEO_NETWORK_NAMES[i],
+            line=dict(color=YEO_NETWORK_COLORS[i], width=2.5),
+        ))
+    fig.update_layout(
+        title=dict(text="Predicted Network Activation Over Time", x=0.5),
+        xaxis_title="Time (TR = 1 second)",
+        yaxis_title="Mean Predicted Activation",
+        height=400,
+        legend=dict(
+            orientation="h", yanchor="bottom", y=-0.35, xanchor="center", x=0.5,
+        ),
+        margin=dict(l=60, r=20, t=50, b=100),
+        paper_bgcolor="white", plot_bgcolor="#fafafa",
+        annotations=[dict(
+            text="Based on TRIBE v2 predicted brain activations (Yeo 2011 7-network parcellation)",
+            xref="paper", yref="paper", x=0.5, y=-0.5,
+            showarrow=False, font=dict(size=10, color="gray"),
+        )],
+    )
+    return fig
+
+
+def plot_network_bar(timecourses: np.ndarray, timestep: int = -1) -> go.Figure:
+    """Plotly bar chart: network activations for a single timestep."""
+    if timestep < 0:
+        values = timecourses.mean(axis=0)
+        title = "Mean Network Activation (all TRs)"
+    else:
+        values = timecourses[min(timestep, len(timecourses) - 1)]
+        title = f"Network Activation at TR {timestep}"
+
+    fig = go.Figure(data=[go.Bar(
+        x=YEO_NETWORK_NAMES,
+        y=values,
+        marker_color=YEO_NETWORK_COLORS,
+    )])
+    fig.update_layout(
+        title=dict(text=title, x=0.5, font=dict(size=13)),
+        yaxis_title="Predicted Activation",
+        height=350,
+        margin=dict(l=50, r=20, t=50, b=80),
+        paper_bgcolor="white", plot_bgcolor="#fafafa",
+        xaxis_tickangle=-30,
+    )
+    return fig
+
+
+def generate_cognitive_summary(timecourses: np.ndarray,
+                               interpretations: list[dict]) -> str:
+    """Markdown summary of cognitive analysis results."""
+    n_ts = timecourses.shape[0]
+
+    # Peak activations per network
+    peak_rows = []
+    for i in range(7):
+        peak_tr = int(np.argmax(np.abs(timecourses[:, i])))
+        peak_val = timecourses[peak_tr, i]
+        peak_rows.append(
+            f"| {YEO_NETWORK_NAMES[i]} | TR {peak_tr} | {peak_val:+.4f} |"
+        )
+    peaks_table = "\n".join(peak_rows)
+
+    # Interpretation timeline (up to 20 rows)
+    timeline_rows = []
+    for interp in interpretations[:20]:
+        t = interp["timestep"]
+        dom = interp["dominant_network"]
+        label = interp["interpretation"]
+        act = interp["dominant_activation"]
+        timeline_rows.append(f"| TR {t} | {dom} | {act:+.4f} | {label} |")
+    if len(interpretations) > 20:
+        timeline_rows.append(f"| ... | *{len(interpretations) - 20} more rows* | | |")
+    timeline_table = "\n".join(timeline_rows)
+
+    # Overall dominant network
+    mean_abs = np.abs(timecourses).mean(axis=0)
+    overall_dom = int(np.argmax(mean_abs))
+    overall_name = YEO_NETWORK_NAMES[overall_dom]
+    _, overall_desc = COGNITIVE_INTERPRETATIONS[overall_dom]
+
+    return f"""### Cognitive Analysis Results
+
+> **Note:** These results are based on *predicted* brain responses from TRIBE v2,
+> not measured fMRI data. Interpretations reflect estimated neural activity patterns
+> associated with the Yeo 2011 7-network parcellation
+> ([Yeo et al., 2011](https://doi.org/10.1152/jn.00338.2011)).
+
+#### Overall Dominant Network: **{overall_name}**
+{overall_desc}
+
+#### Peak Network Activations
+| Network | Peak TR | Activation |
+|---------|---------|------------|
+{peaks_table}
+
+#### Cognitive State Timeline
+| Time | Dominant Network | Activation | Interpretation |
+|------|-----------------|------------|----------------|
+{timeline_table}
+"""
+
+
+def generate_narrative_abstract(timecourses: np.ndarray,
+                                interpretations: list[dict],
+                                input_desc: str = "stimulus") -> str:
+    """Generate a plain-English narrative abstract of the brain response analysis.
+
+    This creates a readable summary that a non-neuroscientist can understand,
+    describing what the brain is predicted to be doing over time.
+    """
+    n_ts = timecourses.shape[0]
+    mean_act = timecourses.mean(axis=0)
+    mean_abs = np.abs(timecourses).mean(axis=0)
+
+    # Rank networks by overall engagement
+    ranked = np.argsort(mean_abs)[::-1]
+    top3 = ranked[:3]
+
+    # Find temporal phases — group consecutive timesteps with same dominant network
+    phases = []
+    current_dom = interpretations[0]["dominant_index"]
+    phase_start = 0
+    for t in range(1, n_ts):
+        dom = interpretations[t]["dominant_index"]
+        if dom != current_dom or t == n_ts - 1:
+            end_t = t if dom != current_dom else t + 1
+            dur = end_t - phase_start
+            phases.append({
+                "start": phase_start,
+                "end": end_t - 1,
+                "duration": dur,
+                "network": YEO_NETWORK_NAMES[current_dom],
+                "network_idx": current_dom,
+                "label": COGNITIVE_INTERPRETATIONS[current_dom][0],
+            })
+            current_dom = dom
+            phase_start = t
+
+    # Compute engagement percentages
+    total_engagement = mean_abs.sum()
+    pct = (mean_abs / total_engagement * 100) if total_engagement > 0 else np.zeros(7)
+
+    # Find moments of peak activity
+    peak_t = int(np.argmax(np.abs(timecourses).max(axis=1)))
+    peak_net = int(np.argmax(np.abs(timecourses[peak_t])))
+
+    # Find most variable network (most dynamic)
+    variability = timecourses.std(axis=0)
+    most_dynamic = int(np.argmax(variability))
+
+    # Build the narrative
+    lines = []
+    lines.append("## Brain Response Abstract")
+    lines.append("")
+    lines.append(
+        f"This analysis examines predicted brain network responses to "
+        f"**{input_desc}** across **{n_ts} seconds** of stimulus, using "
+        f"Meta's TRIBE v2 brain encoding model mapped onto the Yeo 2011 "
+        f"7-network cortical parcellation."
+    )
+    lines.append("")
+
+    # Overall profile
+    lines.append("### Overall Neural Profile")
+    lines.append("")
+    top_names = [YEO_NETWORK_NAMES[i] for i in top3]
+    top_pcts = [pct[i] for i in top3]
+    lines.append(
+        f"The predicted brain response is dominated by the "
+        f"**{top_names[0]}** network ({top_pcts[0]:.0f}% of total engagement), "
+        f"followed by **{top_names[1]}** ({top_pcts[1]:.0f}%) and "
+        f"**{top_names[2]}** ({top_pcts[2]:.0f}%). "
+    )
+
+    # Interpret what this profile means
+    profile_interp = []
+    if 0 in top3[:2]:  # Visual in top 2
+        profile_interp.append(
+            "strong visual processing, suggesting the stimulus contains "
+            "rich visual content that engages early and higher visual areas"
+        )
+    if 4 in top3[:2]:  # Limbic in top 2
+        profile_interp.append(
+            "notable limbic/emotional engagement, suggesting the content "
+            "evokes affective or reward-related responses"
+        )
+    if 6 in top3[:2]:  # Default mode in top 2
+        profile_interp.append(
+            "significant default mode network activity, suggesting engagement "
+            "of semantic processing, narrative comprehension, or self-referential thought"
+        )
+    if 2 in top3[:2]:  # Dorsal attention in top 2
+        profile_interp.append(
+            "strong directed attention, suggesting the viewer is actively "
+            "tracking or focusing on specific elements in the stimulus"
+        )
+    if 3 in top3[:2]:  # Ventral attention in top 2
+        profile_interp.append(
+            "elevated salience detection, suggesting the stimulus contains "
+            "unexpected or behaviorally relevant events"
+        )
+    if 5 in top3[:2]:  # Frontoparietal in top 2
+        profile_interp.append(
+            "frontoparietal control network engagement, suggesting "
+            "higher-order cognitive processing or decision-making"
+        )
+    if 1 in top3[:2]:  # Somatomotor in top 2
+        profile_interp.append(
+            "somatomotor activation, suggesting processing of bodily "
+            "sensations, movement, or tactile information in the stimulus"
+        )
+
+    if profile_interp:
+        lines.append("This profile indicates " + "; and ".join(profile_interp) + ".")
+    lines.append("")
+
+    # Temporal dynamics
+    lines.append("### Temporal Dynamics")
+    lines.append("")
+    if len(phases) <= 3:
+        lines.append(
+            f"The brain response is relatively **stable** across the stimulus, "
+            f"with {len(phases)} distinct phase(s):"
+        )
+    else:
+        lines.append(
+            f"The brain response shows **dynamic shifts** across the stimulus, "
+            f"with {len(phases)} distinct phases:"
+        )
+    lines.append("")
+
+    for i, phase in enumerate(phases[:8]):
+        time_range = f"{phase['start']}–{phase['end']}s" if phase['duration'] > 1 else f"{phase['start']}s"
+        lines.append(
+            f"- **{time_range}**: {phase['label']} "
+            f"(*{phase['network']}* network dominant)"
+        )
+    if len(phases) > 8:
+        lines.append(f"- *(plus {len(phases) - 8} additional transitions)*")
+    lines.append("")
+
+    # Peak moment
+    lines.append("### Key Moments")
+    lines.append("")
+    peak_label = COGNITIVE_INTERPRETATIONS[peak_net][0]
+    lines.append(
+        f"The **strongest predicted brain response** occurs at "
+        f"**TR {peak_t}** ({peak_t} seconds), driven by the "
+        f"**{YEO_NETWORK_NAMES[peak_net]}** network ({peak_label}). "
+        f"The most **temporally variable** network is "
+        f"**{YEO_NETWORK_NAMES[most_dynamic]}**, showing the greatest "
+        f"fluctuation in predicted activity across the stimulus duration."
+    )
+    lines.append("")
+
+    # Engagement breakdown
+    lines.append("### Network Engagement Breakdown")
+    lines.append("")
+    lines.append("| Network | Engagement | Mean Activation |")
+    lines.append("|---------|-----------|-----------------|")
+    for i in ranked:
+        bar_len = int(pct[i] / 5)  # rough visual bar
+        bar = "\u2588" * bar_len
+        lines.append(
+            f"| {YEO_NETWORK_NAMES[i]} | {bar} {pct[i]:.1f}% | {mean_act[i]:+.4f} |"
+        )
+    lines.append("")
+
+    # Caveats
+    lines.append("---")
+    lines.append(
+        "*This abstract was generated from TRIBE v2 predicted brain responses, "
+        "not measured fMRI data. Network labels follow the Yeo 2011 7-network "
+        "parcellation. Activation values reflect predicted BOLD signal magnitude, "
+        "where positive values indicate above-baseline activity and negative values "
+        "indicate below-baseline activity. Individual variability in brain responses "
+        "is not captured by this model, which predicts the average brain's response "
+        "to the given stimulus.*"
+    )
+
+    return "\n".join(lines)
+
+
+def _build_ai_prompt(timecourses: np.ndarray, interpretations: list[dict],
+                     input_desc: str) -> str:
+    """Build the data context to send to Claude for interpretation."""
+    n_ts = timecourses.shape[0]
+    mean_act = timecourses.mean(axis=0)
+    mean_abs = np.abs(timecourses).mean(axis=0)
+    ranked = np.argsort(mean_abs)[::-1]
+    total = mean_abs.sum()
+    pct = (mean_abs / total * 100) if total > 0 else np.zeros(7)
+
+    # Network engagement summary
+    engagement = "\n".join([
+        f"  - {YEO_NETWORK_NAMES[i]}: {pct[i]:.1f}% engagement, mean activation {mean_act[i]:+.4f}"
+        for i in ranked
+    ])
+
+    # Temporal timeline
+    timeline = "\n".join([
+        f"  - TR {interp['timestep']} ({interp['timestep']}s): "
+        f"Dominant = {interp['dominant_network']} ({interp['dominant_activation']:+.4f}), "
+        f"Secondary = {interp['secondary_network']}, "
+        f"Interpretation = {interp['interpretation']}"
+        for interp in interpretations
+    ])
+
+    # Peak moments per network
+    peaks = "\n".join([
+        f"  - {YEO_NETWORK_NAMES[i]}: peak at TR {int(np.argmax(np.abs(timecourses[:, i])))} "
+        f"(activation {timecourses[int(np.argmax(np.abs(timecourses[:, i]))), i]:+.4f})"
+        for i in range(7)
+    ])
+
+    return f"""You are a neuroscience communicator. Analyze the following predicted brain response data and write a clear, insightful abstract that a non-neuroscientist can understand. Be specific about what the brain activity patterns suggest about how a person would process this stimulus.
+
+INPUT: {input_desc}
+DURATION: {n_ts} seconds ({n_ts} TRs at 1 second each)
+
+BRAIN NETWORK ENGAGEMENT (ranked by overall activity):
+{engagement}
+
+TEMPORAL TIMELINE (second-by-second dominant brain network):
+{timeline}
+
+PEAK ACTIVATIONS PER NETWORK:
+{peaks}
+
+NETWORK REFERENCE:
+- Visual: processes visual features (color, shape, motion, faces, scenes)
+- Somatomotor: bodily sensations, motor representations
+- Dorsal Attention: voluntary focused attention, spatial tracking
+- Ventral Attention: salience detection, surprising/important stimuli
+- Limbic: emotion, affect, reward, memory encoding
+- Frontoparietal: cognitive control, reasoning, working memory
+- Default Mode: narrative comprehension, self-referential thought, semantic processing
+
+Write an abstract (3-4 paragraphs) that:
+1. Opens with a one-sentence summary of the overall brain response character
+2. Describes the temporal arc — how the brain's processing evolves over time, and what this suggests about the viewer's experience
+3. Highlights the most interesting or notable patterns (e.g., sudden shifts, sustained engagement, co-activation of networks)
+4. Ends with a brief caveat that these are model-predicted responses, not measured fMRI
+
+Use natural language. Avoid jargon where possible. When you do use network names, briefly explain what they do. Be specific — reference actual timepoints and values. Write as if for an educated general audience."""
+
+
+def on_generate_abstract(progress=gr.Progress()):
+    """Call Claude API to generate a plain-English brain response abstract."""
+    if _NETWORK_TIMECOURSES is None or _LAST_PREDS is None:
+        return "\u26a0\ufe0f Run inference first to generate brain predictions."
+
+    # Get input description from metadata
+    meta_path = RESULTS_DIR / "metadata.json"
+    input_desc = "the stimulus"
+    if meta_path.exists():
+        try:
+            meta = json.loads(meta_path.read_text())
+            input_desc = meta.get("input_desc", "the stimulus")
+        except Exception:
+            pass
+
+    interps = interpret_cognitive_state(_NETWORK_TIMECOURSES)
+    prompt = _build_ai_prompt(_NETWORK_TIMECOURSES, interps, input_desc)
+
+    # Try Claude API first
+    try:
+        import anthropic
+        api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+        if not api_key:
+            # Check for .env file
+            env_path = Path(__file__).resolve().parent / ".env"
+            if env_path.exists():
+                for line in env_path.read_text().splitlines():
+                    if line.startswith("ANTHROPIC_API_KEY="):
+                        api_key = line.split("=", 1)[1].strip().strip('"').strip("'")
+
+        if not api_key:
+            return (
+                "\u26a0\ufe0f **Anthropic API key not found.** "
+                "Set `ANTHROPIC_API_KEY` in your environment or create a `.env` file "
+                "in the project root with:\n\n"
+                "```\nANTHROPIC_API_KEY=sk-ant-...\n```\n\n"
+                "Then restart the server."
+            )
+
+        progress(0.2, desc="Sending brain data to Claude...")
+        client = anthropic.Anthropic(api_key=api_key)
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=1500,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        progress(1.0, desc="Abstract generated!")
+
+        abstract_text = response.content[0].text
+        return f"## \U0001f9e0 AI Brain Response Abstract\n\n{abstract_text}"
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        # Fall back to template-based narrative
+        fallback = generate_narrative_abstract(_NETWORK_TIMECOURSES, interps, input_desc)
+        return (
+            f"> \u26a0\ufe0f Claude API call failed (`{type(e).__name__}: {e}`). "
+            f"Showing template-based analysis instead.\n\n{fallback}"
+        )
+
+
+def plot_yeo_parcellation() -> str:
+    """Render and cache a Yeo 7-network atlas visualization on the brain."""
+    cache_path = RESULTS_DIR / "yeo_parcellation.png"
+    if cache_path.exists():
+        return str(cache_path)
+
+    from matplotlib.colors import ListedColormap
+
+    # Build colormap: index 0 = gray (unassigned), 1-7 = network colors
+    cmap_colors = ["#888888"] + YEO_NETWORK_COLORS
+    cmap = ListedColormap(cmap_colors)
+
+    fig_mpl, axes = plt.subplots(1, 2, figsize=(12, 5),
+                                  subplot_kw={"projection": "3d"})
+    fig_mpl.patch.set_facecolor("white")
+    lh = 10242
+
+    for ax, hemi in zip(axes, ["left", "right"]):
+        labels = _YEO_LABELS[:lh] if hemi == "left" else _YEO_LABELS[lh:]
+        plotting.plot_surf_roi(
+            FSAVERAGE[f"pial_{hemi}"],
+            roi_map=labels,
+            hemi=hemi, view="lateral",
+            bg_map=FSAVERAGE[f"sulc_{hemi}"],
+            axes=ax, cmap=cmap,
+            vmin=0, vmax=7,
+        )
+        ax.set_facecolor("white")
+        ax.set_title(f"{hemi.capitalize()} Hemisphere",
+                     fontsize=13, fontweight="bold")
+
+    # Legend
+    import matplotlib.patches as mpatches
+    legend_patches = [
+        mpatches.Patch(color=YEO_NETWORK_COLORS[i], label=YEO_NETWORK_NAMES[i])
+        for i in range(7)
+    ]
+    fig_mpl.legend(handles=legend_patches, loc="lower center", ncol=4,
+                   fontsize=10, frameon=False)
+    fig_mpl.suptitle("Yeo 2011 7-Network Parcellation", fontsize=14,
+                     fontweight="bold", y=0.98)
+    plt.tight_layout(rect=[0, 0.08, 1, 0.95])
+    fig_mpl.savefig(cache_path, dpi=150, bbox_inches="tight", facecolor="white")
+    plt.close(fig_mpl)
+    print(f"Yeo parcellation saved to {cache_path}")
+    return str(cache_path)
 
 
 # ── Visualization helpers ────────────────────────────────────────────
@@ -702,6 +1289,7 @@ def run_inference(video, audio, text, progress=gr.Progress(track_tqdm=True)):
         ("Preparing features (text, audio, video)", "pending"),
         ("Running brain prediction", "pending"),
         ("Rendering visualizations", "pending"),
+        ("Computing cognitive analysis", "pending"),
     ]
 
     try:
@@ -766,17 +1354,41 @@ def run_inference(video, audio, text, progress=gr.Progress(track_tqdm=True)):
         mean_img, ts_img = render_brain_map(preds)
         steps[3] = ("Rendering visualizations", "done")
 
-        elapsed = time.time() - t0
-
         # Persist results + pre-render brain frames for smooth playback
+        elapsed_render = time.time() - t0
         save_results(
-            preds, input_desc, events.shape[0], elapsed,
+            preds, input_desc, events.shape[0], elapsed_render,
             mean_img, ts_img, video_path=_LAST_VIDEO,
         )
+
+        # Step 5: Cognitive analysis
+        steps[4] = ("Computing cognitive analysis", "running")
+        yield {summary_output: _status_md(steps, time.time() - t0)}
+
+        cog_tc_plot_val = None
+        cog_bar_plot_val = None
+        cog_summary_val = ""
+        cog_yeo_img_val = None
+        cog_slider_update = gr.Slider()
+        if _YEO_LABELS is not None:
+            _NETWORK_TIMECOURSES = compute_network_timecourses(preds, _YEO_LABELS)
+            np.save(RESULTS_DIR / "network_timecourses.npy", _NETWORK_TIMECOURSES)
+            interps = interpret_cognitive_state(_NETWORK_TIMECOURSES)
+            cog_tc_plot_val = plot_network_timecourses(_NETWORK_TIMECOURSES)
+            cog_bar_plot_val = plot_network_bar(_NETWORK_TIMECOURSES, -1)
+            cog_summary_val = generate_cognitive_summary(_NETWORK_TIMECOURSES, interps)
+            cog_yeo_img_val = plot_yeo_parcellation()
+            cog_slider_update = gr.Slider(
+                minimum=-1, maximum=preds.shape[0] - 1, value=-1,
+                step=1, interactive=True,
+                label=f"Timestep (-1 = mean, 0\u2013{preds.shape[0]-1} = TRs)",
+            )
+        steps[4] = ("Computing cognitive analysis", "done")
 
         # Initial brain image = mean (index 0)
         init_brain = _BRAIN_FRAMES[0] if _BRAIN_FRAMES else None
 
+        elapsed = time.time() - t0
         summary_text = (
             f"### Results  *(completed in {elapsed:.0f}s)*\n\n"
             f"| | |\n|---|---|\n"
@@ -787,7 +1399,7 @@ def run_inference(video, audio, text, progress=gr.Progress(track_tqdm=True)):
             f"| **Activation range** | [{preds.min():.4f}, {preds.max():.4f}] |\n"
             f"| **Saved to** | `{RESULTS_DIR}` |\n\n"
             f"*Results cached \u2014 will auto-restore on server restart. "
-            f"Use the **Timestep** slider or **\u25b6 Play** for synced playback.*"
+            f"Check the **Cognitive Analysis** tab for network-level insights.*"
         )
         yield {
             mean_map: mean_img,
@@ -800,6 +1412,11 @@ def run_inference(video, audio, text, progress=gr.Progress(track_tqdm=True)):
                 step=1, interactive=True,
                 label=f"Timestep (-1 = mean, 0\u2013{preds.shape[0]-1} = TRs)",
             ),
+            network_tc_plot: cog_tc_plot_val,
+            network_bar_plot: cog_bar_plot_val,
+            cognitive_summary: cog_summary_val,
+            yeo_brain_img: cog_yeo_img_val,
+            cognitive_ts_slider: cog_slider_update,
         }
 
     except Exception as e:
@@ -815,17 +1432,17 @@ def run_inference(video, audio, text, progress=gr.Progress(track_tqdm=True)):
 
 def load_npy(npy_file):
     """Visualize a previously saved predictions .npy file."""
-    global _LAST_PREDS, _BRAIN_FRAMES
+    global _LAST_PREDS, _BRAIN_FRAMES, _NETWORK_TIMECOURSES
+    empty = (None,) * 11  # match all_outputs length
     if npy_file is None:
-        return None, None, None, None, "\u26a0\ufe0f Please upload a .npy file.", gr.Slider()
+        return (*empty[:4], "\u26a0\ufe0f Please upload a .npy file.", *empty[5:])
 
     try:
         preds = np.load(npy_file)
         if preds.ndim != 2 or preds.shape[1] != 20484:
-            return None, None, None, None, (
-                f"\u274c **Bad shape:** expected (n_timesteps, 20484), "
-                f"got {preds.shape}"
-            ), gr.Slider()
+            return (*empty[:4],
+                    f"\u274c **Bad shape:** expected (n_timesteps, 20484), got {preds.shape}",
+                    *empty[5:])
 
         # Need mesh cache for the interactive viewer
         if not _MESH_CACHE:
@@ -837,6 +1454,22 @@ def load_npy(npy_file):
         mean_img, ts_img = render_brain_map(preds)
         _BRAIN_FRAMES = prerender_brain_frames(preds)
         init_brain = _BRAIN_FRAMES[0] if _BRAIN_FRAMES else None
+
+        # Cognitive analysis
+        cog_tc = cog_bar = cog_summary = cog_yeo = None
+        cog_slider = gr.Slider()
+        if _YEO_LABELS is not None:
+            _NETWORK_TIMECOURSES = compute_network_timecourses(preds, _YEO_LABELS)
+            interps = interpret_cognitive_state(_NETWORK_TIMECOURSES)
+            cog_tc = plot_network_timecourses(_NETWORK_TIMECOURSES)
+            cog_bar = plot_network_bar(_NETWORK_TIMECOURSES, -1)
+            cog_summary = generate_cognitive_summary(_NETWORK_TIMECOURSES, interps)
+            cog_yeo = plot_yeo_parcellation()
+            cog_slider = gr.Slider(
+                minimum=-1, maximum=preds.shape[0] - 1, value=-1,
+                step=1, interactive=True,
+                label=f"Timestep (-1 = mean, 0\u2013{preds.shape[0]-1} = TRs)",
+            )
 
         summary = (
             f"### Results (loaded from file)\n\n"
@@ -851,153 +1484,218 @@ def load_npy(npy_file):
             step=1, interactive=True,
             label=f"Timestep (-1 = mean, 0\u2013{preds.shape[0]-1} = TRs)",
         )
-        return mean_img, ts_img, init_brain, npy_file, summary, slider_update
+        # Return matches all_outputs order: mean_map, timestep_map, brain_image,
+        # npy_download, summary_output, ts_slider,
+        # network_tc_plot, network_bar_plot, cognitive_summary,
+        # yeo_brain_img, cognitive_ts_slider
+        return (mean_img, ts_img, init_brain, npy_file, summary, slider_update,
+                cog_tc, cog_bar, cog_summary, cog_yeo, cog_slider)
 
     except Exception as e:
         import traceback
         traceback.print_exc()
-        return None, None, None, None, f"\u274c **Error:** `{type(e).__name__}: {e}`", gr.Slider()
+        return (None, None, None, None,
+                f"\u274c **Error:** `{type(e).__name__}: {e}`",
+                gr.Slider(), None, None, "", None, gr.Slider())
 
 
 # ── Gradio UI ────────────────────────────────────────────────────────
-def build_ui(cached: dict | None = None):
-    """Build the Gradio UI, optionally pre-populated with cached results."""
+CUSTOM_CSS = ""
 
-    # Pre-compute initial values from cache
+
+def build_ui(cached: dict | None = None):
+    """Build the Gradio UI with clean layout."""
+    # Register paper figures as static paths so Gradio serves them
+    figures_dir = str((Path(__file__).resolve().parent / "paper" / "figures"))
+    gr.set_static_paths([figures_dir])
+
+    # ── Pre-compute initial values from cache ────────────────────────
     init_mean = cached["mean_img"] if cached else None
     init_ts = cached["ts_img"] if cached else None
     init_brain_img = cached.get("init_brain_img") if cached else None
     init_brain_3d = render_interactive_brain(cached["preds"]) if (cached and _MESH_CACHE) else None
-    init_summary = cached["summary"] if cached else "*Run inference or load a .npy file to see results.*"
+    init_summary = cached["summary"] if cached else ""
     init_npy = str(RESULTS_DIR / "predictions.npy") if (cached and (RESULTS_DIR / "predictions.npy").exists()) else None
     init_frame = cached.get("init_frame") if cached else None
     init_input_video = cached.get("video_path") if cached else None
     init_anim_video = str(RESULTS_DIR / "brain_animation.mp4") if (RESULTS_DIR / "brain_animation.mp4").exists() else None
 
-    if cached:
-        n_ts = cached["preds"].shape[0]
-        init_slider_max = n_ts - 1
-        init_slider_interactive = True
-    else:
-        init_slider_max = 0
-        init_slider_interactive = False
+    # Cognitive analysis
+    init_tc_plot = None
+    init_bar_plot = None
+    init_cog_summary = ""
+    init_yeo_img = None
+    if cached and _YEO_LABELS is not None:
+        global _NETWORK_TIMECOURSES
+        tc_cache = RESULTS_DIR / "network_timecourses.npy"
+        if tc_cache.exists():
+            _NETWORK_TIMECOURSES = np.load(tc_cache)
+        else:
+            _NETWORK_TIMECOURSES = compute_network_timecourses(cached["preds"], _YEO_LABELS)
+            np.save(tc_cache, _NETWORK_TIMECOURSES)
+        interps = interpret_cognitive_state(_NETWORK_TIMECOURSES)
+        init_tc_plot = plot_network_timecourses(_NETWORK_TIMECOURSES)
+        init_bar_plot = plot_network_bar(_NETWORK_TIMECOURSES, -1)
+        init_cog_summary = generate_cognitive_summary(_NETWORK_TIMECOURSES, interps)
+        init_yeo_img = plot_yeo_parcellation()
 
+    has_data = cached is not None
+    n_ts = cached["preds"].shape[0] if cached else 0
+    slider_max = max(n_ts - 1, 0)
+    status_text = f"\u2705 Results loaded \u00b7 {n_ts} timesteps" if has_data else "No results yet \u2014 upload input and run inference"
+
+    # ── Build UI ─────────────────────────────────────────────────────
     with gr.Blocks(
         title="TRIBE v2 Brain Encoder",
+        theme=gr.themes.Soft(),
     ) as demo:
-        # Hidden state for play/pause
         is_playing = gr.State(False)
 
         gr.Markdown(
-            "# \U0001f9e0 TRIBE v2 \u2014 Brain Encoding Demo\n\n"
-            "Upload a **video**, **audio file**, or enter **text** to predict "
-            "brain responses on the fsaverage5 cortical mesh (20,484 vertices)."
+            "# \U0001f9e0 TRIBE v2 Brain Encoder\n"
+            "Predict brain responses from video, audio, or text "
+            "using Meta's brain encoding foundation model."
         )
 
-        with gr.Row():
-            with gr.Column(scale=1, min_width=280):
-                video_input = gr.Video(label="Video", sources=["upload"])
-                audio_input = gr.Audio(
-                    label="Audio", type="filepath", sources=["upload"]
-                )
-                text_input = gr.Textbox(
-                    label="Text",
-                    placeholder="Or type/paste text here...",
-                    lines=3,
-                )
-                run_btn = gr.Button(
-                    "\u25b6  Run Inference", variant="primary", size="lg"
+        # ── Input Section (compact top bar) ─────────────────────
+        with gr.Accordion("\U0001f4e4  Upload Input", open=not has_data):
+            with gr.Row(equal_height=True):
+                video_input = gr.Video(label="Video", sources=["upload"], scale=2)
+                audio_input = gr.Audio(label="Audio", type="filepath",
+                                       sources=["upload"], scale=1)
+                text_input = gr.Textbox(label="Text", lines=3, scale=2,
+                                        placeholder="Or type text here...")
+                with gr.Column(scale=1, min_width=140):
+                    run_btn = gr.Button("\u25b6  Run Inference",
+                                       variant="primary", size="lg")
+                    gr.Examples(
+                        examples=[["A person walks through a quiet forest."],
+                                  ["Bears crossing a mountain road."]],
+                        inputs=[text_input], label="Try:",
+                    )
+            with gr.Accordion("\U0001f4c2  Load .npy file", open=False):
+                with gr.Row():
+                    npy_input = gr.File(label="Upload .npy", file_types=[".npy"], scale=2)
+                    load_btn = gr.Button("\U0001f4c2  Load", variant="secondary", scale=1)
+
+        # ── Global Playback Bar ─────────────────────────────────
+        with gr.Group(elem_classes=["playback-bar"]):
+            with gr.Row():
+                play_btn = gr.Button("\u25b6", variant="secondary",
+                                     scale=0, min_width=50)
+                pause_btn = gr.Button("\u23f8", variant="secondary",
+                                      scale=0, min_width=50)
+                ts_slider = gr.Slider(
+                    minimum=-1, maximum=slider_max, value=-1, step=1,
+                    label=f"Timestep  \u00b7  -1 = mean  \u00b7  0\u2013{slider_max} = seconds" if has_data else "Timestep (run inference first)",
+                    interactive=has_data, scale=6,
                 )
 
-                gr.Markdown("---\n**Or load previous results:**")
-                npy_input = gr.File(
-                    label="Load .npy predictions",
-                    file_types=[".npy"],
-                )
-                load_btn = gr.Button(
-                    "\U0001f4c2  Load & Visualize", variant="secondary", size="lg"
-                )
-                npy_download = gr.File(
-                    label="Download predictions (.npy)", interactive=False,
-                    value=init_npy,
-                )
-                summary_output = gr.Markdown(label="Summary", value=init_summary)
+        # ── Main Content Tabs ───────────────────────────────────
+        with gr.Tabs():
 
-            with gr.Column(scale=2):
-                with gr.Tabs():
-                    with gr.TabItem("\U0001f9e0 Synced Brain Viewer"):
-                        with gr.Row():
-                            video_frame = gr.Image(
-                                label="Video Frame",
-                                value=init_frame,
-                                height=350,
-                            )
-                            brain_image = gr.Image(
-                                label="Brain Activity",
-                                value=init_brain_img,
-                                height=350,
-                            )
-                        with gr.Row():
-                            play_btn = gr.Button(
-                                "\u25b6 Play", variant="secondary", scale=1,
-                            )
-                            pause_btn = gr.Button(
-                                "\u23f8 Pause", variant="secondary", scale=1,
-                            )
-                        slider_label = f"Timestep (-1 = mean, 0\u2013{init_slider_max} = TRs)" if cached else "Timestep (-1 = mean)"
-                        ts_slider = gr.Slider(
-                            minimum=-1, maximum=init_slider_max, value=-1, step=1,
-                            label=slider_label,
-                            interactive=init_slider_interactive,
-                        )
-                    with gr.TabItem("\U0001f4ca Mean Activation"):
-                        mean_map = gr.Image(
-                            label="Mean Brain Activation",
-                            value=init_mean,
-                        )
-                    with gr.TabItem("\u23f1\ufe0f Per-Timestep"):
-                        timestep_map = gr.Image(
-                            label="Per-Timestep Activations",
-                            value=init_ts,
-                        )
-                    with gr.TabItem("\U0001f9e0 Interactive 3D"):
-                        gr.Markdown(
-                            "*Drag to rotate \u00b7 Scroll to zoom \u00b7 "
-                            "Use the timestep dropdown to change activation.*"
-                        )
-                        interactive_plot = gr.Plot(
-                            label="Interactive 3D Brain",
-                            value=init_brain_3d,
-                        )
-                        interactive_ts = gr.Slider(
-                            minimum=-1,
-                            maximum=init_slider_max,
-                            value=-1, step=1,
-                            label="Timestep (-1 = mean)",
-                            interactive=init_slider_interactive,
-                        )
-                    with gr.TabItem("\U0001f3ac 3D Rotation Video"):
-                        gr.Markdown(
-                            "*Generate a rotating brain animation that matches "
-                            "the input video duration. Play both side-by-side to "
-                            "see what the brain is doing at each moment.*"
-                        )
-                        anim_btn = gr.Button(
-                            "\U0001f3ac  Generate Rotating Animation",
-                            variant="primary", size="lg",
-                        )
-                        anim_status = gr.Markdown("")
-                        with gr.Row():
-                            anim_input_video = gr.Video(
-                                label="Input Video",
-                                value=init_input_video,
-                            )
-                            anim_video = gr.Video(
-                                label="Brain Animation",
-                                value=init_anim_video,
-                            )
+            # ── Tab 1: Synced Viewer ────────────────────────────
+            with gr.TabItem("\U0001f3ac  Viewer"):
+                with gr.Row(equal_height=True):
+                    video_frame = gr.Image(label="Video Frame",
+                                           value=init_frame, height=400)
+                    brain_image = gr.Image(label="Predicted Brain Activity",
+                                           value=init_brain_img, height=400)
 
-        # ── Timer for auto-play ──────────────────────────────────────
+            # ── Tab 2: 3D Brain ─────────────────────────────────
+            with gr.TabItem("\U0001f9e0  3D Brain"):
+                gr.Markdown("*Drag to rotate \u00b7 Scroll to zoom \u00b7 "
+                            "Use the button below to load a specific timestep*")
+                interactive_plot = gr.Plot(label="Interactive 3D Brain",
+                                            value=init_brain_3d)
+                with gr.Row():
+                    interactive_ts = gr.Slider(
+                        minimum=-1, maximum=slider_max, value=-1, step=1,
+                        label="Timestep for 3D view", interactive=has_data, scale=4,
+                    )
+                    render_3d_btn = gr.Button("\U0001f504  Render", variant="secondary",
+                                              scale=1, min_width=100)
+                gr.Markdown("---")
+                gr.Markdown("**Rotation Video** \u2014 generate a smooth rotating animation")
+                with gr.Row():
+                    anim_btn = gr.Button("\U0001f3ac  Generate Rotation Video",
+                                         variant="primary")
+                    anim_status = gr.Markdown("")
+                with gr.Row():
+                    anim_input_video = gr.Video(label="Input Video",
+                                                 value=init_input_video)
+                    anim_video = gr.Video(label="Brain Animation",
+                                           value=init_anim_video)
+
+            # ── Tab 3: Analysis ─────────────────────────────────
+            with gr.TabItem("\U0001f4ca  Analysis"):
+                gr.Markdown(
+                    "> Network activations from the "
+                    "[Yeo 2011 7-network parcellation]"
+                    "(https://doi.org/10.1152/jn.00338.2011) "
+                    "mapped onto TRIBE v2 predicted brain responses."
+                )
+                network_tc_plot = gr.Plot(label="Network Activation Over Time",
+                                          value=init_tc_plot)
+                with gr.Row():
+                    with gr.Column(scale=1):
+                        network_bar_plot = gr.Plot(label="Network Activation (current timestep)",
+                                                    value=init_bar_plot)
+                    with gr.Column(scale=1):
+                        yeo_brain_img = gr.Image(label="Yeo 7-Network Atlas",
+                                                  value=init_yeo_img)
+                with gr.Row():
+                    mean_map = gr.Image(label="Mean Activation Map",
+                                        value=init_mean)
+                    timestep_map = gr.Image(label="Per-Timestep Montage",
+                                             value=init_ts)
+
+            # ── Tab 4: Report ───────────────────────────────────
+            with gr.TabItem("\U0001f4cb  Report"):
+                summary_output = gr.Markdown(value=init_summary)
+                cognitive_summary = gr.Markdown(value=init_cog_summary)
+                gr.Markdown("---")
+                with gr.Row():
+                    abstract_btn = gr.Button(
+                        "\U0001f9e0  Generate AI Abstract",
+                        variant="primary", size="lg", scale=1,
+                    )
+                    npy_download = gr.File(
+                        label="Download predictions (.npy)",
+                        interactive=False, value=init_npy, scale=2,
+                    )
+                abstract_output = gr.Markdown(
+                    value="*Click **Generate AI Abstract** for a plain-English "
+                    "interpretation powered by Claude.*",
+                )
+
+            # ── Tab 5: Paper Viewer ─────────────────────────────
+            with gr.TabItem("\U0001f4c4  Paper"):
+                gr.Markdown("Preview markdown files from the `paper/` directory.")
+                paper_dir = Path(__file__).resolve().parent / "paper"
+                md_files = sorted(paper_dir.glob("*.md")) if paper_dir.exists() else []
+                file_choices = [f.name for f in md_files] if md_files else ["(no .md files found)"]
+
+                with gr.Row():
+                    paper_dropdown = gr.Dropdown(
+                        choices=file_choices,
+                        value=file_choices[0] if md_files else None,
+                        label="Select file", scale=3,
+                    )
+                    paper_refresh_btn = gr.Button("\U0001f504 Refresh", scale=1)
+                    paper_load_btn = gr.Button("Load", variant="primary", scale=1)
+
+                paper_viewer = gr.HTML(
+                    value="<p><em>Select a file and click Load to preview.</em></p>",
+                )
+
+        # ── Hidden slider alias for cognitive bar (synced to global) ─
+        # We reuse ts_slider for everything; cognitive_ts_slider is a
+        # hidden dummy that run_inference can still target.
+        cognitive_ts_slider = gr.Slider(visible=False, minimum=-1,
+                                         maximum=slider_max, value=-1)
+
+        # ── Timer for auto-play ──────────────────────────────────
         play_timer = gr.Timer(value=1.0, active=False)
 
         def start_playing():
@@ -1012,73 +1710,158 @@ def build_ui(cached: dict | None = None):
             max_ts = _LAST_PREDS.shape[0] - 1
             next_ts = current_ts + 1
             if next_ts > max_ts:
-                # Stop at the end
                 return max_ts, gr.Timer(active=False)
             return next_ts, gr.Timer(active=True)
 
-        play_btn.click(
-            fn=start_playing,
-            outputs=[is_playing, play_timer],
-        )
-        pause_btn.click(
-            fn=stop_playing,
-            outputs=[is_playing, play_timer],
-        )
-        play_timer.tick(
-            fn=tick_forward,
-            inputs=[is_playing, ts_slider],
-            outputs=[ts_slider, play_timer],
-        )
+        play_btn.click(fn=start_playing, outputs=[is_playing, play_timer])
+        pause_btn.click(fn=stop_playing, outputs=[is_playing, play_timer])
+        play_timer.tick(fn=tick_forward, inputs=[is_playing, ts_slider],
+                        outputs=[ts_slider, play_timer])
 
-        # ── Wire up events ───────────────────────────────────────────
+        # ── Event wiring ─────────────────────────────────────────
         all_outputs = [
             mean_map, timestep_map, brain_image,
             npy_download, summary_output, ts_slider,
+            network_tc_plot, network_bar_plot, cognitive_summary,
+            yeo_brain_img, cognitive_ts_slider,
         ]
 
-        run_btn.click(
-            fn=run_inference,
-            inputs=[video_input, audio_input, text_input],
-            outputs=all_outputs,
-        )
-        load_btn.click(
-            fn=load_npy,
-            inputs=[npy_input],
-            outputs=all_outputs,
-        )
+        run_btn.click(fn=run_inference,
+                      inputs=[video_input, audio_input, text_input],
+                      outputs=all_outputs)
+        load_btn.click(fn=load_npy, inputs=[npy_input], outputs=all_outputs)
 
-        # Timestep slider updates brain + video frame (instant image swap)
-        ts_slider.change(
-            fn=on_timestep_change,
-            inputs=[ts_slider],
-            outputs=[brain_image, video_frame],
-        )
+        # Global slider — FAST updates only (no Plotly re-render)
+        def on_global_slider(ts):
+            ts = int(ts)
+            # Brain frame (pre-rendered PNG — instant)
+            brain_idx = 0 if ts < 0 else ts + 1
+            brain_img = _BRAIN_FRAMES[brain_idx] if (_BRAIN_FRAMES and brain_idx < len(_BRAIN_FRAMES)) else None
+            # Video frame (cached JPG — instant)
+            frame_idx = max(0, ts)
+            frame_img = _FRAME_PATHS[frame_idx] if (_FRAME_PATHS and frame_idx < len(_FRAME_PATHS)) else None
+            # Bar chart (lightweight plotly — fast)
+            bar = plot_network_bar(_NETWORK_TIMECOURSES, ts) if _NETWORK_TIMECOURSES is not None else None
+            return brain_img, frame_img, bar
 
-        # Interactive 3D slider re-renders Plotly figure
-        def on_interactive_ts(ts):
+        ts_slider.change(fn=on_global_slider, inputs=[ts_slider],
+                         outputs=[brain_image, video_frame, network_bar_plot])
+
+        # 3D brain — render on button click (not auto, avoids lag)
+        def on_render_3d(ts):
             if _LAST_PREDS is None:
                 return None
             return render_interactive_brain(_LAST_PREDS, timestep=int(ts))
 
-        interactive_ts.change(
-            fn=on_interactive_ts,
-            inputs=[interactive_ts],
-            outputs=[interactive_plot],
-        )
+        render_3d_btn.click(fn=on_render_3d, inputs=[interactive_ts],
+                            outputs=[interactive_plot])
 
-        # Generate 3D rotation animation
-        anim_btn.click(
-            fn=generate_animation,
-            outputs=[anim_input_video, anim_video, anim_status],
-        )
+        # Abstract
+        abstract_btn.click(fn=on_generate_abstract, outputs=[abstract_output])
 
-        gr.Examples(
-            examples=[
-                [None, None, "A person walks through a quiet forest. Birds are singing in the trees above."],
-                [None, None, "The crowd erupts in cheers as the home team scores the winning goal."],
-            ],
-            inputs=[video_input, audio_input, text_input],
-        )
+        # Rotation animation
+        anim_btn.click(fn=generate_animation,
+                       outputs=[anim_input_video, anim_video, anim_status])
+
+        # Paper viewer
+        def load_paper(filename):
+            if not filename:
+                return "<p><em>No file selected.</em></p>"
+            import re, base64, markdown
+            paper_dir = Path(__file__).resolve().parent / "paper"
+            p = paper_dir / filename
+            if not p.exists():
+                return f"<p><em>File not found: {filename}</em></p>"
+            md_text = p.read_text(encoding="utf-8")
+
+            # Step 1: Replace markdown images with base64 HTML img tags
+            def replace_img(match):
+                alt = match.group(1)
+                rel_path = match.group(2)
+                img_path = paper_dir / rel_path
+                if img_path.exists():
+                    b64 = base64.b64encode(img_path.read_bytes()).decode()
+                    ext = img_path.suffix.lower().lstrip(".")
+                    mime = {"png": "image/png", "jpg": "image/jpeg",
+                            "jpeg": "image/jpeg"}.get(ext, "image/png")
+                    return (
+                        f'<div style="text-align:center;margin:1.5em 0;">'
+                        f'<img src="data:{mime};base64,{b64}" '
+                        f'alt="{alt}" style="max-width:100%;border-radius:8px;">'
+                        f'<p style="font-size:0.85em;color:#888;margin-top:0.5em;">'
+                        f'<em>{alt}</em></p></div>'
+                    )
+                return match.group(0)
+
+            md_text = re.sub(
+                r'!\[([^\]]*)\]\(([^)]+\.(?:png|jpg|jpeg|gif))\)',
+                replace_img, md_text
+            )
+
+            # Step 2: Convert LaTeX math to MathML (server-side, no JS needed)
+            import latex2mathml.converter
+
+            math_blocks = []
+            def save_math_block(match):
+                math_blocks.append(match.group(0))
+                return f"MATHPLACEHOLDER{len(math_blocks)-1}END"
+            # Block math $$...$$ first
+            md_text = re.sub(r'\$\$(.+?)\$\$', save_math_block, md_text, flags=re.DOTALL)
+            # Inline math $...$ (not $$)
+            md_text = re.sub(r'(?<!\$)\$(?!\$)(.+?)(?<!\$)\$(?!\$)', save_math_block, md_text)
+
+            # Step 3: Convert markdown to HTML
+            html = markdown.markdown(
+                md_text,
+                extensions=["tables", "fenced_code", "toc", "footnotes"],
+            )
+
+            # Step 4: Restore math as rendered MathML
+            for i, math_str in enumerate(math_blocks):
+                is_block = math_str.startswith("$$")
+                latex = math_str.strip("$").strip()
+                try:
+                    mathml = latex2mathml.converter.convert(latex)
+                    if is_block:
+                        # Force display mode
+                        mathml = mathml.replace('display="inline"', 'display="block"')
+                        replacement = f'<div style="text-align:center;margin:1em 0;overflow-x:auto;">{mathml}</div>'
+                    else:
+                        replacement = mathml
+                except Exception:
+                    # Fallback: show raw LaTeX in monospace
+                    replacement = f'<code>{latex}</code>'
+                html = html.replace(f"MATHPLACEHOLDER{i}END", replacement)
+
+            # Step 5: Wrap in styled container
+            styled = (
+                '<div style="max-width:900px;margin:0 auto;padding:2em;'
+                'font-family:Georgia,serif;line-height:1.7;color:#333;">'
+                '<style>'
+                'h1{font-size:1.8em;border-bottom:2px solid #333;padding-bottom:0.3em;}'
+                'h2{font-size:1.4em;border-bottom:1px solid #ccc;padding-bottom:0.2em;margin-top:2em;}'
+                'h3{font-size:1.15em;margin-top:1.5em;}'
+                'table{border-collapse:collapse;width:100%;margin:1em 0;}'
+                'th,td{border:1px solid #ddd;padding:8px 12px;text-align:left;}'
+                'th{background:#f5f5f5;font-weight:bold;}'
+                'blockquote{border-left:4px solid #6366f1;margin:1em 0;padding:0.5em 1em;background:#f8f8ff;}'
+                'code{background:#f0f0f0;padding:2px 6px;border-radius:3px;font-size:0.9em;}'
+                'pre{background:#f0f0f0;padding:1em;border-radius:6px;overflow-x:auto;}'
+                '</style>'
+                f'{html}'
+                '</div>'
+            )
+            return styled
+
+        def refresh_paper_list():
+            paper_dir = Path(__file__).resolve().parent / "paper"
+            files = sorted(f.name for f in paper_dir.glob("*.md")) if paper_dir.exists() else []
+            return gr.Dropdown(choices=files if files else ["(none)"],
+                               value=files[0] if files else None)
+
+        paper_load_btn.click(fn=load_paper, inputs=[paper_dropdown],
+                             outputs=[paper_viewer])
+        paper_refresh_btn.click(fn=refresh_paper_list, outputs=[paper_dropdown])
 
     return demo, {
         "mean_map": mean_map,
@@ -1088,6 +1871,11 @@ def build_ui(cached: dict | None = None):
         "summary_output": summary_output,
         "ts_slider": ts_slider,
         "video_frame": video_frame,
+        "network_tc_plot": network_tc_plot,
+        "network_bar_plot": network_bar_plot,
+        "cognitive_summary": cognitive_summary,
+        "yeo_brain_img": yeo_brain_img,
+        "cognitive_ts_slider": cognitive_ts_slider,
     }
 
 
@@ -1096,7 +1884,6 @@ if __name__ == "__main__":
     load_model()
     print("Model loaded!")
 
-    # Try to restore cached results
     cached = load_cached_results()
     if cached:
         print(f"Restored {cached['meta']['n_timesteps']} timesteps from cache.")
@@ -1106,7 +1893,7 @@ if __name__ == "__main__":
     print("Starting Gradio server...")
     demo, components = build_ui(cached=cached)
 
-    # Expose component refs at module level so run_inference's dict-yield works
+    # Expose component refs at module level for run_inference's dict-yield
     mean_map = components["mean_map"]
     timestep_map = components["timestep_map"]
     brain_image = components["brain_image"]
@@ -1114,5 +1901,13 @@ if __name__ == "__main__":
     summary_output = components["summary_output"]
     ts_slider = components["ts_slider"]
     video_frame = components["video_frame"]
+    network_tc_plot = components["network_tc_plot"]
+    network_bar_plot = components["network_bar_plot"]
+    cognitive_summary = components["cognitive_summary"]
+    yeo_brain_img = components["yeo_brain_img"]
+    cognitive_ts_slider = components["cognitive_ts_slider"]
 
-    demo.launch(server_port=7860, share=False)
+    demo.launch(
+        server_port=7860, share=False,
+        allowed_paths=[str(Path(__file__).resolve().parent / "paper" / "figures")],
+    )
