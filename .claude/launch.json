@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "TRIBE v2 Gradio UI",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["app.py"],
+      "port": 7860
+    },
+    {
+      "name": "TRIBE v2 Text Inference",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["run_inference.py", "--text", "sample_prompt.txt"],
+      "port": null
+    },
+    {
+      "name": "TRIBE v2 Video Inference",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["run_inference.py", "--video", "sample.mp4", "--output", "predictions_video.npy"],
+      "port": null
+    }
+  ]
+}

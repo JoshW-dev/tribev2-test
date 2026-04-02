@@ -1,6 +1,7 @@
 .venv/
 cache/
 tribev2/
+results/
 *.npy
 __pycache__/
 *.pyc
@@ -8,3 +9,6 @@ __pycache__/
 *.log
 *.png
 *.html
+sample.mp4
+sample.wav
+sample.tsv
