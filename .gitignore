@@ -16,7 +16,6 @@ sample.tsv
 *.mp4
 *.wav
 *.tsv
-paper/figures/
 paper/comparison_data/
 paper/*.html
 paper/*.pdf
