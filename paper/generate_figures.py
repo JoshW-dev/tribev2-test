@@ -10,6 +10,7 @@ sys.path = [p for p in sys.path if p != _script_dir or p == sys.path[0]]
 
 import json
 import numpy as np
+from scipy.signal import detrend, find_peaks as scipy_find_peaks
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -34,6 +35,36 @@ YEO_COLORS = [
     "#DCF8A4", "#E69422", "#CD3E4E",
 ]
 
+def find_robust_peaks(timecourse, n_peaks=3, boundary_trim=4, min_distance=3):
+    """Find peaks with detrending and boundary trimming to avoid end-of-video bias."""
+    n = len(timecourse)
+    if n == 0:
+        return np.array([], dtype=int)
+    trim = min(boundary_trim, max(n // 4, 1))
+    detrended = detrend(timecourse, type='linear')
+    std = detrended.std()
+    z = detrended / std if std > 0 else detrended
+    interior = np.abs(z[trim:n - trim])
+    peaks, props = scipy_find_peaks(interior, distance=min_distance, prominence=0.1)
+    if len(peaks) >= n_peaks:
+        top_idx = np.argsort(props['prominences'])[::-1][:n_peaks]
+        peak_indices = peaks[top_idx] + trim
+    else:
+        ranked = np.argsort(interior)[::-1]
+        selected = []
+        for idx in ranked:
+            orig = idx + trim
+            if all(abs(orig - s) >= min_distance for s in selected):
+                selected.append(orig)
+            if len(selected) == n_peaks:
+                break
+        peak_indices = np.array(selected, dtype=int)
+    if len(peak_indices) > 0:
+        magnitudes = np.abs(z[peak_indices])
+        peak_indices = peak_indices[np.argsort(magnitudes)[::-1]]
+    return peak_indices
+
+
 n_ts = preds.shape[0]
 
 # Compute network timecourses
@@ -56,8 +87,10 @@ for i in range(7):
     ax.plot(range(n_ts), tc[:, i], color=YEO_COLORS[i],
             linewidth=2.5, label=YEO_NAMES[i], alpha=0.9)
 
-# Annotate peak moment
-peak_t = int(np.argmax(np.abs(tc).max(axis=1)))
+# Annotate peak moment (robust: detrended, boundary-trimmed)
+all_net_max = np.abs(tc).max(axis=1)
+peak_t_robust = find_robust_peaks(all_net_max, n_peaks=1)
+peak_t = int(peak_t_robust[0]) if len(peak_t_robust) > 0 else int(np.argmax(all_net_max))
 peak_net = int(np.argmax(np.abs(tc[peak_t])))
 ax.axvline(peak_t, color="gray", linestyle="--", alpha=0.5)
 ax.annotate(f"Peak: {YEO_NAMES[peak_net]}\n(TR {peak_t})",
@@ -93,8 +126,8 @@ print("Generating Figure 2: Ventral Attention Peaks...")
 
 van_idx = 3  # Ventral Attention is network index 3
 van_tc = tc[:, van_idx]
-# Find top 3 peak timesteps
-peaks = np.argsort(np.abs(van_tc))[-3:][::-1]
+# Find top 3 peak timesteps (robust: detrended, boundary-trimmed, min spacing)
+peaks = find_robust_peaks(van_tc, n_peaks=3)
 
 fig = plt.figure(figsize=(14, 7))
 fig.patch.set_facecolor("white")

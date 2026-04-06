@@ -9,6 +9,7 @@ sys.path = [p for p in sys.path if p != _project]
 import json
 import subprocess as sp
 import numpy as np
+from scipy.signal import detrend, find_peaks as scipy_find_peaks
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -21,6 +22,36 @@ for _extra in [
 ]:
     if _extra.exists():
         os.environ["PATH"] = str(_extra) + os.pathsep + os.environ.get("PATH", "")
+
+def find_robust_peaks(timecourse, n_peaks=3, boundary_trim=4, min_distance=3):
+    """Find peaks with detrending and boundary trimming to avoid end-of-video bias."""
+    n = len(timecourse)
+    if n == 0:
+        return np.array([], dtype=int)
+    trim = min(boundary_trim, max(n // 4, 1))
+    detrended = detrend(timecourse, type='linear')
+    std = detrended.std()
+    z = detrended / std if std > 0 else detrended
+    interior = np.abs(z[trim:n - trim])
+    peaks, props = scipy_find_peaks(interior, distance=min_distance, prominence=0.1)
+    if len(peaks) >= n_peaks:
+        top_idx = np.argsort(props['prominences'])[::-1][:n_peaks]
+        peak_indices = peaks[top_idx] + trim
+    else:
+        ranked = np.argsort(interior)[::-1]
+        selected = []
+        for idx in ranked:
+            orig = idx + trim
+            if all(abs(orig - s) >= min_distance for s in selected):
+                selected.append(orig)
+            if len(selected) == n_peaks:
+                break
+        peak_indices = np.array(selected, dtype=int)
+    if len(peak_indices) > 0:
+        magnitudes = np.abs(z[peak_indices])
+        peak_indices = peak_indices[np.argsort(magnitudes)[::-1]]
+    return peak_indices
+
 
 PROJECT = Path(__file__).resolve().parent.parent
 COMPARE = PROJECT / "paper" / "comparison_data"
@@ -99,7 +130,7 @@ for stem, (label, color, desc) in VIDEOS.items():
 
     # Find peaks for ventral attention (hook/surprise)
     van_tc = tc[:, 3]  # Ventral Attention
-    peaks = np.argsort(np.abs(van_tc))[-3:][::-1]
+    peaks = find_robust_peaks(van_tc, n_peaks=3)
 
     # Extract frames at peak moments
     peak_frames = extract_key_frames(
@@ -190,7 +221,10 @@ for stem, (label, color, desc) in VIDEOS.items():
     ax_stats.axis("off")
     dominant = YEO_NAMES[np.argmax(pct)]
     secondary = YEO_NAMES[np.argsort(pct)[-2]]
-    peak_t = int(np.argmax(np.abs(tc).max(axis=1)))
+    # Find peak brain response across all networks (robust)
+    all_net_max = np.abs(tc).max(axis=1)
+    peak_t_robust = find_robust_peaks(all_net_max, n_peaks=1)
+    peak_t = int(peak_t_robust[0]) if len(peak_t_robust) > 0 else int(np.argmax(all_net_max))
     peak_net = YEO_NAMES[int(np.argmax(np.abs(tc[peak_t])))]
 
     stats_text = (
@@ -277,7 +311,7 @@ for stem, (label, color, desc) in VIDEOS.items():
     total = mean_abs.sum()
     pct = mean_abs / total * 100
     dom_idx = np.argmax(pct)
-    van_peaks = np.argsort(np.abs(tc[:, 3]))[-3:][::-1]
+    van_peaks = find_robust_peaks(tc[:, 3], n_peaks=3)
 
     print(f"\n{label} ({desc}):")
     print(f"  Duration: {tc.shape[0]}s")

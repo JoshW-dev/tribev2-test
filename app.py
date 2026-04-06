@@ -541,6 +541,76 @@ def compute_network_timecourses(preds: np.ndarray, labels: np.ndarray) -> np.nda
     return timecourses
 
 
+def find_robust_peaks(timecourse: np.ndarray, n_peaks: int = 3,
+                      boundary_trim: int = 4, min_distance: int = 3) -> np.ndarray:
+    """Find peaks in a timecourse with detrending and boundary trimming.
+
+    Addresses end-of-video bias caused by:
+    - Linear drift in model predictions (removed via detrending)
+    - Conv1d zero-padding edge artifacts (removed via boundary trimming)
+    - Adjacent timesteps dominating top-N (mitigated via minimum distance)
+
+    Args:
+        timecourse: 1D array of network activation values.
+        n_peaks: Number of peaks to return.
+        boundary_trim: Number of timesteps to exclude from each end
+                       (matches TemporalSmoothing kernel_size//2 = 4).
+        min_distance: Minimum distance between returned peaks.
+
+    Returns:
+        Array of peak timestep indices (in original timecourse coordinates),
+        sorted by descending magnitude.
+    """
+    from scipy.signal import detrend, find_peaks as scipy_find_peaks
+
+    n = len(timecourse)
+    if n == 0:
+        return np.array([], dtype=int)
+
+    # Clamp boundary trim so we don't eliminate the whole signal
+    trim = min(boundary_trim, max(n // 4, 1))
+
+    # 1. Detrend: remove linear drift that biases toward start/end
+    detrended = detrend(timecourse, type='linear')
+
+    # 2. Z-score: normalize so peaks are relative to video's own distribution
+    std = detrended.std()
+    if std > 0:
+        z = detrended / std
+    else:
+        z = detrended
+
+    # 3. Trim boundaries to avoid Conv1d zero-padding artifacts
+    interior = np.abs(z[trim:n - trim])
+
+    # 4. Use scipy find_peaks with prominence for robust detection
+    scipy_peaks, properties = scipy_find_peaks(interior, distance=min_distance,
+                                                prominence=0.1)
+
+    if len(scipy_peaks) >= n_peaks:
+        # Sort by prominence (most prominent first)
+        top_idx = np.argsort(properties['prominences'])[::-1][:n_peaks]
+        peak_indices = scipy_peaks[top_idx] + trim
+    else:
+        # Fallback: top-N by absolute z-scored magnitude with spacing
+        ranked = np.argsort(interior)[::-1]
+        selected = []
+        for idx in ranked:
+            original_idx = idx + trim
+            if all(abs(original_idx - s) >= min_distance for s in selected):
+                selected.append(original_idx)
+            if len(selected) == n_peaks:
+                break
+        peak_indices = np.array(selected, dtype=int)
+
+    # Sort by magnitude (descending)
+    if len(peak_indices) > 0:
+        magnitudes = np.abs(z[peak_indices])
+        peak_indices = peak_indices[np.argsort(magnitudes)[::-1]]
+
+    return peak_indices
+
+
 def interpret_cognitive_state(timecourses: np.ndarray) -> list[dict]:
     """Derive cognitive state interpretations from network activations.
 
@@ -636,10 +706,11 @@ def generate_cognitive_summary(timecourses: np.ndarray,
     """Markdown summary of cognitive analysis results."""
     n_ts = timecourses.shape[0]
 
-    # Peak activations per network
+    # Peak activations per network (using robust peak detection)
     peak_rows = []
     for i in range(7):
-        peak_tr = int(np.argmax(np.abs(timecourses[:, i])))
+        robust = find_robust_peaks(timecourses[:, i], n_peaks=1)
+        peak_tr = int(robust[0]) if len(robust) > 0 else int(np.argmax(np.abs(timecourses[:, i])))
         peak_val = timecourses[peak_tr, i]
         peak_rows.append(
             f"| {YEO_NETWORK_NAMES[i]} | TR {peak_tr} | {peak_val:+.4f} |"
