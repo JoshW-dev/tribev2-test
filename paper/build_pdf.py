@@ -47,8 +47,22 @@ def build():
         math_blocks.append(match.group(0))
         return f"MATHPLACEHOLDER{len(math_blocks)-1}END"
 
+    def save_inline_math(match):
+        """Only treat as math if content contains LaTeX-y characters,
+        not a currency amount like $500 or $1,000."""
+        inner = match.group(1)
+        # LaTeX indicators: backslash, underscore, caret, braces, or short single-letter vars
+        is_latex = bool(re.search(r'[\\_^{}]', inner)) or (
+            len(inner) <= 4 and not re.fullmatch(r'[\d.,\s]+', inner)
+        )
+        # Currency-like content (digits, commas, dots, dashes only) is NOT math
+        is_currency = bool(re.fullmatch(r'[\d.,\-\s]+', inner))
+        if is_latex and not is_currency:
+            return save_math(match)
+        return match.group(0)  # leave untouched
+
     md_text = re.sub(r'\$\$(.+?)\$\$', save_math, md_text, flags=re.DOTALL)
-    md_text = re.sub(r'(?<!\$)\$(?!\$)(.+?)(?<!\$)\$(?!\$)', save_math, md_text)
+    md_text = re.sub(r'(?<!\$)\$(?!\$)(.+?)(?<!\$)\$(?!\$)', save_inline_math, md_text)
 
     html_body = markdown.markdown(
         md_text,
