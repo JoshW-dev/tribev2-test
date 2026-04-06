@@ -224,7 +224,8 @@ for stem, (label, color, desc) in VIDEOS.items():
     ax_van.text(n_ts - et / 2, 0, "edge\ntrimmed", ha="center", va="bottom",
                 fontsize=6, color="gray", alpha=0.6)
     # Opening hook indicator — check if ANY network fires strongly in the opening
-    opening_threshold = 6  # seconds — consider first 6s as "opening"
+    # Scale opening window to video length: ~10% of duration, min 2s, max 6s
+    opening_threshold = max(2, min(6, round(n_ts * 0.10)))
     opening_end = min(opening_threshold + 1, n_ts)
     # For each network: is its peak absolute activation in the opening above its video mean?
     has_opening_hook = False
