@@ -542,19 +542,24 @@ def compute_network_timecourses(preds: np.ndarray, labels: np.ndarray) -> np.nda
 
 
 def find_robust_peaks(timecourse: np.ndarray, n_peaks: int = 3,
-                      boundary_trim: int = 4, min_distance: int = 3) -> np.ndarray:
-    """Find peaks in a timecourse with detrending and boundary trimming.
+                      start_trim: int = 1, end_trim: int = 4,
+                      min_distance: int = 3) -> np.ndarray:
+    """Find peaks in a timecourse with detrending and asymmetric trimming.
 
     Addresses end-of-video bias caused by:
     - Linear drift in model predictions (removed via detrending)
-    - Conv1d zero-padding edge artifacts (removed via boundary trimming)
+    - Conv1d zero-padding edge artifacts (removed via end trimming)
     - Adjacent timesteps dominating top-N (mitigated via minimum distance)
+
+    Start trim is minimal (1 frame) to preserve opening hooks, which are
+    important for content analysis. End trim is larger (4 frames) where
+    both drift accumulation and conv1d artifacts are strongest.
 
     Args:
         timecourse: 1D array of network activation values.
         n_peaks: Number of peaks to return.
-        boundary_trim: Number of timesteps to exclude from each end
-                       (matches TemporalSmoothing kernel_size//2 = 4).
+        start_trim: Timesteps to exclude from start (default 1, minimal).
+        end_trim: Timesteps to exclude from end (default 4, drift + padding).
         min_distance: Minimum distance between returned peaks.
 
     Returns:
@@ -567,10 +572,11 @@ def find_robust_peaks(timecourse: np.ndarray, n_peaks: int = 3,
     if n == 0:
         return np.array([], dtype=int)
 
-    # Clamp boundary trim so we don't eliminate the whole signal
-    trim = min(boundary_trim, max(n // 4, 1))
+    # Clamp trims so we don't eliminate the whole signal
+    st = min(start_trim, max(n // 4, 1))
+    et = min(end_trim, max(n // 4, 1))
 
-    # 1. Detrend: remove linear drift that biases toward start/end
+    # 1. Detrend: remove linear drift that biases toward end
     detrended = detrend(timecourse, type='linear')
 
     # 2. Z-score: normalize so peaks are relative to video's own distribution
@@ -580,8 +586,8 @@ def find_robust_peaks(timecourse: np.ndarray, n_peaks: int = 3,
     else:
         z = detrended
 
-    # 3. Trim boundaries to avoid Conv1d zero-padding artifacts
-    interior = np.abs(z[trim:n - trim])
+    # 3. Asymmetric trim: minimal at start (preserve hooks), full at end
+    interior = np.abs(z[st:n - et])
 
     # 4. Use scipy find_peaks with prominence for robust detection
     scipy_peaks, properties = scipy_find_peaks(interior, distance=min_distance,
@@ -590,13 +596,13 @@ def find_robust_peaks(timecourse: np.ndarray, n_peaks: int = 3,
     if len(scipy_peaks) >= n_peaks:
         # Sort by prominence (most prominent first)
         top_idx = np.argsort(properties['prominences'])[::-1][:n_peaks]
-        peak_indices = scipy_peaks[top_idx] + trim
+        peak_indices = scipy_peaks[top_idx] + st
     else:
         # Fallback: top-N by absolute z-scored magnitude with spacing
         ranked = np.argsort(interior)[::-1]
         selected = []
         for idx in ranked:
-            original_idx = idx + trim
+            original_idx = idx + st
             if all(abs(original_idx - s) >= min_distance for s in selected):
                 selected.append(original_idx)
             if len(selected) == n_peaks:

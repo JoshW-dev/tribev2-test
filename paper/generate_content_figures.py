@@ -23,25 +23,30 @@ for _extra in [
     if _extra.exists():
         os.environ["PATH"] = str(_extra) + os.pathsep + os.environ.get("PATH", "")
 
-def find_robust_peaks(timecourse, n_peaks=3, boundary_trim=4, min_distance=3):
-    """Find peaks with detrending and boundary trimming to avoid end-of-video bias."""
+def find_robust_peaks(timecourse, n_peaks=3, start_trim=1, end_trim=4, min_distance=3):
+    """Find peaks with detrending and asymmetric boundary trimming.
+
+    Start trim is minimal (1 frame) to preserve opening hooks.
+    End trim is larger (4 frames) to avoid drift + conv1d edge artifacts.
+    """
     n = len(timecourse)
     if n == 0:
         return np.array([], dtype=int)
-    trim = min(boundary_trim, max(n // 4, 1))
+    st = min(start_trim, max(n // 4, 1))
+    et = min(end_trim, max(n // 4, 1))
     detrended = detrend(timecourse, type='linear')
     std = detrended.std()
     z = detrended / std if std > 0 else detrended
-    interior = np.abs(z[trim:n - trim])
+    interior = np.abs(z[st:n - et])
     peaks, props = scipy_find_peaks(interior, distance=min_distance, prominence=0.1)
     if len(peaks) >= n_peaks:
         top_idx = np.argsort(props['prominences'])[::-1][:n_peaks]
-        peak_indices = peaks[top_idx] + trim
+        peak_indices = peaks[top_idx] + st
     else:
         ranked = np.argsort(interior)[::-1]
         selected = []
         for idx in ranked:
-            orig = idx + trim
+            orig = idx + st
             if all(abs(orig - s) >= min_distance for s in selected):
                 selected.append(orig)
             if len(selected) == n_peaks:
@@ -177,16 +182,88 @@ for stem, (label, color, desc) in VIDEOS.items():
 
     # Row 3: Ventral attention peaks + peak frames
     ax_van = fig.add_subplot(gs[2, :3])
-    ax_van.plot(range(n_ts), van_tc, color=YEO_COLORS[3], linewidth=2.5)
-    ax_van.fill_between(range(n_ts), van_tc, alpha=0.15, color=YEO_COLORS[3])
-    for i, p in enumerate(peaks):
-        ax_van.axvline(p, color="red", linestyle="--", alpha=0.5)
-        ax_van.annotate(f"Peak {i+1}\n{p}s", xy=(p, van_tc[p]),
-                        xytext=(p + 1, van_tc[p] + 0.02),
-                        fontsize=8, arrowprops=dict(arrowstyle="->", color="red"))
-    ax_van.set_title("Salience/Hook Detection (Ventral Attention)", fontsize=11, fontweight="bold")
+    # Compute the salience magnitude signal (what peak detection actually uses)
+    van_detrended = detrend(van_tc, type='linear')
+    van_std = van_detrended.std()
+    van_z = van_detrended / van_std if van_std > 0 else van_detrended
+    van_salience = np.abs(van_z)  # Absolute z-score = salience magnitude
+    # Plot salience magnitude as baseline
+    ax_van.plot(range(n_ts), van_salience, color=YEO_COLORS[3], linewidth=1.8,
+                alpha=0.5, zorder=2)
+    ax_van.fill_between(range(n_ts), van_salience, alpha=0.08, color=YEO_COLORS[3])
+    # Threshold line — median salience as "baseline attention"
+    median_sal = np.median(van_salience)
+    ax_van.axhline(median_sal, color="gray", linewidth=1, linestyle=":",
+                   alpha=0.6, zorder=1)
+    ax_van.text(n_ts - 1, median_sal, " baseline", va="bottom", ha="right",
+                fontsize=7, color="gray", alpha=0.7)
+    # Highlight peak regions with colored spans and bold markers
+    peak_colors_list = ["#FF4444", "#FF8800", "#FFBB00"]
+    peak_labels = ["\u2605 Strongest Hook", "\u2605 2nd Hook", "\u2605 3rd Hook"]
+    for i, p in enumerate(sorted(peaks[:3])):
+        rank = list(peaks).index(p)
+        pc = peak_colors_list[min(rank, 2)]
+        # Highlight region around peak
+        span_lo = max(0, p - 1)
+        span_hi = min(n_ts - 1, p + 1)
+        ax_van.axvspan(span_lo, span_hi, alpha=0.18, color=pc, zorder=1)
+        # Bold marker at peak
+        ax_van.scatter([p], [van_salience[p]], color=pc, s=120, zorder=5,
+                       edgecolors="white", linewidths=1.5)
+        # Label
+        y_offset = van_salience[p] + (ax_van.get_ylim()[1] - ax_van.get_ylim()[0]) * 0.02 if ax_van.get_ylim()[1] > 0 else van_salience[p] + 0.1
+        ax_van.annotate(f"{peak_labels[rank]}\n{p}s",
+                        xy=(p, van_salience[p]),
+                        xytext=(p + 1.5, van_salience[p] + 0.3),
+                        fontsize=8, fontweight="bold", color=pc,
+                        arrowprops=dict(arrowstyle="-|>", color=pc, lw=1.5),
+                        zorder=6)
+    # Mark boundary trim zones (asymmetric: 1 at start, 4 at end)
+    et = min(4, max(n_ts // 4, 1))
+    ax_van.axvspan(n_ts - et, n_ts, alpha=0.10, color="#cccccc", zorder=0)
+    ax_van.text(n_ts - et / 2, 0, "edge\ntrimmed", ha="center", va="bottom",
+                fontsize=6, color="gray", alpha=0.6)
+    # Opening hook indicator — check if ANY network fires strongly in the opening
+    opening_threshold = 6  # seconds — consider first 6s as "opening"
+    opening_end = min(opening_threshold + 1, n_ts)
+    # For each network: is its peak absolute activation in the opening above its video mean?
+    has_opening_hook = False
+    for net_i in range(tc.shape[1]):
+        net_abs = np.abs(tc[:, net_i])
+        opening_max = net_abs[:opening_end].max()
+        video_mean = net_abs.mean()
+        if opening_max > video_mean * 1.3:  # 30% above mean = strong opening for this network
+            has_opening_hook = True
+            break
+    y_top = van_salience.max() * 1.15  # position badge above signal
+    if has_opening_hook:
+        # Green banner for strong opening hook
+        ax_van.axvspan(0, opening_threshold, alpha=0.10, color="#22c55e", zorder=0)
+        ax_van.text(opening_threshold / 2, y_top,
+                    "\u2713 Strong Opening Hook",
+                    ha="center", va="top", fontsize=8, fontweight="bold",
+                    color="#16a34a",
+                    bbox=dict(boxstyle="round,pad=0.3", facecolor="#dcfce7",
+                              edgecolor="#22c55e", alpha=0.9),
+                    zorder=7)
+    else:
+        # Gray note for no opening hook
+        ax_van.axvspan(0, opening_threshold, alpha=0.05, color="#94a3b8", zorder=0)
+        ax_van.text(opening_threshold / 2, y_top,
+                    "Slow build opening",
+                    ha="center", va="top", fontsize=7,
+                    color="#94a3b8", style="italic",
+                    zorder=7)
+    ax_van.set_title("Hook Moment Detection — Where Attention Spikes",
+                     fontsize=11, fontweight="bold")
+    ax_van.text(0.5, 1.0, "Higher = stronger attention capture. Peaks mark the best moments to use as hooks.",
+                transform=ax_van.transAxes, fontsize=7.5, color="gray",
+                ha="center", va="top", style="italic")
     ax_van.set_xlabel("Time (seconds)", fontsize=10)
-    ax_van.grid(True, alpha=0.2)
+    ax_van.set_ylabel("Attention Capture Strength", fontsize=9)
+    ax_van.set_xlim(0, n_ts - 1)
+    ax_van.set_ylim(bottom=0)
+    ax_van.grid(True, alpha=0.15)
     ax_van.spines["top"].set_visible(False)
     ax_van.spines["right"].set_visible(False)
 

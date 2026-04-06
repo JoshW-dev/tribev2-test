@@ -35,25 +35,30 @@ YEO_COLORS = [
     "#DCF8A4", "#E69422", "#CD3E4E",
 ]
 
-def find_robust_peaks(timecourse, n_peaks=3, boundary_trim=4, min_distance=3):
-    """Find peaks with detrending and boundary trimming to avoid end-of-video bias."""
+def find_robust_peaks(timecourse, n_peaks=3, start_trim=1, end_trim=4, min_distance=3):
+    """Find peaks with detrending and asymmetric boundary trimming.
+
+    Start trim is minimal (1 frame) to preserve opening hooks.
+    End trim is larger (4 frames) to avoid drift + conv1d edge artifacts.
+    """
     n = len(timecourse)
     if n == 0:
         return np.array([], dtype=int)
-    trim = min(boundary_trim, max(n // 4, 1))
+    st = min(start_trim, max(n // 4, 1))
+    et = min(end_trim, max(n // 4, 1))
     detrended = detrend(timecourse, type='linear')
     std = detrended.std()
     z = detrended / std if std > 0 else detrended
-    interior = np.abs(z[trim:n - trim])
+    interior = np.abs(z[st:n - et])
     peaks, props = scipy_find_peaks(interior, distance=min_distance, prominence=0.1)
     if len(peaks) >= n_peaks:
         top_idx = np.argsort(props['prominences'])[::-1][:n_peaks]
-        peak_indices = peaks[top_idx] + trim
+        peak_indices = peaks[top_idx] + st
     else:
         ranked = np.argsort(interior)[::-1]
         selected = []
         for idx in ranked:
-            orig = idx + trim
+            orig = idx + st
             if all(abs(orig - s) >= min_distance for s in selected):
                 selected.append(orig)
             if len(selected) == n_peaks:
