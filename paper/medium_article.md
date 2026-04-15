@@ -24,8 +24,8 @@ The $500 billion digital advertising industry has no shortage of optimization to
 
 **Traditional neuromarketing** solves the evaluation problem directly by measuring brain responses. But a single fMRI study costs $15,000 to $150,000, takes weeks, and requires 20 to 40 physical subjects. That works for Super Bowl ads with seven-figure budgets. It does not work for a growth team shipping 30 creatives a week.
 
-<!-- IMAGE: figures/fig5_method_comparison.png -->
-<!-- Caption: Content optimization method comparison across key dimensions. Green indicates strengths, yellow indicates moderate capability, red indicates limitations. -->
+![Content optimization method comparison across key dimensions. Green indicates strengths, yellow indicates moderate capability, red indicates limitations.](figures/fig5_method_comparison.png)
+*Content optimization method comparison. Green indicates strengths, yellow indicates moderate capability, red indicates limitations.*
 
 The result is an industry that has gotten very good at optimizing surfaces (titles, thumbnails, posting schedules) while leaving the actual content to intuition, pattern matching, and retrospective analytics. The question of *what cognitive experience the content creates in the viewer's brain* has been, practically speaking, unanswerable at scale.
 
@@ -58,8 +58,8 @@ The pipeline:
 3. **Network parcellation.** Activations are aggregated using the **Yeo 7-network atlas** (Yeo et al., 2011), a standard neuroscience reference derived from resting-state connectivity data across 1,000 subjects. This reduces 20,484 data points to seven interpretable network-level signals per timestep.
 4. **Engagement scoring.** Network time courses are transformed into five composite engagement metrics.
 
-<!-- IMAGE: figures/comparison_dashboard.png -->
-<!-- Caption: NCI comparison dashboard showing neural profiles across five analyzed video content types. Each video produces a distinct brain activation signature. -->
+![NCI comparison dashboard showing neural profiles across five analyzed video content types.](figures/comparison_dashboard.png)
+*NCI comparison dashboard. Each video produces a distinct brain activation signature.*
 
 ---
 
@@ -67,8 +67,8 @@ The pipeline:
 
 The Yeo 7-network parcellation divides the cortex into functionally distinct networks that have been consistently validated across neuroimaging studies. Each maps onto a cognitive process directly relevant to how content performs.
 
-<!-- IMAGE: figures/yeo_parcellation.png -->
-<!-- Caption: The Yeo 2011 7-network parcellation mapped onto the fsaverage5 cortical surface. Each color represents a distinct functional brain network. -->
+![The Yeo 2011 7-network parcellation mapped onto the fsaverage5 cortical surface.](figures/yeo_parcellation.png)
+*The Yeo 7-network parcellation. Each color represents a distinct functional brain network.*
 
 **1. Visual Salience** (Visual Network)
 Processing intensity for visual input. Reflects scene complexity, motion, and contrast. Product demos and cinematic content score highest.
@@ -107,8 +107,8 @@ From the seven network signals, NCI computes five composite engagement metrics, 
 
 **Neural Engagement Score (NES):** A single composite across all dimensions. Best used for ranking a batch of content or comparing variants head to head.
 
-<!-- IMAGE: figures/fig3_radar_neural_profile.png -->
-<!-- Caption: Radar chart showing one video's neural engagement profile across all seven brain networks. -->
+![Radar chart showing one video's neural engagement profile across all seven brain networks.](figures/fig3_radar_neural_profile.png)
+*A single video's neural engagement profile across all seven brain networks.*
 
 ---
 
@@ -118,11 +118,11 @@ I ran the NCI pipeline on five real short-form videos spanning the major content
 
 The central finding was more extreme than expected: **different content formats do not just produce different levels of engagement. They activate fundamentally different brain systems.** A talking-head video and a product demo can share identical metadata, but the cognitive architecture of the viewing experience is completely different. This distinction is invisible to every metadata-based optimization tool on the market.
 
-<!-- IMAGE: figures/fig4a_comparative_radar_overlay.png -->
-<!-- Caption: Neural profiles for all five content types overlaid on a single radar chart. The separation between talking-head content (Somatomotor + Default Mode dominant) and visual content (Visual + Dorsal Attention dominant) is immediately apparent. -->
+![Neural profiles for all five content types overlaid on a single radar chart.](figures/fig4a_comparative_radar_overlay.png)
+*All five content types overlaid. The separation between talking-head content (Somatomotor + Default Mode dominant) and visual content (Visual + Dorsal Attention dominant) is immediately apparent.*
 
-<!-- IMAGE: figures/fig4b_comparative_radar_grid.png -->
-<!-- Caption: Individual neural profiles for each video, showing the distinct fingerprint of each content archetype. -->
+![Individual neural profiles for each video.](figures/fig4b_comparative_radar_grid.png)
+*Individual neural profiles for each content archetype.*
 
 ### 1. Business Education (Talking Head, 49s)
 
@@ -156,8 +156,8 @@ A completely different architecture. Visual + Dorsal Attention accounted for 63%
 
 **What this tells us:** This is the brain in pure visual tracking mode. The viewer is watching intently, but they are not feeling, narrating, or deciding. For e-commerce content, that creates a problem: the product demo is compelling, but the viewer is not in a decision-making state when it ends. A deliberate transition (verbal prompt, text overlay, pacing shift) may be needed to move from passive observation to active evaluation before the purchase CTA.
 
-<!-- IMAGE: figures/analysis_sanitaryPadProductDemo.png -->
-<!-- Caption: Full NCI analysis of the product demonstration. Visual + Dorsal Attention account for 63% of total activation. The viewer is in focused visual tracking mode with minimal narrative, emotional, or decision-making processing. -->
+![Full NCI analysis of the product demonstration video.](figures/analysis_sanitaryPadProductDemo.png)
+*Full NCI analysis of the product demonstration. Visual + Dorsal Attention account for 63% of total activation.*
 
 ### 5. Viral "Satisfying" Content (Japanese Ice Cutter, 48s)
 
@@ -167,8 +167,8 @@ Ventral Attention at 17% was the highest of any video by a significant margin. L
 
 **What this tells us:** This is the neural fingerprint of "satisfying" content. Repeated surprise/salience peaks with no emotional or story component. Pure perceptual engagement. The late salience peak at 40 seconds, 8 seconds before the video ends, means the brain is still in a highly activated state when the video auto-loops on TikTok or Reels. That creates a neurally seamless transition into replay, directly inflating the watch-time metrics that platform algorithms optimize for distribution.
 
-<!-- IMAGE: figures/analysis_viralJapaneseIceCutter.png -->
-<!-- Caption: Full NCI analysis of the viral ice cutter video. Ventral Attention at 17%, the highest in the study, reveals the neural mechanism behind "satisfying" content. -->
+![Full NCI analysis of the viral ice cutter video.](figures/analysis_viralJapaneseIceCutter.png)
+*Full NCI analysis of the viral ice cutter video. Ventral Attention at 17%, the highest in the study.*
 
 ---
 
@@ -178,13 +178,13 @@ The proof of concept points to several direct applications.
 
 **Hook optimization.** The Ventral Attention time course pinpoints the exact frames where the brain's salience detector fires most intensely. A content editor can move the strongest peak to the opening of a short-form edit, backed by neural data.
 
-<!-- IMAGE: figures/fig2_ventral_attention_peaks.png -->
-<!-- Caption: Ventral Attention peaks over the video timeline. Each peak is a salience moment and a candidate for hook placement. -->
+![Ventral Attention peaks over the video timeline.](figures/fig2_ventral_attention_peaks.png)
+*Ventral Attention peaks over the video timeline. Each peak is a salience moment and a candidate for hook placement.*
 
 **CTA timing.** Frontoparietal activation reveals when viewers are in evaluative, decision-ready cognitive states. Placing a CTA during a peak aligns the ask with the viewer's processing mode. Placing it during a trough means asking the viewer to shift cognitive modes, a harder conversion.
 
-<!-- IMAGE: figures/fig1_network_timecourse.png -->
-<!-- Caption: Network activation time courses over video duration, enabling identification of optimal hook and CTA windows. -->
+![Network activation time courses over video duration.](figures/fig1_network_timecourse.png)
+*Network activation time courses over video duration, enabling identification of optimal hook and CTA windows.*
 
 **Pre-publication scoring.** A team producing 20 assets per week can rank them by Neural Engagement Score before committing ad spend. Budget flows to the content most likely to perform, before a single impression is served.
 
