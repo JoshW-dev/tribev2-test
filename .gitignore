@@ -19,4 +19,5 @@ sample.tsv
 paper/comparison_data/
 paper/*.html
 paper/*.pdf
+!paper/neural_content_intelligence.pdf
 paper/perplexity_deep_research.md
