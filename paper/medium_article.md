@@ -1,227 +1,216 @@
-# We Built a System That Predicts How Your Brain Responds to Content Before You Hit Publish
+# Applying Meta's Brain Encoding Model to Predict Content Engagement Before Publication
 
-## The $500 billion content industry has been flying blind. We used neuroscience to turn the lights on.
+## A framework for using computational neuroscience to evaluate video content at scale, without a lab or a single test subject.
 
-Every day, over 500 hours of video get uploaded to YouTube every single minute. TikTok processes millions of new videos daily. Instagram, LinkedIn, and a growing list of platforms add even more volume on top.
+The digital advertising market exceeds $500 billion annually. The dominant content creation paradigm remains fundamentally reactive: produce content, publish it, measure audience behavior, iterate. A/B testing improves on pure intuition but still requires an audience to react before anything is learned. AI scoring tools analyze metadata (titles, thumbnails, tags, posting times) but cannot evaluate the actual content itself.
 
-And yet, the way we optimize content in 2026 looks almost identical to how we did it a decade ago: create something, publish it, wait for the analytics, and iterate. The entire $500 billion digital advertising industry runs on a "spray and pray" loop. Even the best growth teams are guessing which creative will win before they commit ad spend.
+Traditional neuromarketing can evaluate content directly by measuring brain responses, but at prohibitive cost. A single fMRI-based study runs $15,000 to $150,000, requires 20 to 40 physical subjects, and takes weeks. That does not scale to teams producing dozens of video assets per week.
 
-We wanted to change that. So we built Neural Content Intelligence (NCI), a framework that uses Meta's latest brain encoding AI to predict how the human brain would respond to video content, entirely computationally. No lab. No fMRI scanner. No $150,000 neuromarketing study. Just your video file and a GPU.
+In early 2026, Meta released **TRIBE v2**, a tri-modal brain encoding foundation model trained on over 1,000 hours of fMRI data from approximately 720 participants. TRIBE v2 predicts voxel-level brain responses to arbitrary video content, running entirely on standard GPU hardware. This paper describes **Neural Content Intelligence (NCI)**, a framework I built on top of Meta's model that translates those raw neural predictions into interpretable engagement metrics for content optimization.
 
-Here's what we found.
+The contribution here is the application layer. Meta built the brain encoding model. I applied it to viral content and advertising, mapping its outputs onto established neuroscience frameworks to produce actionable signals for content creators and marketers.
 
 ---
 
-## The Problem Every Growth Marketer Knows Too Well
+## The Gap in Existing Tools
 
-Let's be honest about the current toolkit.
+Current content optimization approaches have complementary blind spots.
 
-**A/B testing** is the gold standard, but it requires publishing content first. You need an audience to react before you learn anything. That means burning ad spend on the losing variants.
-
-**Platform analytics** tell you what happened after the fact. Watch time, drop-off curves, click-through rates. All valuable, all retrospective.
-
-**AI scoring tools** like vidIQ, TubeBuddy, and Spotter analyze your titles, thumbnails, tags, and posting times. They can tell you whether your metadata is optimized. What they cannot do is evaluate the actual content: the visuals, pacing, emotional arc, and narrative that determine whether someone watches for two seconds or two minutes.
-
-**Traditional neuromarketing** can evaluate the content itself. Companies like Neuro-Insight and Nielsen Consumer Neuroscience have built businesses around measuring brain responses to ads. The problem? A single fMRI study costs $15,000 to $150,000, requires 20 to 40 physical subjects, and takes weeks. That simply does not scale to a team producing dozens of video assets per week.
+**A/B testing** requires publication before evaluation and ad spend on losing variants. **Platform analytics** are entirely retrospective. **AI scoring tools** (vidIQ, TubeBuddy, Spotter) evaluate metadata features but cannot assess the visual, emotional, or narrative qualities of the content itself. **Traditional neuromarketing** evaluates content directly but at costs and timescales incompatible with modern content workflows.
 
 <!-- IMAGE: figures/fig5_method_comparison.png -->
-<!-- Caption: How NCI compares to existing content optimization approaches across key dimensions. Green = strength, yellow = moderate, red = weakness. -->
+<!-- Caption: Content optimization method comparison across key dimensions. Green indicates strengths, yellow indicates moderate capability, red indicates limitations. -->
 
-So there's a gap. A massive one. The industry needs a way to evaluate actual video content, before publication, at scale, with an explanation of *why* something works. Until now, that combination did not exist.
+No existing tool evaluates actual video content, before publication, at computational scale, with explanatory power. NCI occupies that position.
 
 ---
 
-## What Neural Content Intelligence Actually Does
+## Meta's TRIBE v2: The Underlying Technology
 
-NCI is built on top of **TRIBE v2**, Meta's tri-modal brain encoding foundation model. TRIBE v2 was trained on over 1,000 hours of functional MRI brain imaging data from approximately 720 participants watching natural video content. The model learned to predict, voxel by voxel, how the human brain responds to any video stimulus.
+Credit for the core technology belongs to Meta's research team. TRIBE v2 (Task-driven Recurrent Inference-Based Encoding model, version 2) represents the current state of the art in brain encoding. Key properties:
 
-The key insight: once trained, the model runs entirely on standard computing hardware. You feed it a video, and it outputs predicted brain activation patterns across 20,484 cortical surface points. No scanner. No subjects. Roughly two minutes of compute time per 30 to 60 second video, at a cost of about $0.10 to $1.00.
+- **Training data:** Over 1,000 hours of fMRI recordings from approximately 720 participants watching natural video content, aggregated across multiple datasets including the Human Connectome Project 7T.
+- **Output resolution:** Predicted activation across 20,484 cortical vertices on the fsaverage5 surface, a roughly 70-fold increase over TRIBE v1's approximately 1,000 coarse regions.
+- **Accuracy:** Group correlation values (R_group) of approximately 0.4 on held-out subjects, roughly double the median subject's group-predictivity in conventional analyses.
+- **Zero-shot generalization:** An "unseen subject" layer allows prediction for new individuals without fine-tuning, often matching or exceeding single-subject recording accuracy by filtering out individual noise.
+- **Inference cost:** Approximately two minutes per 30 to 60 second video on a single GPU with 12+ GB VRAM. No scanner or subjects required at inference time.
 
-But raw voxel-level brain predictions are not useful to a marketer. That's where our framework comes in.
+The critical property for content applications is that TRIBE v2 transforms brain prediction from a laboratory procedure into a computational operation. This is what makes the application to content optimization feasible.
 
-NCI takes those 20,484 predicted brain signals and maps them onto the **Yeo 7-network brain parcellation**, a standard neuroscience atlas that divides the brain into seven functionally distinct networks. Each network corresponds to a specific cognitive process relevant to content engagement.
+---
 
-The pipeline looks like this:
+## NCI: The Application Framework
 
-**Video in → TRIBE v2 brain prediction → 20,484 voxel activations → Yeo 7-network mapping → 7 interpretable engagement signals → 5 composite metrics**
+NCI adds an interpretive layer on top of TRIBE v2's raw predictions. The pipeline operates in four stages:
 
-The result is a complete neural profile of your content: which brain systems it activates, when those systems peak, and what that means for viewer behavior.
+1. **Input processing.** Video frames are extracted at TRIBE v2's temporal resolution (approximately 1 to 2 Hz, matching fMRI hemodynamic timescales).
+2. **Neural prediction.** Frames pass through TRIBE v2, producing a (T x 20,484) matrix of predicted cortical activations.
+3. **Network parcellation.** Predicted activations are aggregated using the Yeo 7-network atlas, a standard neuroscience reference derived from resting-state functional connectivity data across 1,000 subjects (Yeo et al., 2011). This produces a (T x 7) matrix of network-level time courses.
+4. **Engagement scoring.** Network time courses are transformed into five composite engagement metrics through defined formulas.
 
 <!-- IMAGE: figures/comparison_dashboard.png -->
-<!-- Caption: The NCI comparison dashboard showing neural profiles across five different video content types. Each video produces a distinct brain activation signature. -->
+<!-- Caption: NCI comparison dashboard showing neural profiles across five analyzed video content types. Each video produces a distinct brain activation signature. -->
 
 ---
 
-## The 7 Brain Signals That Drive Engagement
+## The 7 Network Signals
 
-The Yeo 7-network parcellation has been a standard reference in neuroscience since 2011, derived from functional connectivity data across 1,000 subjects. Here is what each network tells us about content engagement.
+The Yeo 7-network parcellation divides the cortex into functionally distinct networks. Each maps onto a specific cognitive process relevant to content engagement.
 
 <!-- IMAGE: figures/yeo_parcellation.png -->
-<!-- Caption: The Yeo 7-network brain parcellation mapped onto the cortical surface. Each color represents a distinct functional brain network. -->
+<!-- Caption: The Yeo 2011 7-network parcellation mapped onto the fsaverage5 cortical surface. Each color represents a distinct functional brain network. -->
 
 **1. Visual Salience** (Visual Network)
-How visually stimulating and processing-intensive your content is. High values indicate rich, complex scenes with strong motion, color contrast, and visual detail. Product demos and cinematic content score highest here.
+Visual processing intensity. Reflects scene complexity, motion, and color contrast. Product demonstrations and cinematic content produce the highest activation.
 
 **2. Embodied Response** (Somatomotor Network)
-The degree to which your content activates physical and motor resonance in the viewer. This network lights up for speech processing, facial expression tracking, and "feeling" what someone on screen is doing. Talking-head content and UGC reviews are dominated by this signal.
+Physical and motor resonance, including speech processing and facial expression tracking. Dominant in talking-head content where the viewer processes vocal delivery and body language.
 
 **3. Sustained Attention** (Dorsal Attention Network)
-Top-down, voluntary, focused attention. When this network is active, the viewer is locked in, deliberately tracking visual elements or following a complex argument. Product demonstrations and visual content drive this signal.
+Voluntary, goal-directed, top-down attention (Corbetta and Shulman, 2002). Reflects deliberate attentional engagement. High in content requiring focused visual tracking.
 
 **4. Surprise and Novelty Detection** (Ventral Attention Network)
-The brain's salience detector. This network fires when something unexpected or particularly striking happens. It is the neural mechanism behind "hook moments" and the addictive quality of satisfying content. This signal is the single best predictor of scroll-stopping power.
+The brain's salience detection system. Fires when unexpected or behaviorally relevant stimuli occur. Mediates attentional reorienting and drives the neural "surprise" response. The best indicator of scroll-stopping potential.
 
 **5. Emotional Resonance** (Limbic Network)
-Emotional processing, affective engagement, and reward-related activation. Content that makes viewers feel something, whether empathy, excitement, or desire, drives this signal.
+Emotional valence and reward-related processing. Activation reflects affective engagement with the content.
 
 **6. Decision Activation** (Frontoparietal Network)
-Executive function, evaluative thinking, and decision readiness. When this network peaks, the viewer is actively weighing information and considering action. This is the signal that tells you when to place your call to action.
+Executive function, working memory, and evaluative processing (Menon and Uddin, 2010). Activation indicates the viewer is weighing information and considering action. Directly relevant to call-to-action timing.
 
 **7. Narrative Engagement** (Default Mode Network)
-Self-referential processing, story comprehension, and mental simulation. When this network is active during content viewing, the viewer is "transported" into the content, relating it to their own experience. This is the neural signature of content that feels personally relevant.
+Self-referential thought, narrative comprehension, and mental simulation (Buckner et al., 2008). High activation during content viewing indicates narrative transportation and personal relevance.
 
 ---
 
-## 5 Metrics That Replace Guesswork
+## Five Composite Metrics
 
-From those seven signals, NCI computes five composite engagement metrics. Each one answers a specific strategic question.
+From the seven network signals, NCI computes five engagement metrics. Each addresses a specific optimization question.
 
-**Attention Retention Score (ARS):** Does this content hold attention across its full duration? Combines sustained attention, surprise detection, and visual processing, with a penalty for inconsistency.
+**Attention Retention Score (ARS):** Measures the content's ability to sustain attention across its duration. Weights sustained attention (dorsal) most heavily, followed by salience-driven capture (ventral) and visual processing, with a penalty for high variance.
 
-**Emotional Impact Index (EII):** How strongly does this content engage emotional processing? Combines limbic activation with narrative engagement and rewards peak emotional moments.
+**Emotional Impact Index (EII):** Measures affective depth. Combines limbic and default mode activation with a bonus for peak emotional moments.
 
-**Hook Strength Score (HSS):** How effectively do the first one to three seconds capture attention? Prioritizes surprise/salience, visual intensity, and emotional punch in the opening moments. Scores above 0.7 suggest a strong hook. Below 0.3, your audience is scrolling past.
+**Hook Strength Score (HSS):** Evaluates the first one to three seconds. Prioritizes ventral attention (salience), visual intensity, and emotional engagement in the opening window. Scores above 0.7 indicate a strong hook; below 0.3 indicates significant scroll-past risk.
 
-**CTA Activation Score (CAS):** When are viewers in a decision-making neural state? Measures frontoparietal activation at or near your intended call-to-action moment. This metric tells you whether the viewer's brain is primed to act.
+**CTA Activation Score (CAS):** Measures frontoparietal activation at or near the intended call-to-action timing. Indicates whether the viewer is in an evaluative, decision-ready cognitive state.
 
-**Neural Engagement Score (NES):** A single composite score across all dimensions. Most useful for ranking a batch of content assets or comparing variants head to head.
+**Neural Engagement Score (NES):** Weighted composite across all four metrics. Useful for ranking content assets or comparing variants.
 
 <!-- IMAGE: figures/fig3_radar_neural_profile.png -->
-<!-- Caption: A radar chart showing one video's neural engagement profile across all seven brain networks. Each axis represents a different cognitive dimension. -->
+<!-- Caption: Radar chart showing one video's neural engagement profile across all seven brain networks. -->
 
 ---
 
-## We Tested It on 5 Real Marketing Videos. Here's What Happened.
+## Proof of Concept: Five Content Archetypes
 
-Theory is one thing. Results are another. We ran the NCI pipeline on five real short-form videos representing the major content archetypes used across TikTok, Instagram Reels, YouTube Shorts, and paid social.
+To test the framework on content relevant to marketers, I analyzed five real short-form videos representing major content archetypes: talking-head education, news commentary, UGC product review, product demonstration, and viral "satisfying" content.
 
-The most striking finding: **different content formats activate fundamentally different brain systems.** We are not talking about minor variations in the same signal. We are talking about entirely different neural architectures of engagement.
-
-This has massive implications for content strategy. Optimizing a talking-head video and optimizing a product demo require completely different approaches, because they engage different brain systems. Metadata-based tools cannot detect this distinction. NCI can.
+The central finding: **different content formats activate fundamentally different brain systems.** These are not minor variations in the same signal. They are qualitatively distinct neural architectures. A talking-head video and a product demo may share similar metadata, but they engage entirely different cognitive systems. This distinction is invisible to metadata-based tools.
 
 <!-- IMAGE: figures/fig4a_comparative_radar_overlay.png -->
-<!-- Caption: Neural engagement profiles for all five content types overlaid on a single radar chart. Each line represents a different video's neural "fingerprint." The separation between talking-head content and visual content is immediately visible. -->
+<!-- Caption: Neural profiles for all five content types overlaid on a single radar chart. The separation between talking-head formats (Somatomotor + Default Mode dominant) and visual formats (Visual + Dorsal Attention dominant) is immediately apparent. -->
 
 <!-- IMAGE: figures/fig4b_comparative_radar_grid.png -->
-<!-- Caption: Individual neural profiles for each video, revealing the distinct neural fingerprint of each content archetype. -->
+<!-- Caption: Individual neural profiles for each video, showing the distinct neural fingerprint of each content archetype. -->
 
 ### 1. Business Education (Talking Head, 49s)
 
 **Dominant networks:** Somatomotor (25%) + Default Mode (18%)
 
-The biggest insight here challenges conventional wisdom. For talking-head content, the Visual network activation was just 15%. Viewers were not visually stimulated. The Somatomotor network, which processes speech, vocal delivery, and facial expressions, dominated at 25%.
+Visual network activation was only 15%. The Somatomotor network, responsible for speech processing, vocal delivery, and facial expression tracking, dominated. Default Mode co-activation indicates narrative engagement and self-referential processing.
 
-**What this means for creators:** Voice quality, delivery cadence, and facial expressiveness are the primary engagement drivers for this format. Creators investing in expensive sets and lighting may be optimizing the wrong variable entirely. The high Default Mode activation (18%) confirms that viewers are deeply processing the narrative, relating the advice to their own lives. Optimize for speaker delivery and personal relevance, not production value.
+**Strategic implication:** For talking-head content, the primary engagement drivers are voice quality, delivery cadence, and facial expressiveness. Visual production value (sets, lighting, camera quality) is a secondary factor. The high Default Mode activation is consistent with central-route persuasion processing as described by the Elaboration Likelihood Model (Petty and Cacioppo, 1986). Content in this format should be optimized for speaker delivery and argument structure.
 
 ### 2. Tech/AI News Commentary (60s)
 
 **Dominant networks:** Somatomotor (22%) + Default Mode (19%) + Frontoparietal (16%)
 
-Similar profile to business education, but with one crucial difference: elevated Frontoparietal activation at 16%. Viewers are not just absorbing information. They are critically evaluating claims and weighing the implications.
+A similar base profile to business education, with one notable addition: elevated Frontoparietal activation at 16%. This indicates evaluative, critical-thinking processing. Viewers were actively assessing claims.
 
-**What this means for creators:** That elevated decision-activation signal creates natural windows for call-to-action placement. When your audience is already in an evaluative cognitive state, a CTA feels like a logical next step rather than an interruption. The strongest salience peak at 29 seconds suggests a structural break point, an ideal moment to transition toward a CTA.
+**Strategic implication:** The elevated decision-activation signal creates natural windows for call-to-action placement. When the audience is already in an evaluative cognitive state, a CTA aligns with the viewer's existing processing mode rather than interrupting it. The strongest salience peak at 29 seconds marks a structural break point suitable for CTA transitions.
 
 ### 3. UGC Product Review (Street Interview, 35s)
 
 **Dominant networks:** Somatomotor (27%) + Default Mode (16%)
 
-The highest Somatomotor activation of any video in the study. This video generated the strongest embodied, sensory response. Viewers were physically resonating with the content at a level the other formats could not match.
+The highest Somatomotor activation in the study. Elevated Limbic activation (9%) compared to other talking-head content indicates stronger emotional engagement with the product.
 
-**What this means for creators:** The authenticity of UGC content has a measurable neural basis. The strong embodied response, combined with elevated Limbic activation (9%) compared to other talking-head content, suggests that the combination of genuine reaction and sensory product experience drives a uniquely powerful engagement profile. The 4-second opening hook was the strongest opening of any video tested, confirming that this format grabs attention immediately.
+**Strategic implication:** The strong embodied response provides a measurable neural correlate of perceived authenticity in UGC content. The 4-second opening produced the strongest hook of any video tested. The combination of genuine reaction and sensory product experience drives a distinct engagement profile.
 
 ### 4. Product Demonstration (25s)
 
 **Dominant networks:** Dorsal Attention (32%) + Visual (31%)
 
-A radically different profile from the talking-head videos. Visual and Dorsal Attention networks accounted for 63% of total activation combined. The viewer's brain was locked into focused visual tracking of the product demonstration.
+A radically different profile. Visual and Dorsal Attention accounted for 63% of total activation. Limbic (3%), Default Mode (6%), and Frontoparietal (5%) were all near baseline.
 
-**What this means for creators:** This is the neural signature of "show, don't tell" content. Pure visual proof. But there is a critical caveat: Frontoparietal activation was just 5%, and Limbic was 3%. The viewer is watching intently, but not in a decision-making or emotional state. For e-commerce marketers, this means you may need a deliberate cognitive shift after the visual demonstration, perhaps a brief verbal prompt or text overlay, to move the viewer from passive observation into active evaluation before presenting a purchase CTA.
+**Strategic implication:** This is the neural profile of "show, don't tell" content. The viewer is engaged in focused visual tracking, but the very low Frontoparietal activation means they are not in a decision-making state. For conversion-oriented content, a deliberate cognitive shift (verbal prompt, text overlay, or narrative transition) may be required after the visual demonstration to move the viewer from passive observation to active evaluation before presenting a purchase CTA.
 
 <!-- IMAGE: figures/analysis_sanitaryPadProductDemo.png -->
-<!-- Caption: Full NCI analysis of the product demonstration video. Visual + Dorsal Attention account for 63% of total activation. The viewer's brain is in focused visual tracking mode, with minimal narrative, emotional, or decision-making processing. -->
+<!-- Caption: Full NCI analysis of the product demonstration video. Visual + Dorsal Attention account for 63% of total activation. -->
 
 ### 5. Viral "Satisfying" Content (Japanese Ice Cutter, 48s)
 
 **Dominant networks:** Visual (28%) + Dorsal Attention (27%) + Ventral Attention (17%)
 
-The Ventral Attention activation, 17%, was the highest of any video in the analysis by a significant margin. This is the neural fingerprint of "satisfying" content: repeated surprise and salience peaks that create an addictive watch-through quality.
+Ventral Attention activation of 17% was the highest of any video by a significant margin. Limbic (2%) and Default Mode (5%) were near absent.
 
-**What this means for creators:** The near-complete absence of Limbic (2%) and Default Mode (5%) activation tells us something important. Satisfying content does not work through emotional connection or storytelling. It is purely perceptual engagement: visual rhythm, timing of reveals, and the frequency of surprise moments. The late salience peak at 40 seconds, just 8 seconds before the end, means the viewer's brain is still in a highly activated state when the video loops on TikTok or Reels. This creates a neurally seamless transition into a replay, inflating watch-time metrics that platform algorithms reward.
+**Strategic implication:** The high Ventral Attention reveals the neural mechanism behind "satisfying" content: repeated surprise/salience peaks creating a compelling watch-through pattern. This content operates through purely perceptual engagement, with no emotional or narrative component. The late salience peak at 40 seconds (8 seconds before the end) means the viewer's brain is still in a highly activated perceptual state when the video auto-loops on TikTok or Reels. This creates a neurally seamless transition into replay, directly inflating watch-time metrics that platform algorithms use to determine distribution.
 
 <!-- IMAGE: figures/analysis_viralJapaneseIceCutter.png -->
-<!-- Caption: Full NCI analysis of the viral Japanese ice cutter video. The highest Ventral Attention (surprise/salience) activation of any video reveals the neural basis of "satisfying" content's addictive quality. -->
+<!-- Caption: Full NCI analysis of the viral ice cutter video. Ventral Attention activation of 17%, the highest in the study, reveals the neural basis of "satisfying" content. -->
 
 ---
 
-## What This Means for Your Content Strategy
+## Applications
 
-The proof-of-concept analysis surfaced several insights that apply across content types.
+The proof-of-concept results point to several practical applications.
 
-### 1. Optimize for the right brain system, not a generic "engagement" score.
-
-Talking-head content lives in the Somatomotor and Default Mode networks (speech processing, narrative engagement). Visual content lives in the Visual and Dorsal Attention networks (focused tracking). "Satisfying" viral content adds the Ventral Attention network (surprise peaks). Each format has its own neural playbook. A single "engagement score" obscures these critical differences.
-
-### 2. Use neural data to find your hook moments.
-
-The Ventral Attention time course identifies the exact frames where the brain's salience detector fires most intensely. These are your strongest hook candidates. A content editor can move the highest-peak frame to the opening of a short-form video, backed by neural data rather than intuition.
+**Hook optimization.** The Ventral Attention time course identifies the exact moments where the brain's salience detector fires most intensely. Content editors can use these peaks to select opening frames for short-form edits, informed by neural data rather than intuition.
 
 <!-- IMAGE: figures/fig2_ventral_attention_peaks.png -->
-<!-- Caption: Ventral Attention peaks over the video timeline. Each peak represents a moment where the brain's surprise/salience detection system fires, identifying the strongest "hook" candidates in the content. -->
+<!-- Caption: Ventral Attention peaks over the video timeline. Each peak represents a salience moment, a candidate for hook placement. -->
 
-### 3. Time your CTA to the decision-making window.
-
-Frontoparietal activation tells you when the viewer is in an evaluative, decision-ready cognitive state. Placing a CTA during a Frontoparietal peak means the viewer's brain is already primed for action. Placing it during a trough means you are interrupting passive observation and asking the viewer to shift cognitive modes, a much harder conversion.
+**CTA timing.** Frontoparietal activation time courses reveal when viewers are in an evaluative, decision-ready cognitive state. Placing a CTA during a Frontoparietal peak aligns the ask with the viewer's cognitive mode.
 
 <!-- IMAGE: figures/fig1_network_timecourse.png -->
-<!-- Caption: Network activation time courses over the video duration, showing how each brain network rises and falls throughout the content. The temporal resolution enables precise identification of optimal hook and CTA moments. -->
+<!-- Caption: Network activation time courses over the video duration, enabling identification of optimal hook and CTA windows. -->
 
-### 4. Score content before allocating budget.
+**Pre-publication scoring.** A team producing multiple video assets per week can rank them by Neural Engagement Score before committing promotion budget. Resources can be allocated to the highest-scoring content.
 
-A marketing team producing 20 video assets per week can run all of them through the NCI pipeline and rank them by Neural Engagement Score. Paid promotion budget, posting priority, and featured placement can be allocated to the highest-scoring content, before a single dollar of ad spend is committed.
+**Format selection.** Different content formats produce distinct neural profiles. NCI enables evidence-based format decisions by predicting which format will best serve a specific content goal (e.g., emotional recall vs. decision-driving).
 
-### 5. Benchmark against competitors.
-
-NCI can analyze any public video. Run your top-performing content and a competitor's through the same pipeline, and you get a side-by-side neural engagement comparison. You might discover that their viral content hits a surprise-peak frequency yours does not, or that their CTA timing aligns with decision-network activation while yours does not.
+**Competitive benchmarking.** The pipeline can analyze any video. Running competitor content through the same framework produces comparable neural profiles for side-by-side analysis.
 
 ---
 
-## What We Don't Know Yet (And Why That Matters)
+## Limitations
 
-Credibility demands honesty. Here are the limitations.
+**No real-world validation.** This is the most critical gap. The neural profiles are consistent with established neuroscience, but NCI scores have not been correlated with actual engagement metrics (view counts, watch time, shares, conversions). Validation is the immediate next priority.
 
-**No real-world validation yet.** This is the most critical gap. The neural profiles are theoretically grounded in two decades of neuroscience research, and the patterns we see are consistent with established science. But we have not yet correlated NCI scores with actual engagement metrics like view counts, watch time, shares, or conversions. That validation study is the immediate next priority.
+**Population-level predictions.** TRIBE v2 predicts an "average" brain response based on approximately 720 training subjects. Individual differences in preferences, cultural context, age, and cognitive style are not captured.
 
-**Population-level predictions only.** The model was trained on approximately 720 subjects. It predicts an "average" brain response. Individual differences in preferences, cultural background, age, and cognitive style are not captured.
+**Visual only.** The current implementation processes only visual input. TRIBE v2 supports audio, but audio integration has not been implemented. This is a significant gap, as audio is a critical component of content effectiveness.
 
-**Visual only, for now.** Although TRIBE v2 supports audio input, our current implementation processes only visual information. Audio, which is a critical component of content effectiveness, is planned for integration.
+**Training data constraints.** TRIBE v2 was trained on subjects from primarily Western, educated, industrialized populations watching natural video in controlled lab settings. Prediction accuracy for highly stylized graphics, text-heavy slides, or culturally specific content may be reduced.
 
-The existing neuroscience literature gives us strong reason to expect that computationally predicted brain responses will carry real predictive value. Studies have repeatedly shown that neural measures from small samples (dozens of people) predict population-level outcomes (hundreds of thousands of viewers) with meaningful accuracy, sometimes outperforming self-report and expert judgment. But until we validate NCI against real-world metrics, the framework remains a proof of concept.
-
----
-
-## The Shift from Reactive to Predictive
-
-For the first time, we can provide neuroscience-grounded content evaluation at the speed and scale modern content creation demands. Two minutes of compute time. Pennies per video. Seven interpretable brain signals. Five actionable metrics. All before a single viewer sees the content.
-
-The content industry has spent decades optimizing surfaces: titles, thumbnails, posting times, hashtags. NCI opens the door to optimizing the thing that actually matters: the cognitive experience your content creates in the viewer's brain.
-
-The full research paper ([PDF](https://github.com/JoshW-dev/tribev2-test/blob/main/paper/neural_content_intelligence.pdf)) and open-source code are available on [GitHub](https://github.com/JoshW-dev/tribev2-test).
-
-If you could neurally profile any piece of content before publishing it, what would you test first?
+The existing neuroscience literature provides strong precedent for computationally predicted brain responses carrying predictive value. Falk et al. (2012) demonstrated that fMRI responses from 30 subjects predicted population-level campaign outcomes across approximately 400,000 recipients. Dmochowski et al. (2014) showed that neural data from 16 participants predicted large-audience preferences for Super Bowl ads. The question is whether TRIBE v2's *predicted* neural responses carry similar predictive power. That remains to be established.
 
 ---
 
-*Josh W. is an independent researcher working at the intersection of neuroscience and content optimization. This article is based on the paper "Neural Content Intelligence: Using Brain Encoding Models to Predict Social Media Engagement Before Publication."*
+## Conclusion
+
+NCI applies Meta's TRIBE v2 brain encoding model to content optimization, translating raw voxel-level predictions into interpretable engagement signals through the Yeo 7-network parcellation. The framework produces neuroscience-grounded content evaluation in approximately two minutes of compute time, at a cost of pennies per video, with no lab, subjects, or publication required.
+
+The proof-of-concept analysis across five content archetypes demonstrates that different formats produce distinct and interpretable neural signatures, consistent with established neuroscience of attention, emotion, and decision-making. These distinctions are invisible to metadata-based optimization tools but directly relevant to content strategy.
+
+The framework is a proof of concept. Validation against real-world engagement metrics is the critical next step.
+
+The full research paper ([PDF](https://github.com/JoshW-dev/tribev2-test/blob/main/paper/neural_content_intelligence.pdf)) and open-source implementation are available on [GitHub](https://github.com/JoshW-dev/tribev2-test).
+
+---
+
+*Josh W. is an independent researcher. This article is based on the paper "Neural Content Intelligence: Using Brain Encoding Models to Predict Social Media Engagement Before Publication."*
 
 ---
 
