@@ -1,0 +1,177 @@
+{
+  "/Users/joshua/Desktop/Code/tribev2-test/view_predictions.py": {
+    "mtime": 1774959718.2771804,
+    "ast_hash": "902a018fc1575cb2e280d2e43185ae25",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/setup.sh": {
+    "mtime": 1774927013.6283686,
+    "ast_hash": "dbc9c35e9d47aa5d6449618b11039045",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/render_landing_brains.py": {
+    "mtime": 1777797988.0302222,
+    "ast_hash": "e3a6a374d38f06f03fc31c81531e3a49",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/run_inference.py": {
+    "mtime": 1774959098.2712665,
+    "ast_hash": "ed0b4c109653c72e9d1e32a2ec26927b",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/app.py": {
+    "mtime": 1775512424.3415353,
+    "ast_hash": "3f4155cf6033b6f0405bcf799e8177eb",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/view_3d.py": {
+    "mtime": 1774960674.5076578,
+    "ast_hash": "3b5f6bb46cfc152e482d747c2b6e4841",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/generate_figures.py": {
+    "mtime": 1775512424.3572836,
+    "ast_hash": "675803d393018869993b7605ec5949ba",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/fix_tex2.py": {
+    "mtime": 1775398782.5480115,
+    "ast_hash": "dee54f7dfc7472f7d91bda4c69e6e3cf",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/fix_tex3.py": {
+    "mtime": 1775398782.5481234,
+    "ast_hash": "13c6be8831294e4b9cefdf8fb5fd9519",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/generate_content_figures.py": {
+    "mtime": 1775512424.356989,
+    "ast_hash": "70a1ca75d8497c726b8287b35177c8da",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/run_all_videos.py": {
+    "mtime": 1775171388.5585587,
+    "ast_hash": "a0fc44857ec292ebb8e95765a8cdcc29",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/fix_tex.py": {
+    "mtime": 1775398782.5479014,
+    "ast_hash": "03b7dbf62309eec3bc083da0cb668c77",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/build_pdf.py": {
+    "mtime": 1775512570.8456812,
+    "ast_hash": "7dec3e84d4954d3405f12f16b0243a8b",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/fix_final.py": {
+    "mtime": 1775398782.547791,
+    "ast_hash": "3284e263a597c57d41f39f03e2779cc9",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/build_latex.py": {
+    "mtime": 1775703069.7682865,
+    "ast_hash": "a41fb306df8e7e176c09fdc8fc6680bd",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/.claude/settings.local.json": {
+    "mtime": 1776349171.8843727,
+    "ast_hash": "762dca7d4924c374c139c6fc27f67515",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/.claude/launch.json": {
+    "mtime": 1775171388.5537815,
+    "ast_hash": "2af0f026348138faf24da61a9123afc0",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/README.md": {
+    "mtime": 1775759505.247917,
+    "ast_hash": "c005f4225dfbaadab40a5d612e8230e4",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/sample_prompt.txt": {
+    "mtime": 1774926805.1234,
+    "ast_hash": "44e25cdf034781e5362bee4876e4b9ad",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/research_and_outline.md": {
+    "mtime": 1775171388.5582883,
+    "ast_hash": "7b8676c995516a881caa6a917e1e07b4",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/medium_article.md": {
+    "mtime": 1776307507.7875638,
+    "ast_hash": "a111e8e6ffe321ff9fec5813492c9f4d",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/PEAK_FIX_INSTRUCTIONS.md": {
+    "mtime": 1775482290.986165,
+    "ast_hash": "6a9b1cb31d1dcc576ee67bd93b14a6ed",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/neural_content_intelligence.md": {
+    "mtime": 1775512424.357651,
+    "ast_hash": "52268c118ebe2e80c9b1a7a1bfb18375",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/perplexity_prompts.md": {
+    "mtime": 1775171388.558043,
+    "ast_hash": "95efeeec70c4af617ce39c63f0b9d5f4",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/neural_content_intelligence.pdf": {
+    "mtime": 1775512704.5623949,
+    "ast_hash": "edbc2a18bf001020296537499745d98e",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/latex/figures/thumb_viralJapaneseIceCutter.jpg": {
+    "mtime": 1775698717.1780448,
+    "ast_hash": "18c1892a5162369f8a75fd9fa6f6d610",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/latex/figures/thumb_PerfumeUGCInterview.jpg": {
+    "mtime": 1775698717.1754413,
+    "ast_hash": "3d3065b88fbb23835450e8ee7a643f51",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/latex/figures/thumb_sanitaryPadProductDemo.jpg": {
+    "mtime": 1775698717.1759212,
+    "ast_hash": "f6c2208ffb72098a0ba1e4e43ab87d0f",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/latex/figures/thumb_ElonAI.jpg": {
+    "mtime": 1775698717.1749582,
+    "ast_hash": "9862701a4296c79c6c68955071c2454a",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/latex/figures/thumb_BusinessEdLeilaHarmozi.jpg": {
+    "mtime": 1775698717.1745343,
+    "ast_hash": "2424ab59f50d29dc612c6e718d4e9f0e",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/figures/thumb_viralJapaneseIceCutter.jpg": {
+    "mtime": 1775398782.5474274,
+    "ast_hash": "18c1892a5162369f8a75fd9fa6f6d610",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/figures/thumb_PerfumeUGCInterview.jpg": {
+    "mtime": 1775398782.5471356,
+    "ast_hash": "3d3065b88fbb23835450e8ee7a643f51",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/figures/thumb_sanitaryPadProductDemo.jpg": {
+    "mtime": 1775398782.5472784,
+    "ast_hash": "f6c2208ffb72098a0ba1e4e43ab87d0f",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/figures/thumb_ElonAI.jpg": {
+    "mtime": 1775398782.5469718,
+    "ast_hash": "9862701a4296c79c6c68955071c2454a",
+    "semantic_hash": ""
+  },
+  "/Users/joshua/Desktop/Code/tribev2-test/paper/figures/thumb_BusinessEdLeilaHarmozi.jpg": {
+    "mtime": 1775398782.5468087,
+    "ast_hash": "2424ab59f50d29dc612c6e718d4e9f0e",
+    "semantic_hash": ""
+  }
+}

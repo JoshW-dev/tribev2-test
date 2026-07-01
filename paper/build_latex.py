@@ -77,34 +77,39 @@ def md_to_latex(md_text: str) -> tuple[str, list[dict]]:
     body = re.sub(r'^## (\d+\. .+)$', r'\\section{\1}', body, flags=re.MULTILINE)
     body = re.sub(r'^## (.+)$', r'\\section*{\1}', body, flags=re.MULTILINE)
 
-    # ── Escape special LaTeX characters in body text ──
-    # Do this BEFORE other conversions, but protect $math$ and existing LaTeX
+    # ── Escape special LaTeX characters, preserving math mode ──
     def escape_latex_chars(text):
-        """Escape special LaTeX characters, preserving real math mode."""
-        # Step 1: Protect real math blocks
+        """Escape LaTeX specials. Preserves $$..$$ display math and $..$
+        inline math (detected as balanced pairs on the same line)."""
+        # Stash $$...$$ display math
         math_phs = []
-        def save_math(m):
+        def stash(m):
             math_phs.append(m.group(0))
-            return f"LATEXMATH{len(math_phs)-1}ENDMATH"
-        # Block math $$...$$
-        text = re.sub(r'\$\$(.+?)\$\$', save_math, text, flags=re.DOTALL)
-        # Inline math: $...$ containing LaTeX commands (\frac, \cdot, etc)
-        text = re.sub(r'\$([^$]*\\[a-zA-Z]+[^$]*)\$', save_math, text)
-
-        # Step 2: Escape ALL remaining $ (they're currency, not math)
+            return f"\x00MATH{len(math_phs)-1}\x00"
+        text = re.sub(r'\$\$.+?\$\$', stash, text, flags=re.DOTALL)
+        # Stash inline math: $X$ where X begins with letter or backslash
+        # (excludes currency like $15,000 which begins with a digit).
+        text = re.sub(r'\$([a-zA-Z\\][^$\n]*?)\$', lambda m: stash(m), text)
+        # Stash \includegraphics{...} file paths (underscores are valid
+        # in filenames; escaping would break the path).
+        text = re.sub(r'\\includegraphics(?:\[[^\]]*\])?\{[^}]*\}',
+                      stash, text)
+        # Stash figure labels so \_ doesn't leak into them
+        text = re.sub(r'\\label\{[^}]*\}', stash, text)
+        # At this point, any remaining $ is currency — escape it.
         text = text.replace('$', r'\$')
-
-        # Step 3: Escape other special chars
+        # Other specials
         text = text.replace('%', r'\%')
         text = text.replace('&', r'\&')
         text = text.replace('#', r'\#')
-
-        # Step 4: Restore real math
+        text = text.replace('_', r'\_')
+        # Restore math blocks
         for i, m in enumerate(math_phs):
-            text = text.replace(f"LATEXMATH{i}ENDMATH", m)
+            text = text.replace(f"\x00MATH{i}\x00", m)
         return text
 
     body = escape_latex_chars(body)
+    abstract = escape_latex_chars(abstract)
 
     # ── Apply copywriting guidelines: remove em dashes ──
     body = body.replace('---', ',')  # triple dash (md em dash)
@@ -131,8 +136,15 @@ def md_to_latex(md_text: str) -> tuple[str, list[dict]]:
     # ── Convert markdown tables ──
     def convert_table(match):
         lines = match.group(0).strip().split('\n')
-        # Filter out separator lines
-        data_lines = [l for l in lines if not re.match(r'^\|[\s\-:|]+\|$', l)]
+        # Filter out separator lines. At this point em-dashes have been
+        # replaced by commas, so separator rows look like |,|,|,| too.
+        def is_sep(l):
+            if re.match(r'^\|[\s\-:|]+\|$', l):
+                return True
+            inner = l.strip().strip('|')
+            cells = [c.strip() for c in inner.split('|')]
+            return bool(cells) and all(c in ('', ',', '-', '--') for c in cells)
+        data_lines = [l for l in lines if not is_sep(l)]
         if not data_lines:
             return match.group(0)
 
@@ -161,15 +173,14 @@ def md_to_latex(md_text: str) -> tuple[str, list[dict]]:
         tex = f'\\begin{{table}}[htbp]\n\\centering\n\\small\n\\begin{{tabularx}}{{\\textwidth}}{{{col_spec}}}\n\\hline\n' if False else \
               f'\\begin{{table}}[htbp]\n\\centering\n\\small\n\\begin{{tabular}}{{{col_spec}}}\n\\hline\n'
         for i, row in enumerate(rows):
-            # Escape special chars in cells
-            escaped = []
+            # Specials already escaped by escape_latex_chars — don't
+            # double-escape. Just handle inline markdown here.
+            processed = []
             for cell in row:
-                cell = cell.replace('&', r'\&').replace('%', r'\%')
-                cell = cell.replace('_', r'\_').replace('#', r'\#')
                 cell = re.sub(r'\*\*(.+?)\*\*', r'\\textbf{\1}', cell)
                 cell = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'\\textit{\1}', cell)
-                escaped.append(cell)
-            tex += ' & '.join(escaped) + ' \\\\\n'
+                processed.append(cell)
+            tex += ' & '.join(processed) + ' \\\\\n'
             if i == 0:
                 tex += '\\hline\n'
         tex += '\\hline\n\\end{tabular}\n\\end{table}'
@@ -220,40 +231,67 @@ def md_to_latex(md_text: str) -> tuple[str, list[dict]]:
     return abstract, body, refs_text
 
 
-def build_bibtex(refs_text: str) -> str:
-    """Build a .bib file from the references section."""
-    bib = ""
-    # Parse numbered references like [1] Author, Title, ...
-    entries = re.findall(r'\[(\d+)\]\s*(.+?)(?=\n\[|\n\n|\Z)', refs_text, re.DOTALL)
+def _escape_ref_text(text: str) -> str:
+    """Escape LaTeX specials in reference text, leaving URLs alone."""
+    # Pull URLs out so we can wrap them in \url{}
+    urls = []
+    def stash_url(m):
+        urls.append(m.group(0).rstrip('.,);'))
+        return f"URLPH{len(urls)-1}END"
+    text = re.sub(r'https?://\S+', stash_url, text)
 
-    for num, text in entries:
-        text = text.strip().replace('\n', ' ')
-        # Try to extract URL
-        url_match = re.search(r'https?://\S+', text)
-        url = url_match.group(0).rstrip('.,)') if url_match else ""
+    text = text.replace('\\', r'\textbackslash{}')
+    text = text.replace('&', r'\&').replace('%', r'\%').replace('#', r'\#')
+    text = text.replace('_', r'\_').replace('{', r'\{').replace('}', r'\}')
+    text = text.replace('$', r'\$').replace('~', r'\textasciitilde{}')
+    text = text.replace('^', r'\textasciicircum{}')
 
-        # Clean text for title
-        title = text[:120].strip().rstrip('.')
+    # Convert *italic* markers
+    text = re.sub(r'\*([^*]+?)\*', r'\\textit{\1}', text)
 
-        bib += f"""@misc{{ref{num},
-  title = {{{title}}},
-  note = {{[{num}]}},
-  howpublished = {{\\url{{{url}}}}},
-  year = {{2024}}
-}}
+    # Restore URLs
+    for i, u in enumerate(urls):
+        text = text.replace(f"URLPH{i}END", f"\\url{{{u}}}")
+    return text
 
-"""
-    return bib
+
+def build_references_section(refs_text: str) -> str:
+    """Build a plain LaTeX \\section*{References} with a formatted list."""
+    entries = re.findall(
+        r'\[(R?\d+)\]\s*(.+?)(?=\n\[R?\d+\]|\n\*\*Additional|\n---|\Z)',
+        refs_text, re.DOTALL,
+    )
+    if not entries:
+        return ""
+
+    # Split into main refs and "additional foundational" refs
+    main_refs = [(n, t) for n, t in entries if not n.startswith('R')]
+    extra_refs = [(n, t) for n, t in entries if n.startswith('R')]
+
+    def render(items):
+        s = "\\begingroup\n\\small\n"
+        s += ("\\begin{list}{}{\\setlength{\\leftmargin}{2em}"
+              "\\setlength{\\itemindent}{-2em}\\setlength{\\itemsep}{2pt}}\n")
+        for num, text in items:
+            text = re.sub(r'\s+', ' ', text.strip())
+            s += f"\\item[{{[{num}]}}] {_escape_ref_text(text)}\n"
+        s += "\\end{list}\n\\endgroup\n"
+        return s
+
+    out = "\\section*{References}\n" + render(main_refs)
+    if extra_refs:
+        out += "\n\\subsection*{Additional foundational references}\n" + render(extra_refs)
+    return out
 
 
 def build():
     md_text = MD_FILE.read_text(encoding="utf-8")
     abstract, body, refs_text = md_to_latex(md_text)
 
-    # Build bibliography
-    bib_content = build_bibtex(refs_text)
-    BIB_FILE.write_text(bib_content, encoding="utf-8")
-    print(f"Bibliography: {BIB_FILE}")
+    # Build references as a plain LaTeX section (paper uses [N] not \cite{})
+    refs_section = build_references_section(refs_text)
+    if BIB_FILE.exists():
+        BIB_FILE.unlink()
 
     # Build the full .tex file
     tex = r"""\documentclass[11pt,letterpaper]{article}
@@ -266,11 +304,11 @@ def build():
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
+\usepackage[hyphens]{url}
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{caption}
-\usepackage{natbib}
 \usepackage{setspace}
 
 % ── Settings ──
@@ -279,8 +317,10 @@ def build():
     colorlinks=true,
     linkcolor=blue,
     citecolor=blue,
-    urlcolor=blue
+    urlcolor=blue,
+    breaklinks=true
 }
+\Urlmuskip=0mu plus 1mu\relax
 \captionsetup{font=small,labelfont=bf}
 
 % ── Title ──
@@ -302,11 +342,7 @@ def build():
 \bigskip
 
 % ── Body ──
-""" + body + r"""
-
-% ── References ──
-\bibliographystyle{plainnat}
-\bibliography{references}
+""" + body + "\n\n" + refs_section + r"""
 
 \end{document}
 """

@@ -1,0 +1,5670 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "view_predictions.py",
+      "file_type": "code",
+      "source_file": "view_predictions.py",
+      "source_location": "L1",
+      "id": "view_predictions_py",
+      "community": 18,
+      "norm_label": "view_predictions.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "view_predictions.py",
+      "source_location": "L14",
+      "id": "tribev2_test_view_predictions_main",
+      "community": 18,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Visualize TRIBE v2 predictions on the fsaverage5 cortical surface.",
+      "file_type": "rationale",
+      "source_file": "view_predictions.py",
+      "source_location": "L1",
+      "id": "tribev2_test_view_predictions_rationale_1",
+      "community": 18,
+      "norm_label": "visualize tribe v2 predictions on the fsaverage5 cortical surface."
+    },
+    {
+      "label": "setup.sh",
+      "file_type": "code",
+      "source_file": "setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "id": "setup_sh",
+      "community": 23,
+      "norm_label": "setup.sh"
+    },
+    {
+      "label": "setup.sh script",
+      "file_type": "code",
+      "source_file": "setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "id": "users_joshua_desktop_code_tribev2_test_setup_sh__entry",
+      "community": 23,
+      "norm_label": "setup.sh script"
+    },
+    {
+      "label": "render_landing_brains.py",
+      "file_type": "code",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L1",
+      "id": "render_landing_brains_py",
+      "community": 6,
+      "norm_label": "render_landing_brains.py"
+    },
+    {
+      "label": "render()",
+      "file_type": "code",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L33",
+      "id": "tribev2_test_render_landing_brains_render",
+      "community": 6,
+      "norm_label": "render()"
+    },
+    {
+      "label": "str",
+      "file_type": "code",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L33",
+      "id": "render_landing_brains_py_str",
+      "community": 6,
+      "norm_label": "str"
+    },
+    {
+      "label": "ndarray",
+      "file_type": "code",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L33",
+      "id": "render_landing_brains_py_ndarray",
+      "community": 6,
+      "norm_label": "ndarray"
+    },
+    {
+      "label": "float",
+      "file_type": "code",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L33",
+      "id": "render_landing_brains_py_float",
+      "community": 6,
+      "norm_label": "float"
+    },
+    {
+      "label": "Render 4 distinct cortical surface PNGs for the scalefactor-next landing page.",
+      "file_type": "rationale",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L1",
+      "id": "tribev2_test_render_landing_brains_rationale_1",
+      "community": 6,
+      "norm_label": "render 4 distinct cortical surface pngs for the scalefactor-next landing page."
+    },
+    {
+      "label": "Render L + R hemisphere side by side at 4:3 panel aspect.",
+      "file_type": "rationale",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L35",
+      "id": "tribev2_test_render_landing_brains_rationale_35",
+      "community": 6,
+      "norm_label": "render l + r hemisphere side by side at 4:3 panel aspect."
+    },
+    {
+      "label": "run_inference.py",
+      "file_type": "code",
+      "source_file": "run_inference.py",
+      "source_location": "L1",
+      "id": "run_inference_py",
+      "community": 16,
+      "norm_label": "run_inference.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "run_inference.py",
+      "source_location": "L19",
+      "id": "tribev2_test_run_inference_main",
+      "community": 16,
+      "norm_label": "main()"
+    },
+    {
+      "label": "TRIBE v2 inference script. Accepts a video, audio, or text file and outputs pred",
+      "file_type": "rationale",
+      "source_file": "run_inference.py",
+      "source_location": "L1",
+      "id": "tribev2_test_run_inference_rationale_1",
+      "community": 16,
+      "norm_label": "tribe v2 inference script. accepts a video, audio, or text file and outputs pred"
+    },
+    {
+      "label": "app.py",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1",
+      "id": "app_py",
+      "community": 0,
+      "norm_label": "app.py"
+    },
+    {
+      "label": "extract_video_frames()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L84",
+      "id": "tribev2_test_app_extract_video_frames",
+      "community": 0,
+      "norm_label": "extract_video_frames()"
+    },
+    {
+      "label": "str",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L84",
+      "id": "app_py_str",
+      "community": 0,
+      "norm_label": "str"
+    },
+    {
+      "label": "int",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L84",
+      "id": "int",
+      "community": 0,
+      "norm_label": "int"
+    },
+    {
+      "label": "float",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L84",
+      "id": "app_py_float",
+      "community": 0,
+      "norm_label": "float"
+    },
+    {
+      "label": "prerender_brain_frames()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L122",
+      "id": "tribev2_test_app_prerender_brain_frames",
+      "community": 0,
+      "norm_label": "prerender_brain_frames()"
+    },
+    {
+      "label": "ndarray",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L122",
+      "id": "app_py_ndarray",
+      "community": 0,
+      "norm_label": "ndarray"
+    },
+    {
+      "label": "render_brain_animation()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L167",
+      "id": "tribev2_test_app_render_brain_animation",
+      "community": 0,
+      "norm_label": "render_brain_animation()"
+    },
+    {
+      "label": "generate_animation()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L290",
+      "id": "tribev2_test_app_generate_animation",
+      "community": 0,
+      "norm_label": "generate_animation()"
+    },
+    {
+      "label": "save_results()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L318",
+      "id": "tribev2_test_app_save_results",
+      "community": 0,
+      "norm_label": "save_results()"
+    },
+    {
+      "label": "load_cached_results()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L359",
+      "id": "tribev2_test_app_load_cached_results",
+      "community": 0,
+      "norm_label": "load_cached_results()"
+    },
+    {
+      "label": "load_model()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L438",
+      "id": "tribev2_test_app_load_model",
+      "community": 0,
+      "norm_label": "load_model()"
+    },
+    {
+      "label": "_build_mesh_cache()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L463",
+      "id": "tribev2_test_app_build_mesh_cache",
+      "community": 0,
+      "norm_label": "_build_mesh_cache()"
+    },
+    {
+      "label": "_load_yeo_labels()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L498",
+      "id": "tribev2_test_app_load_yeo_labels",
+      "community": 0,
+      "norm_label": "_load_yeo_labels()"
+    },
+    {
+      "label": "compute_network_timecourses()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L530",
+      "id": "tribev2_test_app_compute_network_timecourses",
+      "community": 0,
+      "norm_label": "compute_network_timecourses()"
+    },
+    {
+      "label": "find_robust_peaks()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L544",
+      "id": "tribev2_test_app_find_robust_peaks",
+      "community": 0,
+      "norm_label": "find_robust_peaks()"
+    },
+    {
+      "label": "interpret_cognitive_state()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L620",
+      "id": "tribev2_test_app_interpret_cognitive_state",
+      "community": 0,
+      "norm_label": "interpret_cognitive_state()"
+    },
+    {
+      "label": "plot_network_timecourses()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L655",
+      "id": "tribev2_test_app_plot_network_timecourses",
+      "community": 0,
+      "norm_label": "plot_network_timecourses()"
+    },
+    {
+      "label": "Figure",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L655",
+      "id": "figure",
+      "community": 0,
+      "norm_label": "figure"
+    },
+    {
+      "label": "plot_network_bar()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L685",
+      "id": "tribev2_test_app_plot_network_bar",
+      "community": 0,
+      "norm_label": "plot_network_bar()"
+    },
+    {
+      "label": "generate_cognitive_summary()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L710",
+      "id": "tribev2_test_app_generate_cognitive_summary",
+      "community": 0,
+      "norm_label": "generate_cognitive_summary()"
+    },
+    {
+      "label": "generate_narrative_abstract()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L766",
+      "id": "tribev2_test_app_generate_narrative_abstract",
+      "community": 0,
+      "norm_label": "generate_narrative_abstract()"
+    },
+    {
+      "label": "_build_ai_prompt()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L947",
+      "id": "tribev2_test_app_build_ai_prompt",
+      "community": 0,
+      "norm_label": "_build_ai_prompt()"
+    },
+    {
+      "label": "on_generate_abstract()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1011",
+      "id": "tribev2_test_app_on_generate_abstract",
+      "community": 0,
+      "norm_label": "on_generate_abstract()"
+    },
+    {
+      "label": "plot_yeo_parcellation()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1073",
+      "id": "tribev2_test_app_plot_yeo_parcellation",
+      "community": 0,
+      "norm_label": "plot_yeo_parcellation()"
+    },
+    {
+      "label": "_get_cmap()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1122",
+      "id": "tribev2_test_app_get_cmap",
+      "community": 0,
+      "norm_label": "_get_cmap()"
+    },
+    {
+      "label": "render_brain_map()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1130",
+      "id": "tribev2_test_app_render_brain_map",
+      "community": 0,
+      "norm_label": "render_brain_map()"
+    },
+    {
+      "label": "render_interactive_brain()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1238",
+      "id": "tribev2_test_app_render_interactive_brain",
+      "community": 0,
+      "norm_label": "render_interactive_brain()"
+    },
+    {
+      "label": "_status_md()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1293",
+      "id": "tribev2_test_app_status_md",
+      "community": 0,
+      "norm_label": "_status_md()"
+    },
+    {
+      "label": "on_timestep_change()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1305",
+      "id": "tribev2_test_app_on_timestep_change",
+      "community": 0,
+      "norm_label": "on_timestep_change()"
+    },
+    {
+      "label": "on_play_tick()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1326",
+      "id": "tribev2_test_app_on_play_tick",
+      "community": 17,
+      "norm_label": "on_play_tick()"
+    },
+    {
+      "label": "bool",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1326",
+      "id": "bool",
+      "community": 17,
+      "norm_label": "bool"
+    },
+    {
+      "label": "run_inference()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1337",
+      "id": "tribev2_test_app_run_inference",
+      "community": 0,
+      "norm_label": "run_inference()"
+    },
+    {
+      "label": "load_npy()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1510",
+      "id": "tribev2_test_app_load_npy",
+      "community": 0,
+      "norm_label": "load_npy()"
+    },
+    {
+      "label": "build_ui()",
+      "file_type": "code",
+      "source_file": "app.py",
+      "source_location": "L1583",
+      "id": "tribev2_test_app_build_ui",
+      "community": 0,
+      "norm_label": "build_ui()"
+    },
+    {
+      "label": "TRIBE v2 Gradio UI \u2014 Select a video (or audio/text), run inference, and view pre",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1",
+      "id": "tribev2_test_app_rationale_1",
+      "community": 0,
+      "norm_label": "tribe v2 gradio ui \u2014 select a video (or audio/text), run inference, and view pre"
+    },
+    {
+      "label": "Extract one frame per TR from the video and save to results/frames/.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L85",
+      "id": "tribev2_test_app_rationale_85",
+      "community": 0,
+      "norm_label": "extract one frame per tr from the video and save to results/frames/."
+    },
+    {
+      "label": "Pre-render a brain activation PNG for every timestep + mean.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L123",
+      "id": "tribev2_test_app_rationale_123",
+      "community": 0,
+      "norm_label": "pre-render a brain activation png for every timestep + mean."
+    },
+    {
+      "label": "Render a rotating 3D brain video using PyVista GPU acceleration.      Each TR la",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L171",
+      "id": "tribev2_test_app_rationale_171",
+      "community": 0,
+      "norm_label": "render a rotating 3d brain video using pyvista gpu acceleration.      each tr la"
+    },
+    {
+      "label": "Gradio callback for the Generate Animation button.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L291",
+      "id": "tribev2_test_app_rationale_291",
+      "community": 0,
+      "norm_label": "gradio callback for the generate animation button."
+    },
+    {
+      "label": "Persist predictions + metadata + rendered images to disk.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L321",
+      "id": "tribev2_test_app_rationale_321",
+      "community": 0,
+      "norm_label": "persist predictions + metadata + rendered images to disk."
+    },
+    {
+      "label": "Load previously saved results from disk. Returns None if not found.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L360",
+      "id": "tribev2_test_app_rationale_360",
+      "community": 0,
+      "norm_label": "load previously saved results from disk. returns none if not found."
+    },
+    {
+      "label": "Load both hemispheres, offset the right, and cache for plotly.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L464",
+      "id": "tribev2_test_app_rationale_464",
+      "community": 0,
+      "norm_label": "load both hemispheres, offset the right, and cache for plotly."
+    },
+    {
+      "label": "Load or compute per-vertex Yeo 7-network labels on fsaverage5.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L499",
+      "id": "tribev2_test_app_rationale_499",
+      "community": 0,
+      "norm_label": "load or compute per-vertex yeo 7-network labels on fsaverage5."
+    },
+    {
+      "label": "Compute mean activation per Yeo network per timestep.      Returns (n_timesteps,",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L531",
+      "id": "tribev2_test_app_rationale_531",
+      "community": 0,
+      "norm_label": "compute mean activation per yeo network per timestep.      returns (n_timesteps,"
+    },
+    {
+      "label": "Find peaks in a timecourse with detrending and asymmetric trimming.      Address",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L547",
+      "id": "tribev2_test_app_rationale_547",
+      "community": 0,
+      "norm_label": "find peaks in a timecourse with detrending and asymmetric trimming.      address"
+    },
+    {
+      "label": "Derive cognitive state interpretations from network activations.      Returns on",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L621",
+      "id": "tribev2_test_app_rationale_621",
+      "community": 0,
+      "norm_label": "derive cognitive state interpretations from network activations.      returns on"
+    },
+    {
+      "label": "Plotly line chart: 7 network activations over time.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L656",
+      "id": "tribev2_test_app_rationale_656",
+      "community": 0,
+      "norm_label": "plotly line chart: 7 network activations over time."
+    },
+    {
+      "label": "Plotly bar chart: network activations for a single timestep.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L686",
+      "id": "tribev2_test_app_rationale_686",
+      "community": 0,
+      "norm_label": "plotly bar chart: network activations for a single timestep."
+    },
+    {
+      "label": "Markdown summary of cognitive analysis results.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L712",
+      "id": "tribev2_test_app_rationale_712",
+      "community": 0,
+      "norm_label": "markdown summary of cognitive analysis results."
+    },
+    {
+      "label": "Generate a plain-English narrative abstract of the brain response analysis.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L769",
+      "id": "tribev2_test_app_rationale_769",
+      "community": 0,
+      "norm_label": "generate a plain-english narrative abstract of the brain response analysis."
+    },
+    {
+      "label": "Build the data context to send to Claude for interpretation.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L949",
+      "id": "tribev2_test_app_rationale_949",
+      "community": 0,
+      "norm_label": "build the data context to send to claude for interpretation."
+    },
+    {
+      "label": "Call Claude API to generate a plain-English brain response abstract.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1012",
+      "id": "tribev2_test_app_rationale_1012",
+      "community": 0,
+      "norm_label": "call claude api to generate a plain-english brain response abstract."
+    },
+    {
+      "label": "Render and cache a Yeo 7-network atlas visualization on the brain.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1074",
+      "id": "tribev2_test_app_rationale_1074",
+      "community": 0,
+      "norm_label": "render and cache a yeo 7-network atlas visualization on the brain."
+    },
+    {
+      "label": "Return the nilearn 'cold_hot' cmap, falling back to RdBu_r.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1123",
+      "id": "tribev2_test_app_rationale_1123",
+      "community": 0,
+      "norm_label": "return the nilearn 'cold_hot' cmap, falling back to rdbu_r."
+    },
+    {
+      "label": "Improved static brain maps -> (mean_map_path, timestep_montage_path).",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1131",
+      "id": "tribev2_test_app_rationale_1131",
+      "community": 0,
+      "norm_label": "improved static brain maps -> (mean_map_path, timestep_montage_path)."
+    },
+    {
+      "label": "Interactive 3D brain for a single timestep (or mean if timestep == -1).",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1239",
+      "id": "tribev2_test_app_rationale_1239",
+      "community": 0,
+      "norm_label": "interactive 3d brain for a single timestep (or mean if timestep == -1)."
+    },
+    {
+      "label": "Build a markdown status block from a list of (label, state) tuples.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1294",
+      "id": "tribev2_test_app_rationale_1294",
+      "community": 0,
+      "norm_label": "build a markdown status block from a list of (label, state) tuples."
+    },
+    {
+      "label": "Show the pre-rendered brain image and matching video frame.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1306",
+      "id": "tribev2_test_app_rationale_1306",
+      "community": 0,
+      "norm_label": "show the pre-rendered brain image and matching video frame."
+    },
+    {
+      "label": "Auto-advance the slider by 1 step when playing.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1327",
+      "id": "tribev2_test_app_rationale_1327",
+      "community": 17,
+      "norm_label": "auto-advance the slider by 1 step when playing."
+    },
+    {
+      "label": "Visualize a previously saved predictions .npy file.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1511",
+      "id": "tribev2_test_app_rationale_1511",
+      "community": 0,
+      "norm_label": "visualize a previously saved predictions .npy file."
+    },
+    {
+      "label": "Build the Gradio UI with clean layout.",
+      "file_type": "rationale",
+      "source_file": "app.py",
+      "source_location": "L1584",
+      "id": "tribev2_test_app_rationale_1584",
+      "community": 0,
+      "norm_label": "build the gradio ui with clean layout."
+    },
+    {
+      "label": "view_3d.py",
+      "file_type": "code",
+      "source_file": "view_3d.py",
+      "source_location": "L1",
+      "id": "view_3d_py",
+      "community": 19,
+      "norm_label": "view_3d.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "view_3d.py",
+      "source_location": "L13",
+      "id": "tribev2_test_view_3d_main",
+      "community": 19,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Interactive 3D brain mesh viewer for TRIBE v2 predictions. Opens in your browser",
+      "file_type": "rationale",
+      "source_file": "view_3d.py",
+      "source_location": "L1",
+      "id": "tribev2_test_view_3d_rationale_1",
+      "community": 19,
+      "norm_label": "interactive 3d brain mesh viewer for tribe v2 predictions. opens in your browser"
+    },
+    {
+      "label": "generate_figures.py",
+      "file_type": "code",
+      "source_file": "paper/generate_figures.py",
+      "source_location": "L1",
+      "id": "paper_generate_figures_py",
+      "community": 10,
+      "norm_label": "generate_figures.py"
+    },
+    {
+      "label": "find_robust_peaks()",
+      "file_type": "code",
+      "source_file": "paper/generate_figures.py",
+      "source_location": "L38",
+      "id": "paper_generate_figures_find_robust_peaks",
+      "community": 10,
+      "norm_label": "find_robust_peaks()"
+    },
+    {
+      "label": "Generate all paper figures from cached TRIBE v2 results.",
+      "file_type": "rationale",
+      "source_file": "paper/generate_figures.py",
+      "source_location": "L1",
+      "id": "paper_generate_figures_rationale_1",
+      "community": 10,
+      "norm_label": "generate all paper figures from cached tribe v2 results."
+    },
+    {
+      "label": "Find peaks with detrending and asymmetric boundary trimming.      Start trim is",
+      "file_type": "rationale",
+      "source_file": "paper/generate_figures.py",
+      "source_location": "L39",
+      "id": "paper_generate_figures_rationale_39",
+      "community": 10,
+      "norm_label": "find peaks with detrending and asymmetric boundary trimming.      start trim is"
+    },
+    {
+      "label": "fix_tex2.py",
+      "file_type": "code",
+      "source_file": "paper/fix_tex2.py",
+      "source_location": "L1",
+      "id": "paper_fix_tex2_py",
+      "community": 21,
+      "norm_label": "fix_tex2.py"
+    },
+    {
+      "label": "Brute-force fix remaining dollar sign issues in main.tex.",
+      "file_type": "rationale",
+      "source_file": "paper/fix_tex2.py",
+      "source_location": "L1",
+      "id": "paper_fix_tex2_rationale_1",
+      "community": 21,
+      "norm_label": "brute-force fix remaining dollar sign issues in main.tex."
+    },
+    {
+      "label": "fix_tex3.py",
+      "file_type": "code",
+      "source_file": "paper/fix_tex3.py",
+      "source_location": "L1",
+      "id": "paper_fix_tex3_py",
+      "community": 22,
+      "norm_label": "fix_tex3.py"
+    },
+    {
+      "label": "Final pass: fix remaining $ issues by direct string replacement.",
+      "file_type": "rationale",
+      "source_file": "paper/fix_tex3.py",
+      "source_location": "L1",
+      "id": "paper_fix_tex3_rationale_1",
+      "community": 22,
+      "norm_label": "final pass: fix remaining $ issues by direct string replacement."
+    },
+    {
+      "label": "generate_content_figures.py",
+      "file_type": "code",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L1",
+      "id": "paper_generate_content_figures_py",
+      "community": 8,
+      "norm_label": "generate_content_figures.py"
+    },
+    {
+      "label": "find_robust_peaks()",
+      "file_type": "code",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L26",
+      "id": "paper_generate_content_figures_find_robust_peaks",
+      "community": 8,
+      "norm_label": "find_robust_peaks()"
+    },
+    {
+      "label": "extract_thumbnail()",
+      "file_type": "code",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L80",
+      "id": "paper_generate_content_figures_extract_thumbnail",
+      "community": 8,
+      "norm_label": "extract_thumbnail()"
+    },
+    {
+      "label": "extract_key_frames()",
+      "file_type": "code",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L88",
+      "id": "paper_generate_content_figures_extract_key_frames",
+      "community": 8,
+      "norm_label": "extract_key_frames()"
+    },
+    {
+      "label": "Generate all paper figures using the real content videos (not bears).",
+      "file_type": "rationale",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L1",
+      "id": "paper_generate_content_figures_rationale_1",
+      "community": 8,
+      "norm_label": "generate all paper figures using the real content videos (not bears)."
+    },
+    {
+      "label": "Find peaks with detrending and asymmetric boundary trimming.      Start trim is",
+      "file_type": "rationale",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L27",
+      "id": "paper_generate_content_figures_rationale_27",
+      "community": 8,
+      "norm_label": "find peaks with detrending and asymmetric boundary trimming.      start trim is"
+    },
+    {
+      "label": "Extract a single frame from a video.",
+      "file_type": "rationale",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L81",
+      "id": "paper_generate_content_figures_rationale_81",
+      "community": 8,
+      "norm_label": "extract a single frame from a video."
+    },
+    {
+      "label": "Extract frames at specific timestamps.",
+      "file_type": "rationale",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L89",
+      "id": "paper_generate_content_figures_rationale_89",
+      "community": 8,
+      "norm_label": "extract frames at specific timestamps."
+    },
+    {
+      "label": "run_all_videos.py",
+      "file_type": "code",
+      "source_file": "paper/run_all_videos.py",
+      "source_location": "L1",
+      "id": "paper_run_all_videos_py",
+      "community": 15,
+      "norm_label": "run_all_videos.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "paper/run_all_videos.py",
+      "source_location": "L43",
+      "id": "paper_run_all_videos_main",
+      "community": 15,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Run TRIBE v2 inference on all sample videos and save results for comparison.",
+      "file_type": "rationale",
+      "source_file": "paper/run_all_videos.py",
+      "source_location": "L1",
+      "id": "paper_run_all_videos_rationale_1",
+      "community": 15,
+      "norm_label": "run tribe v2 inference on all sample videos and save results for comparison."
+    },
+    {
+      "label": "fix_tex.py",
+      "file_type": "code",
+      "source_file": "paper/fix_tex.py",
+      "source_location": "L1",
+      "id": "paper_fix_tex_py",
+      "community": 14,
+      "norm_label": "fix_tex.py"
+    },
+    {
+      "label": "save()",
+      "file_type": "code",
+      "source_file": "paper/fix_tex.py",
+      "source_location": "L12",
+      "id": "paper_fix_tex_save",
+      "community": 14,
+      "norm_label": "save()"
+    },
+    {
+      "label": "Post-process main.tex to fix unescaped dollar signs and em dashes.",
+      "file_type": "rationale",
+      "source_file": "paper/fix_tex.py",
+      "source_location": "L1",
+      "id": "paper_fix_tex_rationale_1",
+      "community": 14,
+      "norm_label": "post-process main.tex to fix unescaped dollar signs and em dashes."
+    },
+    {
+      "label": "build_pdf.py",
+      "file_type": "code",
+      "source_file": "paper/build_pdf.py",
+      "source_location": "L1",
+      "id": "paper_build_pdf_py",
+      "community": 13,
+      "norm_label": "build_pdf.py"
+    },
+    {
+      "label": "build()",
+      "file_type": "code",
+      "source_file": "paper/build_pdf.py",
+      "source_location": "L16",
+      "id": "paper_build_pdf_build",
+      "community": 13,
+      "norm_label": "build()"
+    },
+    {
+      "label": "Convert the paper markdown to an arXiv-compliant PDF using Playwright (headless",
+      "file_type": "rationale",
+      "source_file": "paper/build_pdf.py",
+      "source_location": "L1",
+      "id": "paper_build_pdf_rationale_1",
+      "community": 13,
+      "norm_label": "convert the paper markdown to an arxiv-compliant pdf using playwright (headless"
+    },
+    {
+      "label": "fix_final.py",
+      "file_type": "code",
+      "source_file": "paper/fix_final.py",
+      "source_location": "L1",
+      "id": "paper_fix_final_py",
+      "community": 20,
+      "norm_label": "fix_final.py"
+    },
+    {
+      "label": "Fix the last remaining dollar sign issue on line 263.",
+      "file_type": "rationale",
+      "source_file": "paper/fix_final.py",
+      "source_location": "L1",
+      "id": "paper_fix_final_rationale_1",
+      "community": 20,
+      "norm_label": "fix the last remaining dollar sign issue on line 263."
+    },
+    {
+      "label": "build_latex.py",
+      "file_type": "code",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L1",
+      "id": "paper_build_latex_py",
+      "community": 6,
+      "norm_label": "build_latex.py"
+    },
+    {
+      "label": "md_to_latex()",
+      "file_type": "code",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L13",
+      "id": "paper_build_latex_md_to_latex",
+      "community": 6,
+      "norm_label": "md_to_latex()"
+    },
+    {
+      "label": "str",
+      "file_type": "code",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L13",
+      "id": "paper_build_latex_py_str",
+      "community": 6,
+      "norm_label": "str"
+    },
+    {
+      "label": "_escape_ref_text()",
+      "file_type": "code",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L234",
+      "id": "paper_build_latex_escape_ref_text",
+      "community": 6,
+      "norm_label": "_escape_ref_text()"
+    },
+    {
+      "label": "build_references_section()",
+      "file_type": "code",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L258",
+      "id": "paper_build_latex_build_references_section",
+      "community": 6,
+      "norm_label": "build_references_section()"
+    },
+    {
+      "label": "build()",
+      "file_type": "code",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L287",
+      "id": "paper_build_latex_build",
+      "community": 6,
+      "norm_label": "build()"
+    },
+    {
+      "label": "Convert the paper markdown to arXiv-ready LaTeX source.",
+      "file_type": "rationale",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L1",
+      "id": "paper_build_latex_rationale_1",
+      "community": 6,
+      "norm_label": "convert the paper markdown to arxiv-ready latex source."
+    },
+    {
+      "label": "Convert markdown to LaTeX body text. Returns (latex_body, references).",
+      "file_type": "rationale",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L14",
+      "id": "paper_build_latex_rationale_14",
+      "community": 6,
+      "norm_label": "convert markdown to latex body text. returns (latex_body, references)."
+    },
+    {
+      "label": "Escape LaTeX specials in reference text, leaving URLs alone.",
+      "file_type": "rationale",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L235",
+      "id": "paper_build_latex_rationale_235",
+      "community": 6,
+      "norm_label": "escape latex specials in reference text, leaving urls alone."
+    },
+    {
+      "label": "Build a plain LaTeX \\\\section*{References} with a formatted list.",
+      "file_type": "rationale",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L259",
+      "id": "paper_build_latex_rationale_259",
+      "community": 6,
+      "norm_label": "build a plain latex \\\\section*{references} with a formatted list."
+    },
+    {
+      "label": "settings.local.json",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L1",
+      "id": "claude_settings_local_json",
+      "community": 12,
+      "norm_label": "settings.local.json"
+    },
+    {
+      "label": "permissions",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "id": "claude_settings_local_permissions",
+      "community": 12,
+      "norm_label": "permissions"
+    },
+    {
+      "label": "allow",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "id": "claude_settings_local_permissions_allow",
+      "community": 12,
+      "norm_label": "allow"
+    },
+    {
+      "label": "launch.json",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L1",
+      "id": "claude_launch_json",
+      "community": 11,
+      "norm_label": "launch.json"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L2",
+      "id": "claude_launch_version",
+      "community": 11,
+      "norm_label": "version"
+    },
+    {
+      "label": "configurations",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L3",
+      "id": "claude_launch_configurations",
+      "community": 11,
+      "norm_label": "configurations"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "readme_md",
+      "community": 5,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Neural Content Intelligence",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "tribev2_test_readme_neural_content_intelligence",
+      "community": 5,
+      "norm_label": "neural content intelligence"
+    },
+    {
+      "label": "Why NCI?",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L13",
+      "id": "tribev2_test_readme_why_nci",
+      "community": 5,
+      "norm_label": "why nci?"
+    },
+    {
+      "label": "Key Numbers",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L31",
+      "id": "tribev2_test_readme_key_numbers",
+      "community": 5,
+      "norm_label": "key numbers"
+    },
+    {
+      "label": "The 7 Neural Engagement Signals",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L41",
+      "id": "tribev2_test_readme_the_7_neural_engagement_signals",
+      "community": 5,
+      "norm_label": "the 7 neural engagement signals"
+    },
+    {
+      "label": "5 Engagement Metrics",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L61",
+      "id": "tribev2_test_readme_5_engagement_metrics",
+      "community": 5,
+      "norm_label": "5 engagement metrics"
+    },
+    {
+      "label": "Proof of Concept: 5 Video Archetypes",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L77",
+      "id": "tribev2_test_readme_proof_of_concept_5_video_archetypes",
+      "community": 5,
+      "norm_label": "proof of concept: 5 video archetypes"
+    },
+    {
+      "label": "Results by Content Type",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L89",
+      "id": "tribev2_test_readme_results_by_content_type",
+      "community": 5,
+      "norm_label": "results by content type"
+    },
+    {
+      "label": "How It Works",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L103",
+      "id": "tribev2_test_readme_how_it_works",
+      "community": 5,
+      "norm_label": "how it works"
+    },
+    {
+      "label": "Deep-Dive Analysis Examples",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L129",
+      "id": "tribev2_test_readme_deep_dive_analysis_examples",
+      "community": 5,
+      "norm_label": "deep-dive analysis examples"
+    },
+    {
+      "label": "Setup",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L160",
+      "id": "tribev2_test_readme_setup",
+      "community": 5,
+      "norm_label": "setup"
+    },
+    {
+      "label": "Prerequisites",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L162",
+      "id": "tribev2_test_readme_prerequisites",
+      "community": 5,
+      "norm_label": "prerequisites"
+    },
+    {
+      "label": "Installation",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L167",
+      "id": "tribev2_test_readme_installation",
+      "community": 5,
+      "norm_label": "installation"
+    },
+    {
+      "label": "Usage",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L185",
+      "id": "tribev2_test_readme_usage",
+      "community": 5,
+      "norm_label": "usage"
+    },
+    {
+      "label": "Paper",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L207",
+      "id": "tribev2_test_readme_paper",
+      "community": 5,
+      "norm_label": "paper"
+    },
+    {
+      "label": "Limitations",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L217",
+      "id": "tribev2_test_readme_limitations",
+      "community": 5,
+      "norm_label": "limitations"
+    },
+    {
+      "label": "License",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L229",
+      "id": "tribev2_test_readme_license",
+      "community": 5,
+      "norm_label": "license"
+    },
+    {
+      "label": "research_and_outline.md",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L1",
+      "id": "paper_research_and_outline_md",
+      "community": 2,
+      "norm_label": "research_and_outline.md"
+    },
+    {
+      "label": "Neural Content Intelligence: Research Prompt & Paper Outline",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L1",
+      "id": "paper_research_and_outline_neural_content_intelligence_research_prompt_paper_outline",
+      "community": 2,
+      "norm_label": "neural content intelligence: research prompt & paper outline"
+    },
+    {
+      "label": "PART 1: Perplexity Deep Research Prompt",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L5",
+      "id": "paper_research_and_outline_part_1_perplexity_deep_research_prompt",
+      "community": 2,
+      "norm_label": "part 1: perplexity deep research prompt"
+    },
+    {
+      "label": "PART 2: Full Paper Outline",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L108",
+      "id": "paper_research_and_outline_part_2_full_paper_outline",
+      "community": 2,
+      "norm_label": "part 2: full paper outline"
+    },
+    {
+      "label": "Neural Content Intelligence: Using Brain Encoding Models to Predict Social Media Engagement Before Publication",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L112",
+      "id": "paper_research_and_outline_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "community": 2,
+      "norm_label": "neural content intelligence: using brain encoding models to predict social media engagement before publication"
+    },
+    {
+      "label": "1. Executive Summary",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L118",
+      "id": "paper_research_and_outline_1_executive_summary",
+      "community": 2,
+      "norm_label": "1. executive summary"
+    },
+    {
+      "label": "2. Introduction",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L130",
+      "id": "paper_research_and_outline_2_introduction",
+      "community": 2,
+      "norm_label": "2. introduction"
+    },
+    {
+      "label": "2.1 The Content Optimization Problem",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L132",
+      "id": "paper_research_and_outline_2_1_the_content_optimization_problem",
+      "community": 2,
+      "norm_label": "2.1 the content optimization problem"
+    },
+    {
+      "label": "2.2 The Neuroscience Opportunity",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L140",
+      "id": "paper_research_and_outline_2_2_the_neuroscience_opportunity",
+      "community": 2,
+      "norm_label": "2.2 the neuroscience opportunity"
+    },
+    {
+      "label": "2.3 The Brain Encoding Model Breakthrough",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L146",
+      "id": "paper_research_and_outline_2_3_the_brain_encoding_model_breakthrough",
+      "community": 2,
+      "norm_label": "2.3 the brain encoding model breakthrough"
+    },
+    {
+      "label": "3. Background and Related Work",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L156",
+      "id": "paper_research_and_outline_3_background_and_related_work",
+      "community": 2,
+      "norm_label": "3. background and related work"
+    },
+    {
+      "label": "3.1 A Brief History of Neuromarketing",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L158",
+      "id": "paper_research_and_outline_3_1_a_brief_history_of_neuromarketing",
+      "community": 2,
+      "norm_label": "3.1 a brief history of neuromarketing"
+    },
+    {
+      "label": "3.2 Brain Encoding Models: From Regression to Deep Prediction",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L168",
+      "id": "paper_research_and_outline_3_2_brain_encoding_models_from_regression_to_deep_prediction",
+      "community": 2,
+      "norm_label": "3.2 brain encoding models: from regression to deep prediction"
+    },
+    {
+      "label": "3.3 TRIBE v2: The State of the Art",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L178",
+      "id": "paper_research_and_outline_3_3_tribe_v2_the_state_of_the_art",
+      "community": 2,
+      "norm_label": "3.3 tribe v2: the state of the art"
+    },
+    {
+      "label": "3.4 The Yeo 7-Network Parcellation",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L184",
+      "id": "paper_research_and_outline_3_4_the_yeo_7_network_parcellation",
+      "community": 2,
+      "norm_label": "3.4 the yeo 7-network parcellation"
+    },
+    {
+      "label": "3.5 Current Content Optimization Landscape",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L209",
+      "id": "paper_research_and_outline_3_5_current_content_optimization_landscape",
+      "community": 2,
+      "norm_label": "3.5 current content optimization landscape"
+    },
+    {
+      "label": "4. Methodology: The Neural Content Intelligence Framework",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L227",
+      "id": "paper_research_and_outline_4_methodology_the_neural_content_intelligence_framework",
+      "community": 2,
+      "norm_label": "4. methodology: the neural content intelligence framework"
+    },
+    {
+      "label": "4.1 System Architecture",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L229",
+      "id": "paper_research_and_outline_4_1_system_architecture",
+      "community": 2,
+      "norm_label": "4.1 system architecture"
+    },
+    {
+      "label": "4.2 Network-to-Engagement Mappings",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L241",
+      "id": "paper_research_and_outline_4_2_network_to_engagement_mappings",
+      "community": 2,
+      "norm_label": "4.2 network-to-engagement mappings"
+    },
+    {
+      "label": "4.3 Temporal Analysis",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L255",
+      "id": "paper_research_and_outline_4_3_temporal_analysis",
+      "community": 2,
+      "norm_label": "4.3 temporal analysis"
+    },
+    {
+      "label": "5. Proof of Concept",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L266",
+      "id": "paper_research_and_outline_5_proof_of_concept",
+      "community": 2,
+      "norm_label": "5. proof of concept"
+    },
+    {
+      "label": "5.1 Implementation Architecture",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L268",
+      "id": "paper_research_and_outline_5_1_implementation_architecture",
+      "community": 2,
+      "norm_label": "5.1 implementation architecture"
+    },
+    {
+      "label": "5.2 Example Analysis: Nature Video (Bears)",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L282",
+      "id": "paper_research_and_outline_5_2_example_analysis_nature_video_bears",
+      "community": 2,
+      "norm_label": "5.2 example analysis: nature video (bears)"
+    },
+    {
+      "label": "5.3 Interpreting Results for Content Optimization",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L325",
+      "id": "paper_research_and_outline_5_3_interpreting_results_for_content_optimization",
+      "community": 2,
+      "norm_label": "5.3 interpreting results for content optimization"
+    },
+    {
+      "label": "6. Proposed Engagement Metrics",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L339",
+      "id": "paper_research_and_outline_6_proposed_engagement_metrics",
+      "community": 2,
+      "norm_label": "6. proposed engagement metrics"
+    },
+    {
+      "label": "6.1 Attention Retention Score (ARS)",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L343",
+      "id": "paper_research_and_outline_6_1_attention_retention_score_ars",
+      "community": 2,
+      "norm_label": "6.1 attention retention score (ars)"
+    },
+    {
+      "label": "6.2 Emotional Impact Index (EII)",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L353",
+      "id": "paper_research_and_outline_6_2_emotional_impact_index_eii",
+      "community": 2,
+      "norm_label": "6.2 emotional impact index (eii)"
+    },
+    {
+      "label": "6.3 Hook Strength Score (HSS)",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L363",
+      "id": "paper_research_and_outline_6_3_hook_strength_score_hss",
+      "community": 2,
+      "norm_label": "6.3 hook strength score (hss)"
+    },
+    {
+      "label": "6.4 CTA Activation Score (CAS)",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L373",
+      "id": "paper_research_and_outline_6_4_cta_activation_score_cas",
+      "community": 2,
+      "norm_label": "6.4 cta activation score (cas)"
+    },
+    {
+      "label": "6.5 Overall Neural Engagement Score (NES)",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L383",
+      "id": "paper_research_and_outline_6_5_overall_neural_engagement_score_nes",
+      "community": 2,
+      "norm_label": "6.5 overall neural engagement score (nes)"
+    },
+    {
+      "label": "7. Comparison with Existing Methods",
+      "file_type": "document",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L395",
+      "id": "paper_research_and_outline_7_comparison_with_existing_methods",
+      "community": 2,
+      "norm_label": "7. comparison with existing methods"
+    },
+    {
+      "label": "medium_article.md",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L1",
+      "id": "paper_medium_article_md",
+      "community": 3,
+      "norm_label": "medium_article.md"
+    },
+    {
+      "label": "Meta Built an AI That Simulates Your Brain. I Used It to Decode What Makes Content Go Viral.",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L1",
+      "id": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "community": 3,
+      "norm_label": "meta built an ai that simulates your brain. i used it to decode what makes content go viral."
+    },
+    {
+      "label": "TRIBE v2 can predict how 720 people's brains would respond to any video, in two minutes, on a laptop. Here's what happens when you point it at ads and viral content.",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L3",
+      "id": "paper_medium_article_tribe_v2_can_predict_how_720_people_s_brains_would_respond_to_any_video_in_two_minutes_on_a_laptop_here_s_what_happens_when_you_point_it_at_ads_and_viral_content",
+      "community": 3,
+      "norm_label": "tribe v2 can predict how 720 people's brains would respond to any video, in two minutes, on a laptop. here's what happens when you point it at ads and viral content."
+    },
+    {
+      "label": "Why the Current Toolkit Falls Short",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L19",
+      "id": "paper_medium_article_why_the_current_toolkit_falls_short",
+      "community": 3,
+      "norm_label": "why the current toolkit falls short"
+    },
+    {
+      "label": "Meta's TRIBE v2: The Core Technology",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L39",
+      "id": "paper_medium_article_meta_s_tribe_v2_the_core_technology",
+      "community": 3,
+      "norm_label": "meta's tribe v2: the core technology"
+    },
+    {
+      "label": "NCI: Translating Brain Predictions into Content Signals",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L53",
+      "id": "paper_medium_article_nci_translating_brain_predictions_into_content_signals",
+      "community": 3,
+      "norm_label": "nci: translating brain predictions into content signals"
+    },
+    {
+      "label": "The Seven Brain Networks That Matter for Content",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L72",
+      "id": "paper_medium_article_the_seven_brain_networks_that_matter_for_content",
+      "community": 3,
+      "norm_label": "the seven brain networks that matter for content"
+    },
+    {
+      "label": "Five Metrics Built on Top",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L105",
+      "id": "paper_medium_article_five_metrics_built_on_top",
+      "community": 3,
+      "norm_label": "five metrics built on top"
+    },
+    {
+      "label": "Testing It on Real Content: Five Archetypes, Five Different Brains",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L127",
+      "id": "paper_medium_article_testing_it_on_real_content_five_archetypes_five_different_brains",
+      "community": 3,
+      "norm_label": "testing it on real content: five archetypes, five different brains"
+    },
+    {
+      "label": "1. Business Education (Talking Head, 49s)",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L145",
+      "id": "paper_medium_article_1_business_education_talking_head_49s",
+      "community": 3,
+      "norm_label": "1. business education (talking head, 49s)"
+    },
+    {
+      "label": "2. Tech/AI News Commentary (60s)",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L153",
+      "id": "paper_medium_article_2_tech_ai_news_commentary_60s",
+      "community": 3,
+      "norm_label": "2. tech/ai news commentary (60s)"
+    },
+    {
+      "label": "3. UGC Product Review (Street Interview, 35s)",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L161",
+      "id": "paper_medium_article_3_ugc_product_review_street_interview_35s",
+      "community": 3,
+      "norm_label": "3. ugc product review (street interview, 35s)"
+    },
+    {
+      "label": "4. Product Demonstration (25s)",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L169",
+      "id": "paper_medium_article_4_product_demonstration_25s",
+      "community": 3,
+      "norm_label": "4. product demonstration (25s)"
+    },
+    {
+      "label": "5. Viral \"Satisfying\" Content (Japanese Ice Cutter, 48s)",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L183",
+      "id": "paper_medium_article_5_viral_satisfying_content_japanese_ice_cutter_48s",
+      "community": 3,
+      "norm_label": "5. viral \"satisfying\" content (japanese ice cutter, 48s)"
+    },
+    {
+      "label": "Practical Applications",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L199",
+      "id": "paper_medium_article_practical_applications",
+      "community": 3,
+      "norm_label": "practical applications"
+    },
+    {
+      "label": "Limitations",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L227",
+      "id": "paper_medium_article_limitations",
+      "community": 3,
+      "norm_label": "limitations"
+    },
+    {
+      "label": "What This Means",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L241",
+      "id": "paper_medium_article_what_this_means",
+      "community": 3,
+      "norm_label": "what this means"
+    },
+    {
+      "label": "Image Reference Guide (for Medium upload)",
+      "file_type": "document",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L257",
+      "id": "paper_medium_article_image_reference_guide_for_medium_upload",
+      "community": 3,
+      "norm_label": "image reference guide (for medium upload)"
+    },
+    {
+      "label": "PEAK_FIX_INSTRUCTIONS.md",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L1",
+      "id": "paper_peak_fix_instructions_md",
+      "community": 7,
+      "norm_label": "peak_fix_instructions.md"
+    },
+    {
+      "label": "Peak Detection Fix \u2014 Desktop Next Steps",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L1",
+      "id": "paper_peak_fix_instructions_peak_detection_fix_desktop_next_steps",
+      "community": 7,
+      "norm_label": "peak detection fix \u2014 desktop next steps"
+    },
+    {
+      "label": "Problem",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L3",
+      "id": "paper_peak_fix_instructions_problem",
+      "community": 7,
+      "norm_label": "problem"
+    },
+    {
+      "label": "Root Cause",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L15",
+      "id": "paper_peak_fix_instructions_root_cause",
+      "community": 7,
+      "norm_label": "root cause"
+    },
+    {
+      "label": "What Was Fixed (already committed)",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L23",
+      "id": "paper_peak_fix_instructions_what_was_fixed_already_committed",
+      "community": 7,
+      "norm_label": "what was fixed (already committed)"
+    },
+    {
+      "label": "Steps to Run on Desktop",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L40",
+      "id": "paper_peak_fix_instructions_steps_to_run_on_desktop",
+      "community": 7,
+      "norm_label": "steps to run on desktop"
+    },
+    {
+      "label": "1. Pull latest code",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L42",
+      "id": "paper_peak_fix_instructions_1_pull_latest_code",
+      "community": 7,
+      "norm_label": "1. pull latest code"
+    },
+    {
+      "label": "2. Sanity check on one video",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L49",
+      "id": "paper_peak_fix_instructions_2_sanity_check_on_one_video",
+      "community": 7,
+      "norm_label": "2. sanity check on one video"
+    },
+    {
+      "label": "3. Run on all videos",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L61",
+      "id": "paper_peak_fix_instructions_3_run_on_all_videos",
+      "community": 7,
+      "norm_label": "3. run on all videos"
+    },
+    {
+      "label": "4. Regenerate figures",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L72",
+      "id": "paper_peak_fix_instructions_4_regenerate_figures",
+      "community": 7,
+      "norm_label": "4. regenerate figures"
+    },
+    {
+      "label": "5. Update the paper",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L81",
+      "id": "paper_peak_fix_instructions_5_update_the_paper",
+      "community": 7,
+      "norm_label": "5. update the paper"
+    },
+    {
+      "label": "6. Delete the test script",
+      "file_type": "document",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L88",
+      "id": "paper_peak_fix_instructions_6_delete_the_test_script",
+      "community": 7,
+      "norm_label": "6. delete the test script"
+    },
+    {
+      "label": "neural_content_intelligence.md",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L1",
+      "id": "paper_neural_content_intelligence_md",
+      "community": 1,
+      "norm_label": "neural_content_intelligence.md"
+    },
+    {
+      "label": "Neural Content Intelligence: Using Brain Encoding Models to Predict Social Media Engagement Before Publication",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L1",
+      "id": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "community": 1,
+      "norm_label": "neural content intelligence: using brain encoding models to predict social media engagement before publication"
+    },
+    {
+      "label": "Abstract",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L9",
+      "id": "paper_neural_content_intelligence_abstract",
+      "community": 1,
+      "norm_label": "abstract"
+    },
+    {
+      "label": "1. Introduction",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L17",
+      "id": "paper_neural_content_intelligence_1_introduction",
+      "community": 1,
+      "norm_label": "1. introduction"
+    },
+    {
+      "label": "1.1 The Content Optimization Problem",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L19",
+      "id": "paper_neural_content_intelligence_1_1_the_content_optimization_problem",
+      "community": 1,
+      "norm_label": "1.1 the content optimization problem"
+    },
+    {
+      "label": "1.2 The Neuroscience Opportunity",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L27",
+      "id": "paper_neural_content_intelligence_1_2_the_neuroscience_opportunity",
+      "community": 1,
+      "norm_label": "1.2 the neuroscience opportunity"
+    },
+    {
+      "label": "1.3 The Brain Encoding Model Breakthrough",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L33",
+      "id": "paper_neural_content_intelligence_1_3_the_brain_encoding_model_breakthrough",
+      "community": 1,
+      "norm_label": "1.3 the brain encoding model breakthrough"
+    },
+    {
+      "label": "2. Related Work",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L43",
+      "id": "paper_neural_content_intelligence_2_related_work",
+      "community": 1,
+      "norm_label": "2. related work"
+    },
+    {
+      "label": "2.1 Neural Prediction of Market Outcomes",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L45",
+      "id": "paper_neural_content_intelligence_2_1_neural_prediction_of_market_outcomes",
+      "community": 1,
+      "norm_label": "2.1 neural prediction of market outcomes"
+    },
+    {
+      "label": "2.2 Neuromarketing Industry Landscape",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L55",
+      "id": "paper_neural_content_intelligence_2_2_neuromarketing_industry_landscape",
+      "community": 1,
+      "norm_label": "2.2 neuromarketing industry landscape"
+    },
+    {
+      "label": "2.3 Brain Encoding Models",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L63",
+      "id": "paper_neural_content_intelligence_2_3_brain_encoding_models",
+      "community": 1,
+      "norm_label": "2.3 brain encoding models"
+    },
+    {
+      "label": "2.4 Current Content Optimization Tools",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L69",
+      "id": "paper_neural_content_intelligence_2_4_current_content_optimization_tools",
+      "community": 1,
+      "norm_label": "2.4 current content optimization tools"
+    },
+    {
+      "label": "2.5 Theoretical Frameworks",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L81",
+      "id": "paper_neural_content_intelligence_2_5_theoretical_frameworks",
+      "community": 1,
+      "norm_label": "2.5 theoretical frameworks"
+    },
+    {
+      "label": "3. Background",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L95",
+      "id": "paper_neural_content_intelligence_3_background",
+      "community": 1,
+      "norm_label": "3. background"
+    },
+    {
+      "label": "3.1 The Yeo 7-Network Parcellation",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L97",
+      "id": "paper_neural_content_intelligence_3_1_the_yeo_7_network_parcellation",
+      "community": 1,
+      "norm_label": "3.1 the yeo 7-network parcellation"
+    },
+    {
+      "label": "3.2 TRIBE v2 Architecture and Capabilities",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L120",
+      "id": "paper_neural_content_intelligence_3_2_tribe_v2_architecture_and_capabilities",
+      "community": 1,
+      "norm_label": "3.2 tribe v2 architecture and capabilities"
+    },
+    {
+      "label": "4. Methodology: The Neural Content Intelligence Framework",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L136",
+      "id": "paper_neural_content_intelligence_4_methodology_the_neural_content_intelligence_framework",
+      "community": 1,
+      "norm_label": "4. methodology: the neural content intelligence framework"
+    },
+    {
+      "label": "4.1 System Architecture",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L138",
+      "id": "paper_neural_content_intelligence_4_1_system_architecture",
+      "community": 1,
+      "norm_label": "4.1 system architecture"
+    },
+    {
+      "label": "4.2 Network-to-Engagement Mappings",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L150",
+      "id": "paper_neural_content_intelligence_4_2_network_to_engagement_mappings",
+      "community": 1,
+      "norm_label": "4.2 network-to-engagement mappings"
+    },
+    {
+      "label": "4.3 Temporal Analysis",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L164",
+      "id": "paper_neural_content_intelligence_4_3_temporal_analysis",
+      "community": 1,
+      "norm_label": "4.3 temporal analysis"
+    },
+    {
+      "label": "5. Proposed Engagement Metrics",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L177",
+      "id": "paper_neural_content_intelligence_5_proposed_engagement_metrics",
+      "community": 9,
+      "norm_label": "5. proposed engagement metrics"
+    },
+    {
+      "label": "5.1 Attention Retention Score (ARS)",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L181",
+      "id": "paper_neural_content_intelligence_5_1_attention_retention_score_ars",
+      "community": 9,
+      "norm_label": "5.1 attention retention score (ars)"
+    },
+    {
+      "label": "5.2 Emotional Impact Index (EII)",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L191",
+      "id": "paper_neural_content_intelligence_5_2_emotional_impact_index_eii",
+      "community": 9,
+      "norm_label": "5.2 emotional impact index (eii)"
+    },
+    {
+      "label": "5.3 Hook Strength Score (HSS)",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L201",
+      "id": "paper_neural_content_intelligence_5_3_hook_strength_score_hss",
+      "community": 9,
+      "norm_label": "5.3 hook strength score (hss)"
+    },
+    {
+      "label": "5.4 CTA Activation Score (CAS)",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L211",
+      "id": "paper_neural_content_intelligence_5_4_cta_activation_score_cas",
+      "community": 9,
+      "norm_label": "5.4 cta activation score (cas)"
+    },
+    {
+      "label": "5.5 Neural Engagement Score (NES)",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L221",
+      "id": "paper_neural_content_intelligence_5_5_neural_engagement_score_nes",
+      "community": 9,
+      "norm_label": "5.5 neural engagement score (nes)"
+    },
+    {
+      "label": "6. Proof of Concept: Analyzing Real Short-Form Content",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L233",
+      "id": "paper_neural_content_intelligence_6_proof_of_concept_analyzing_real_short_form_content",
+      "community": 1,
+      "norm_label": "6. proof of concept: analyzing real short-form content"
+    },
+    {
+      "label": "6.1 Implementation and Dataset",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L237",
+      "id": "paper_neural_content_intelligence_6_1_implementation_and_dataset",
+      "community": 1,
+      "norm_label": "6.1 implementation and dataset"
+    },
+    {
+      "label": "6.2 Cross-Content Comparison",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L257",
+      "id": "paper_neural_content_intelligence_6_2_cross_content_comparison",
+      "community": 1,
+      "norm_label": "6.2 cross-content comparison"
+    },
+    {
+      "label": "6.3 Deep Analysis: Talking-Head Content (Leila Hormozi: Business Education)",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L280",
+      "id": "paper_neural_content_intelligence_6_3_deep_analysis_talking_head_content_leila_hormozi_business_education",
+      "community": 1,
+      "norm_label": "6.3 deep analysis: talking-head content (leila hormozi: business education)"
+    },
+    {
+      "label": "6.4 Deep Analysis: Product Demonstration (Sanitary Pad)",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L303",
+      "id": "paper_neural_content_intelligence_6_4_deep_analysis_product_demonstration_sanitary_pad",
+      "community": 1,
+      "norm_label": "6.4 deep analysis: product demonstration (sanitary pad)"
+    },
+    {
+      "label": "6.5 Deep Analysis: Viral Satisfying Content (Japanese Ice Cutter)",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L326",
+      "id": "paper_neural_content_intelligence_6_5_deep_analysis_viral_satisfying_content_japanese_ice_cutter",
+      "community": 1,
+      "norm_label": "6.5 deep analysis: viral satisfying content (japanese ice cutter)"
+    },
+    {
+      "label": "6.6 Comparative Insights for Content Strategy",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L349",
+      "id": "paper_neural_content_intelligence_6_6_comparative_insights_for_content_strategy",
+      "community": 1,
+      "norm_label": "6.6 comparative insights for content strategy"
+    },
+    {
+      "label": "7. Comparison with Existing Methods",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L379",
+      "id": "paper_neural_content_intelligence_7_comparison_with_existing_methods",
+      "community": 1,
+      "norm_label": "7. comparison with existing methods"
+    },
+    {
+      "label": "8. Applications",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L405",
+      "id": "paper_neural_content_intelligence_8_applications",
+      "community": 1,
+      "norm_label": "8. applications"
+    },
+    {
+      "label": "8.1 Pre-Publication Content Scoring",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L407",
+      "id": "paper_neural_content_intelligence_8_1_pre_publication_content_scoring",
+      "community": 1,
+      "norm_label": "8.1 pre-publication content scoring"
+    },
+    {
+      "label": "8.2 Hook Optimization",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L413",
+      "id": "paper_neural_content_intelligence_8_2_hook_optimization",
+      "community": 1,
+      "norm_label": "8.2 hook optimization"
+    },
+    {
+      "label": "8.3 CTA Timing Optimization",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L419",
+      "id": "paper_neural_content_intelligence_8_3_cta_timing_optimization",
+      "community": 1,
+      "norm_label": "8.3 cta timing optimization"
+    },
+    {
+      "label": "8.4 Content Format Comparison",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L423",
+      "id": "paper_neural_content_intelligence_8_4_content_format_comparison",
+      "community": 1,
+      "norm_label": "8.4 content format comparison"
+    },
+    {
+      "label": "8.5 Competitive Content Analysis",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L427",
+      "id": "paper_neural_content_intelligence_8_5_competitive_content_analysis",
+      "community": 1,
+      "norm_label": "8.5 competitive content analysis"
+    },
+    {
+      "label": "9. Limitations and Future Work",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L433",
+      "id": "paper_neural_content_intelligence_9_limitations_and_future_work",
+      "community": 1,
+      "norm_label": "9. limitations and future work"
+    },
+    {
+      "label": "9.1 Fundamental Limitations",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L435",
+      "id": "paper_neural_content_intelligence_9_1_fundamental_limitations",
+      "community": 1,
+      "norm_label": "9.1 fundamental limitations"
+    },
+    {
+      "label": "9.2 Ethical Considerations",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L447",
+      "id": "paper_neural_content_intelligence_9_2_ethical_considerations",
+      "community": 1,
+      "norm_label": "9.2 ethical considerations"
+    },
+    {
+      "label": "9.3 Future Work",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L455",
+      "id": "paper_neural_content_intelligence_9_3_future_work",
+      "community": 1,
+      "norm_label": "9.3 future work"
+    },
+    {
+      "label": "10. Conclusion",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L471",
+      "id": "paper_neural_content_intelligence_10_conclusion",
+      "community": 1,
+      "norm_label": "10. conclusion"
+    },
+    {
+      "label": "References",
+      "file_type": "document",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L485",
+      "id": "paper_neural_content_intelligence_references",
+      "community": 1,
+      "norm_label": "references"
+    },
+    {
+      "label": "perplexity_prompts.md",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L1",
+      "id": "paper_perplexity_prompts_md",
+      "community": 4,
+      "norm_label": "perplexity_prompts.md"
+    },
+    {
+      "label": "Perplexity Deep Research Prompts",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L1",
+      "id": "paper_perplexity_prompts_perplexity_deep_research_prompts",
+      "community": 4,
+      "norm_label": "perplexity deep research prompts"
+    },
+    {
+      "label": "PROMPT 1: Research for the Paper",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L5",
+      "id": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "community": 4,
+      "norm_label": "prompt 1: research for the paper"
+    },
+    {
+      "label": "1. Neural Prediction of Market Outcomes & Ad Effectiveness",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L17",
+      "id": "paper_perplexity_prompts_1_neural_prediction_of_market_outcomes_ad_effectiveness",
+      "community": 4,
+      "norm_label": "1. neural prediction of market outcomes & ad effectiveness"
+    },
+    {
+      "label": "2. Brain Networks and Content Engagement",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L28",
+      "id": "paper_perplexity_prompts_2_brain_networks_and_content_engagement",
+      "community": 4,
+      "norm_label": "2. brain networks and content engagement"
+    },
+    {
+      "label": "3. TRIBE v2 and Brain Encoding Models",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L66",
+      "id": "paper_perplexity_prompts_3_tribe_v2_and_brain_encoding_models",
+      "community": 4,
+      "norm_label": "3. tribe v2 and brain encoding models"
+    },
+    {
+      "label": "4. Current Social Media Content Optimization Landscape",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L74",
+      "id": "paper_perplexity_prompts_4_current_social_media_content_optimization_landscape",
+      "community": 4,
+      "norm_label": "4. current social media content optimization landscape"
+    },
+    {
+      "label": "5. Neuromarketing Industry \u2014 Current State & Limitations",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L83",
+      "id": "paper_perplexity_prompts_5_neuromarketing_industry_current_state_limitations",
+      "community": 4,
+      "norm_label": "5. neuromarketing industry \u2014 current state & limitations"
+    },
+    {
+      "label": "6. The Gap This Paper Fills",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L93",
+      "id": "paper_perplexity_prompts_6_the_gap_this_paper_fills",
+      "community": 4,
+      "norm_label": "6. the gap this paper fills"
+    },
+    {
+      "label": "7. Relevant Theoretical Frameworks",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L100",
+      "id": "paper_perplexity_prompts_7_relevant_theoretical_frameworks",
+      "community": 4,
+      "norm_label": "7. relevant theoretical frameworks"
+    },
+    {
+      "label": "8. Validation Approaches",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L107",
+      "id": "paper_perplexity_prompts_8_validation_approaches",
+      "community": 4,
+      "norm_label": "8. validation approaches"
+    },
+    {
+      "label": "PROMPT 2: How to Publish This Paper",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L118",
+      "id": "paper_perplexity_prompts_prompt_2_how_to_publish_this_paper",
+      "community": 4,
+      "norm_label": "prompt 2: how to publish this paper"
+    },
+    {
+      "label": "1. Where to Publish \u2014 Venue Options",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L128",
+      "id": "paper_perplexity_prompts_1_where_to_publish_venue_options",
+      "community": 4,
+      "norm_label": "1. where to publish \u2014 venue options"
+    },
+    {
+      "label": "2. The Publication Process \u2014 Step by Step",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L162",
+      "id": "paper_perplexity_prompts_2_the_publication_process_step_by_step",
+      "community": 4,
+      "norm_label": "2. the publication process \u2014 step by step"
+    },
+    {
+      "label": "3. Making It Credible Without Academic Affiliation",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L171",
+      "id": "paper_perplexity_prompts_3_making_it_credible_without_academic_affiliation",
+      "community": 4,
+      "norm_label": "3. making it credible without academic affiliation"
+    },
+    {
+      "label": "4. Maximizing Impact",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L178",
+      "id": "paper_perplexity_prompts_4_maximizing_impact",
+      "community": 4,
+      "norm_label": "4. maximizing impact"
+    },
+    {
+      "label": "5. Realistic Assessment",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L186",
+      "id": "paper_perplexity_prompts_5_realistic_assessment",
+      "community": 4,
+      "norm_label": "5. realistic assessment"
+    },
+    {
+      "label": "6. Specific Recommendations",
+      "file_type": "document",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L193",
+      "id": "paper_perplexity_prompts_6_specific_recommendations",
+      "community": 4,
+      "norm_label": "6. specific recommendations"
+    }
+  ],
+  "links": [
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "view_predictions.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tribev2_test_view_predictions_rationale_1",
+      "target": "view_predictions_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "view_predictions.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "view_predictions_py",
+      "target": "tribev2_test_view_predictions_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_sh",
+      "target": "users_joshua_desktop_code_tribev2_test_setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "render_landing_brains_py",
+      "target": "tribev2_test_render_landing_brains_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tribev2_test_render_landing_brains_rationale_1",
+      "target": "render_landing_brains_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "paper/build_latex.py",
+      "source_location": "L281",
+      "weight": 1.0,
+      "source": "paper_build_latex_build_references_section",
+      "target": "tribev2_test_render_landing_brains_render"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "tribev2_test_render_landing_brains_rationale_35",
+      "target": "tribev2_test_render_landing_brains_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "tribev2_test_render_landing_brains_render",
+      "target": "render_landing_brains_py_float",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "tribev2_test_render_landing_brains_render",
+      "target": "render_landing_brains_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "render_landing_brains.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "tribev2_test_render_landing_brains_render",
+      "target": "render_landing_brains_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "run_inference.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "run_inference_py",
+      "target": "tribev2_test_run_inference_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "run_inference.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tribev2_test_run_inference_rationale_1",
+      "target": "run_inference_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L947",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_build_ai_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L463",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_build_mesh_cache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1583",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_build_ui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L530",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_compute_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_extract_video_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L544",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_find_robust_peaks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L290",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_generate_animation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L710",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_generate_cognitive_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L766",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_generate_narrative_abstract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1122",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_get_cmap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L620",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_interpret_cognitive_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L359",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_load_cached_results",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L438",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_load_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1510",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_load_npy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L498",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_load_yeo_labels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1011",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_on_generate_abstract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1326",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_on_play_tick",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1305",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_on_timestep_change",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L685",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_plot_network_bar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L655",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_plot_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1073",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_plot_yeo_parcellation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_prerender_brain_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_render_brain_animation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1130",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_render_brain_map",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1238",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_render_interactive_brain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1337",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_run_inference",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L318",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_save_results",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1293",
+      "weight": 1.0,
+      "source": "app_py",
+      "target": "tribev2_test_app_status_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1",
+      "target": "app_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "tribev2_test_app_extract_video_frames",
+      "target": "app_py_float",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "tribev2_test_app_extract_video_frames",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "tribev2_test_app_extract_video_frames",
+      "target": "int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L386",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_cached_results",
+      "target": "tribev2_test_app_extract_video_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_85",
+      "target": "tribev2_test_app_extract_video_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L341",
+      "weight": 1.0,
+      "source": "tribev2_test_app_save_results",
+      "target": "tribev2_test_app_extract_video_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L947",
+      "weight": 1.0,
+      "source": "tribev2_test_app_build_ai_prompt",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L710",
+      "weight": 1.0,
+      "source": "tribev2_test_app_generate_cognitive_summary",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L766",
+      "weight": 1.0,
+      "source": "tribev2_test_app_generate_narrative_abstract",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1073",
+      "weight": 1.0,
+      "source": "tribev2_test_app_plot_yeo_parcellation",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "tribev2_test_app_prerender_brain_frames",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_brain_animation",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1130",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_brain_map",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L318",
+      "weight": 1.0,
+      "source": "tribev2_test_app_save_results",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1293",
+      "weight": 1.0,
+      "source": "tribev2_test_app_status_md",
+      "target": "app_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L544",
+      "weight": 1.0,
+      "source": "tribev2_test_app_find_robust_peaks",
+      "target": "int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1326",
+      "weight": 1.0,
+      "source": "tribev2_test_app_on_play_tick",
+      "target": "int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1305",
+      "weight": 1.0,
+      "source": "tribev2_test_app_on_timestep_change",
+      "target": "int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L685",
+      "weight": 1.0,
+      "source": "tribev2_test_app_plot_network_bar",
+      "target": "int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_brain_animation",
+      "target": "int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1238",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_interactive_brain",
+      "target": "int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L318",
+      "weight": 1.0,
+      "source": "tribev2_test_app_save_results",
+      "target": "int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_brain_animation",
+      "target": "app_py_float",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L318",
+      "weight": 1.0,
+      "source": "tribev2_test_app_save_results",
+      "target": "app_py_float",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1293",
+      "weight": 1.0,
+      "source": "tribev2_test_app_status_md",
+      "target": "app_py_float",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L396",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_cached_results",
+      "target": "tribev2_test_app_prerender_brain_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1532",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_npy",
+      "target": "tribev2_test_app_prerender_brain_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "tribev2_test_app_prerender_brain_frames",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L123",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_123",
+      "target": "tribev2_test_app_prerender_brain_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L328",
+      "weight": 1.0,
+      "source": "tribev2_test_app_save_results",
+      "target": "tribev2_test_app_prerender_brain_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L947",
+      "weight": 1.0,
+      "source": "tribev2_test_app_build_ai_prompt",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L530",
+      "weight": 1.0,
+      "source": "tribev2_test_app_compute_network_timecourses",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L544",
+      "weight": 1.0,
+      "source": "tribev2_test_app_find_robust_peaks",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L710",
+      "weight": 1.0,
+      "source": "tribev2_test_app_generate_cognitive_summary",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L766",
+      "weight": 1.0,
+      "source": "tribev2_test_app_generate_narrative_abstract",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L620",
+      "weight": 1.0,
+      "source": "tribev2_test_app_interpret_cognitive_state",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L498",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_yeo_labels",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L685",
+      "weight": 1.0,
+      "source": "tribev2_test_app_plot_network_bar",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L655",
+      "weight": 1.0,
+      "source": "tribev2_test_app_plot_network_timecourses",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_brain_animation",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1130",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_brain_map",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1238",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_interactive_brain",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L318",
+      "weight": 1.0,
+      "source": "tribev2_test_app_save_results",
+      "target": "app_py_ndarray",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L305",
+      "weight": 1.0,
+      "source": "tribev2_test_app_generate_animation",
+      "target": "tribev2_test_app_render_brain_animation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_171",
+      "target": "tribev2_test_app_render_brain_animation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L291",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_291",
+      "target": "tribev2_test_app_generate_animation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L321",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_321",
+      "target": "tribev2_test_app_save_results",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1436",
+      "weight": 1.0,
+      "source": "tribev2_test_app_run_inference",
+      "target": "tribev2_test_app_save_results",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L360",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_360",
+      "target": "tribev2_test_app_load_cached_results",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L457",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_model",
+      "target": "tribev2_test_app_build_mesh_cache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L460",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_model",
+      "target": "tribev2_test_app_load_yeo_labels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1528",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_npy",
+      "target": "tribev2_test_app_build_mesh_cache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L464",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_464",
+      "target": "tribev2_test_app_build_mesh_cache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L499",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_499",
+      "target": "tribev2_test_app_load_yeo_labels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1611",
+      "weight": 1.0,
+      "source": "tribev2_test_app_build_ui",
+      "target": "tribev2_test_app_compute_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1539",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_npy",
+      "target": "tribev2_test_app_compute_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L531",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_531",
+      "target": "tribev2_test_app_compute_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1451",
+      "weight": 1.0,
+      "source": "tribev2_test_app_run_inference",
+      "target": "tribev2_test_app_compute_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L718",
+      "weight": 1.0,
+      "source": "tribev2_test_app_generate_cognitive_summary",
+      "target": "tribev2_test_app_find_robust_peaks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L547",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_547",
+      "target": "tribev2_test_app_find_robust_peaks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1613",
+      "weight": 1.0,
+      "source": "tribev2_test_app_build_ui",
+      "target": "tribev2_test_app_interpret_cognitive_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1540",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_npy",
+      "target": "tribev2_test_app_interpret_cognitive_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1026",
+      "weight": 1.0,
+      "source": "tribev2_test_app_on_generate_abstract",
+      "target": "tribev2_test_app_interpret_cognitive_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L621",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_621",
+      "target": "tribev2_test_app_interpret_cognitive_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1453",
+      "weight": 1.0,
+      "source": "tribev2_test_app_run_inference",
+      "target": "tribev2_test_app_interpret_cognitive_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1614",
+      "weight": 1.0,
+      "source": "tribev2_test_app_build_ui",
+      "target": "tribev2_test_app_plot_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1541",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_npy",
+      "target": "tribev2_test_app_plot_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L655",
+      "weight": 1.0,
+      "source": "tribev2_test_app_plot_network_timecourses",
+      "target": "figure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L656",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_656",
+      "target": "tribev2_test_app_plot_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1454",
+      "weight": 1.0,
+      "source": "tribev2_test_app_run_inference",
+      "target": "tribev2_test_app_plot_network_timecourses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L685",
+      "weight": 1.0,
+      "source": "tribev2_test_app_plot_network_bar",
+      "target": "figure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1238",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_interactive_brain",
+      "target": "figure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1615",
+      "weight": 1.0,
+      "source": "tribev2_test_app_build_ui",
+      "target": "tribev2_test_app_plot_network_bar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1542",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_npy",
+      "target": "tribev2_test_app_plot_network_bar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L686",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_686",
+      "target": "tribev2_test_app_plot_network_bar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1455",
+      "weight": 1.0,
+      "source": "tribev2_test_app_run_inference",
+      "target": "tribev2_test_app_plot_network_bar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1616",
+      "weight": 1.0,
+      "source": "tribev2_test_app_build_ui",
+      "target": "tribev2_test_app_generate_cognitive_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1543",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_npy",
+      "target": "tribev2_test_app_generate_cognitive_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L712",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_712",
+      "target": "tribev2_test_app_generate_cognitive_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1456",
+      "weight": 1.0,
+      "source": "tribev2_test_app_run_inference",
+      "target": "tribev2_test_app_generate_cognitive_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1066",
+      "weight": 1.0,
+      "source": "tribev2_test_app_on_generate_abstract",
+      "target": "tribev2_test_app_generate_narrative_abstract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L769",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_769",
+      "target": "tribev2_test_app_generate_narrative_abstract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1027",
+      "weight": 1.0,
+      "source": "tribev2_test_app_on_generate_abstract",
+      "target": "tribev2_test_app_build_ai_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L949",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_949",
+      "target": "tribev2_test_app_build_ai_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1012",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1012",
+      "target": "tribev2_test_app_on_generate_abstract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1617",
+      "weight": 1.0,
+      "source": "tribev2_test_app_build_ui",
+      "target": "tribev2_test_app_plot_yeo_parcellation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1544",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_npy",
+      "target": "tribev2_test_app_plot_yeo_parcellation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1074",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1074",
+      "target": "tribev2_test_app_plot_yeo_parcellation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1457",
+      "weight": 1.0,
+      "source": "tribev2_test_app_run_inference",
+      "target": "tribev2_test_app_plot_yeo_parcellation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1123",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1123",
+      "target": "tribev2_test_app_get_cmap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1137",
+      "weight": 1.0,
+      "source": "tribev2_test_app_render_brain_map",
+      "target": "tribev2_test_app_get_cmap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1531",
+      "weight": 1.0,
+      "source": "tribev2_test_app_load_npy",
+      "target": "tribev2_test_app_render_brain_map",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1131",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1131",
+      "target": "tribev2_test_app_render_brain_map",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1431",
+      "weight": 1.0,
+      "source": "tribev2_test_app_run_inference",
+      "target": "tribev2_test_app_render_brain_map",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1593",
+      "weight": 1.0,
+      "source": "tribev2_test_app_build_ui",
+      "target": "tribev2_test_app_render_interactive_brain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1239",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1239",
+      "target": "tribev2_test_app_render_interactive_brain",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1294",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1294",
+      "target": "tribev2_test_app_status_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1375",
+      "weight": 1.0,
+      "source": "tribev2_test_app_run_inference",
+      "target": "tribev2_test_app_status_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1306",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1306",
+      "target": "tribev2_test_app_on_timestep_change",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1326",
+      "weight": 1.0,
+      "source": "tribev2_test_app_on_play_tick",
+      "target": "bool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1327",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1327",
+      "target": "tribev2_test_app_on_play_tick",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1511",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1511",
+      "target": "tribev2_test_app_load_npy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app.py",
+      "source_location": "L1584",
+      "weight": 1.0,
+      "source": "tribev2_test_app_rationale_1584",
+      "target": "tribev2_test_app_build_ui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "view_3d.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tribev2_test_view_3d_rationale_1",
+      "target": "view_3d_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "view_3d.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "view_3d_py",
+      "target": "tribev2_test_view_3d_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_figures.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "paper_generate_figures_py",
+      "target": "paper_generate_figures_find_robust_peaks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_figures.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_generate_figures_rationale_1",
+      "target": "paper_generate_figures_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_figures.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "paper_generate_figures_rationale_39",
+      "target": "paper_generate_figures_find_robust_peaks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/fix_tex2.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_fix_tex2_rationale_1",
+      "target": "paper_fix_tex2_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/fix_tex3.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_fix_tex3_rationale_1",
+      "target": "paper_fix_tex3_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "paper_generate_content_figures_py",
+      "target": "paper_generate_content_figures_extract_key_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "paper_generate_content_figures_py",
+      "target": "paper_generate_content_figures_extract_thumbnail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "paper_generate_content_figures_py",
+      "target": "paper_generate_content_figures_find_robust_peaks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_generate_content_figures_rationale_1",
+      "target": "paper_generate_content_figures_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "paper_generate_content_figures_rationale_27",
+      "target": "paper_generate_content_figures_find_robust_peaks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "paper_generate_content_figures_rationale_81",
+      "target": "paper_generate_content_figures_extract_thumbnail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/generate_content_figures.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "paper_generate_content_figures_rationale_89",
+      "target": "paper_generate_content_figures_extract_key_frames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/run_all_videos.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "paper_run_all_videos_py",
+      "target": "paper_run_all_videos_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/run_all_videos.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_run_all_videos_rationale_1",
+      "target": "paper_run_all_videos_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/fix_tex.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "paper_fix_tex_py",
+      "target": "paper_fix_tex_save",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/fix_tex.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_fix_tex_rationale_1",
+      "target": "paper_fix_tex_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_pdf.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "paper_build_pdf_py",
+      "target": "paper_build_pdf_build",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_pdf.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_build_pdf_rationale_1",
+      "target": "paper_build_pdf_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/fix_final.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_fix_final_rationale_1",
+      "target": "paper_fix_final_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L287",
+      "weight": 1.0,
+      "source": "paper_build_latex_py",
+      "target": "paper_build_latex_build",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L258",
+      "weight": 1.0,
+      "source": "paper_build_latex_py",
+      "target": "paper_build_latex_build_references_section",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L234",
+      "weight": 1.0,
+      "source": "paper_build_latex_py",
+      "target": "paper_build_latex_escape_ref_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "paper_build_latex_py",
+      "target": "paper_build_latex_md_to_latex",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_build_latex_rationale_1",
+      "target": "paper_build_latex_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L289",
+      "weight": 1.0,
+      "source": "paper_build_latex_build",
+      "target": "paper_build_latex_md_to_latex",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "paper_build_latex_md_to_latex",
+      "target": "paper_build_latex_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "paper_build_latex_rationale_14",
+      "target": "paper_build_latex_md_to_latex",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L258",
+      "weight": 1.0,
+      "source": "paper_build_latex_build_references_section",
+      "target": "paper_build_latex_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L234",
+      "weight": 1.0,
+      "source": "paper_build_latex_escape_ref_text",
+      "target": "paper_build_latex_py_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L235",
+      "weight": 1.0,
+      "source": "paper_build_latex_rationale_235",
+      "target": "paper_build_latex_escape_ref_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L292",
+      "weight": 1.0,
+      "source": "paper_build_latex_build",
+      "target": "paper_build_latex_build_references_section",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/build_latex.py",
+      "source_location": "L259",
+      "weight": 1.0,
+      "source": "paper_build_latex_rationale_259",
+      "target": "paper_build_latex_build_references_section",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "claude_settings_local_json",
+      "target": "claude_settings_local_permissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_settings_local_permissions",
+      "target": "claude_settings_local_permissions_allow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/launch.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_launch_json",
+      "target": "claude_launch_configurations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/launch.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "claude_launch_json",
+      "target": "claude_launch_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme_md",
+      "target": "tribev2_test_readme_neural_content_intelligence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_5_engagement_metrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_deep_dive_analysis_examples",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_how_it_works",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_key_numbers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L217",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_limitations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L207",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_paper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_proof_of_concept_5_video_archetypes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L160",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_the_7_neural_engagement_signals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L185",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_usage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_neural_content_intelligence",
+      "target": "tribev2_test_readme_why_nci",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_proof_of_concept_5_video_archetypes",
+      "target": "tribev2_test_readme_results_by_content_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_setup",
+      "target": "tribev2_test_readme_installation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "tribev2_test_readme_setup",
+      "target": "tribev2_test_readme_prerequisites",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_md",
+      "target": "paper_research_and_outline_neural_content_intelligence_research_prompt_paper_outline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_md",
+      "target": "paper_research_and_outline_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_neural_content_intelligence_research_prompt_paper_outline",
+      "target": "paper_research_and_outline_part_1_perplexity_deep_research_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_neural_content_intelligence_research_prompt_paper_outline",
+      "target": "paper_research_and_outline_part_2_full_paper_outline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_research_and_outline_1_executive_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L130",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_research_and_outline_2_introduction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_research_and_outline_3_background_and_related_work",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L227",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_research_and_outline_4_methodology_the_neural_content_intelligence_framework",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L266",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_research_and_outline_5_proof_of_concept",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L339",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_research_and_outline_6_proposed_engagement_metrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L395",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_research_and_outline_7_comparison_with_existing_methods",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L132",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_2_introduction",
+      "target": "paper_research_and_outline_2_1_the_content_optimization_problem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L140",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_2_introduction",
+      "target": "paper_research_and_outline_2_2_the_neuroscience_opportunity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L146",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_2_introduction",
+      "target": "paper_research_and_outline_2_3_the_brain_encoding_model_breakthrough",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_3_background_and_related_work",
+      "target": "paper_research_and_outline_3_1_a_brief_history_of_neuromarketing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_3_background_and_related_work",
+      "target": "paper_research_and_outline_3_2_brain_encoding_models_from_regression_to_deep_prediction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L178",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_3_background_and_related_work",
+      "target": "paper_research_and_outline_3_3_tribe_v2_the_state_of_the_art",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L184",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_3_background_and_related_work",
+      "target": "paper_research_and_outline_3_4_the_yeo_7_network_parcellation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L209",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_3_background_and_related_work",
+      "target": "paper_research_and_outline_3_5_current_content_optimization_landscape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_4_methodology_the_neural_content_intelligence_framework",
+      "target": "paper_research_and_outline_4_1_system_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L241",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_4_methodology_the_neural_content_intelligence_framework",
+      "target": "paper_research_and_outline_4_2_network_to_engagement_mappings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L255",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_4_methodology_the_neural_content_intelligence_framework",
+      "target": "paper_research_and_outline_4_3_temporal_analysis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L268",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_5_proof_of_concept",
+      "target": "paper_research_and_outline_5_1_implementation_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L282",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_5_proof_of_concept",
+      "target": "paper_research_and_outline_5_2_example_analysis_nature_video_bears",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L325",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_5_proof_of_concept",
+      "target": "paper_research_and_outline_5_3_interpreting_results_for_content_optimization",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L343",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_6_proposed_engagement_metrics",
+      "target": "paper_research_and_outline_6_1_attention_retention_score_ars",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L353",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_6_proposed_engagement_metrics",
+      "target": "paper_research_and_outline_6_2_emotional_impact_index_eii",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L363",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_6_proposed_engagement_metrics",
+      "target": "paper_research_and_outline_6_3_hook_strength_score_hss",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L373",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_6_proposed_engagement_metrics",
+      "target": "paper_research_and_outline_6_4_cta_activation_score_cas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/research_and_outline.md",
+      "source_location": "L383",
+      "weight": 1.0,
+      "source": "paper_research_and_outline_6_proposed_engagement_metrics",
+      "target": "paper_research_and_outline_6_5_overall_neural_engagement_score_nes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_medium_article_md",
+      "target": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_five_metrics_built_on_top",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L227",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_limitations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_meta_s_tribe_v2_the_core_technology",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_nci_translating_brain_predictions_into_content_signals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L199",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_practical_applications",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_testing_it_on_real_content_five_archetypes_five_different_brains",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_the_seven_brain_networks_that_matter_for_content",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_tribe_v2_can_predict_how_720_people_s_brains_would_respond_to_any_video_in_two_minutes_on_a_laptop_here_s_what_happens_when_you_point_it_at_ads_and_viral_content",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L241",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_what_this_means",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "paper_medium_article_meta_built_an_ai_that_simulates_your_brain_i_used_it_to_decode_what_makes_content_go_viral",
+      "target": "paper_medium_article_why_the_current_toolkit_falls_short",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "paper_medium_article_testing_it_on_real_content_five_archetypes_five_different_brains",
+      "target": "paper_medium_article_1_business_education_talking_head_49s",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "paper_medium_article_testing_it_on_real_content_five_archetypes_five_different_brains",
+      "target": "paper_medium_article_2_tech_ai_news_commentary_60s",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L161",
+      "weight": 1.0,
+      "source": "paper_medium_article_testing_it_on_real_content_five_archetypes_five_different_brains",
+      "target": "paper_medium_article_3_ugc_product_review_street_interview_35s",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "paper_medium_article_testing_it_on_real_content_five_archetypes_five_different_brains",
+      "target": "paper_medium_article_4_product_demonstration_25s",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L183",
+      "weight": 1.0,
+      "source": "paper_medium_article_testing_it_on_real_content_five_archetypes_five_different_brains",
+      "target": "paper_medium_article_5_viral_satisfying_content_japanese_ice_cutter_48s",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/medium_article.md",
+      "source_location": "L257",
+      "weight": 1.0,
+      "source": "paper_medium_article_what_this_means",
+      "target": "paper_medium_article_image_reference_guide_for_medium_upload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_md",
+      "target": "paper_peak_fix_instructions_peak_detection_fix_desktop_next_steps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_peak_detection_fix_desktop_next_steps",
+      "target": "paper_peak_fix_instructions_problem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_peak_detection_fix_desktop_next_steps",
+      "target": "paper_peak_fix_instructions_root_cause",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_peak_detection_fix_desktop_next_steps",
+      "target": "paper_peak_fix_instructions_steps_to_run_on_desktop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_peak_detection_fix_desktop_next_steps",
+      "target": "paper_peak_fix_instructions_what_was_fixed_already_committed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_steps_to_run_on_desktop",
+      "target": "paper_peak_fix_instructions_1_pull_latest_code",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_steps_to_run_on_desktop",
+      "target": "paper_peak_fix_instructions_2_sanity_check_on_one_video",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_steps_to_run_on_desktop",
+      "target": "paper_peak_fix_instructions_3_run_on_all_videos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_steps_to_run_on_desktop",
+      "target": "paper_peak_fix_instructions_4_regenerate_figures",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_steps_to_run_on_desktop",
+      "target": "paper_peak_fix_instructions_5_update_the_paper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/PEAK_FIX_INSTRUCTIONS.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "paper_peak_fix_instructions_steps_to_run_on_desktop",
+      "target": "paper_peak_fix_instructions_6_delete_the_test_script",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_md",
+      "target": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L471",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_10_conclusion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_1_introduction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_2_related_work",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_3_background",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_4_methodology_the_neural_content_intelligence_framework",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L177",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_5_proposed_engagement_metrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L233",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_6_proof_of_concept_analyzing_real_short_form_content",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L379",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_7_comparison_with_existing_methods",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L405",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_8_applications",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L433",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_9_limitations_and_future_work",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_abstract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L485",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_neural_content_intelligence_using_brain_encoding_models_to_predict_social_media_engagement_before_publication",
+      "target": "paper_neural_content_intelligence_references",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_1_introduction",
+      "target": "paper_neural_content_intelligence_1_1_the_content_optimization_problem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_1_introduction",
+      "target": "paper_neural_content_intelligence_1_2_the_neuroscience_opportunity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_1_introduction",
+      "target": "paper_neural_content_intelligence_1_3_the_brain_encoding_model_breakthrough",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_2_related_work",
+      "target": "paper_neural_content_intelligence_2_1_neural_prediction_of_market_outcomes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_2_related_work",
+      "target": "paper_neural_content_intelligence_2_2_neuromarketing_industry_landscape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_2_related_work",
+      "target": "paper_neural_content_intelligence_2_3_brain_encoding_models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_2_related_work",
+      "target": "paper_neural_content_intelligence_2_4_current_content_optimization_tools",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_2_related_work",
+      "target": "paper_neural_content_intelligence_2_5_theoretical_frameworks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_3_background",
+      "target": "paper_neural_content_intelligence_3_1_the_yeo_7_network_parcellation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_3_background",
+      "target": "paper_neural_content_intelligence_3_2_tribe_v2_architecture_and_capabilities",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_4_methodology_the_neural_content_intelligence_framework",
+      "target": "paper_neural_content_intelligence_4_1_system_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_4_methodology_the_neural_content_intelligence_framework",
+      "target": "paper_neural_content_intelligence_4_2_network_to_engagement_mappings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L164",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_4_methodology_the_neural_content_intelligence_framework",
+      "target": "paper_neural_content_intelligence_4_3_temporal_analysis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L181",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_5_proposed_engagement_metrics",
+      "target": "paper_neural_content_intelligence_5_1_attention_retention_score_ars",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L191",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_5_proposed_engagement_metrics",
+      "target": "paper_neural_content_intelligence_5_2_emotional_impact_index_eii",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L201",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_5_proposed_engagement_metrics",
+      "target": "paper_neural_content_intelligence_5_3_hook_strength_score_hss",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L211",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_5_proposed_engagement_metrics",
+      "target": "paper_neural_content_intelligence_5_4_cta_activation_score_cas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L221",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_5_proposed_engagement_metrics",
+      "target": "paper_neural_content_intelligence_5_5_neural_engagement_score_nes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L237",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_6_proof_of_concept_analyzing_real_short_form_content",
+      "target": "paper_neural_content_intelligence_6_1_implementation_and_dataset",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L257",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_6_proof_of_concept_analyzing_real_short_form_content",
+      "target": "paper_neural_content_intelligence_6_2_cross_content_comparison",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L280",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_6_proof_of_concept_analyzing_real_short_form_content",
+      "target": "paper_neural_content_intelligence_6_3_deep_analysis_talking_head_content_leila_hormozi_business_education",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L303",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_6_proof_of_concept_analyzing_real_short_form_content",
+      "target": "paper_neural_content_intelligence_6_4_deep_analysis_product_demonstration_sanitary_pad",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L326",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_6_proof_of_concept_analyzing_real_short_form_content",
+      "target": "paper_neural_content_intelligence_6_5_deep_analysis_viral_satisfying_content_japanese_ice_cutter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L349",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_6_proof_of_concept_analyzing_real_short_form_content",
+      "target": "paper_neural_content_intelligence_6_6_comparative_insights_for_content_strategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L407",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_8_applications",
+      "target": "paper_neural_content_intelligence_8_1_pre_publication_content_scoring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L413",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_8_applications",
+      "target": "paper_neural_content_intelligence_8_2_hook_optimization",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L419",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_8_applications",
+      "target": "paper_neural_content_intelligence_8_3_cta_timing_optimization",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L423",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_8_applications",
+      "target": "paper_neural_content_intelligence_8_4_content_format_comparison",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L427",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_8_applications",
+      "target": "paper_neural_content_intelligence_8_5_competitive_content_analysis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L435",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_9_limitations_and_future_work",
+      "target": "paper_neural_content_intelligence_9_1_fundamental_limitations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L447",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_9_limitations_and_future_work",
+      "target": "paper_neural_content_intelligence_9_2_ethical_considerations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/neural_content_intelligence.md",
+      "source_location": "L455",
+      "weight": 1.0,
+      "source": "paper_neural_content_intelligence_9_limitations_and_future_work",
+      "target": "paper_neural_content_intelligence_9_3_future_work",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_md",
+      "target": "paper_perplexity_prompts_perplexity_deep_research_prompts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_perplexity_deep_research_prompts",
+      "target": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_perplexity_deep_research_prompts",
+      "target": "paper_perplexity_prompts_prompt_2_how_to_publish_this_paper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "target": "paper_perplexity_prompts_1_neural_prediction_of_market_outcomes_ad_effectiveness",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "target": "paper_perplexity_prompts_2_brain_networks_and_content_engagement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "target": "paper_perplexity_prompts_3_tribe_v2_and_brain_encoding_models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "target": "paper_perplexity_prompts_4_current_social_media_content_optimization_landscape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "target": "paper_perplexity_prompts_5_neuromarketing_industry_current_state_limitations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "target": "paper_perplexity_prompts_6_the_gap_this_paper_fills",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "target": "paper_perplexity_prompts_7_relevant_theoretical_frameworks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_1_research_for_the_paper",
+      "target": "paper_perplexity_prompts_8_validation_approaches",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_2_how_to_publish_this_paper",
+      "target": "paper_perplexity_prompts_1_where_to_publish_venue_options",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_2_how_to_publish_this_paper",
+      "target": "paper_perplexity_prompts_2_the_publication_process_step_by_step",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_2_how_to_publish_this_paper",
+      "target": "paper_perplexity_prompts_3_making_it_credible_without_academic_affiliation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L178",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_2_how_to_publish_this_paper",
+      "target": "paper_perplexity_prompts_4_maximizing_impact",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L186",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_2_how_to_publish_this_paper",
+      "target": "paper_perplexity_prompts_5_realistic_assessment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "paper/perplexity_prompts.md",
+      "source_location": "L193",
+      "weight": 1.0,
+      "source": "paper_perplexity_prompts_prompt_2_how_to_publish_this_paper",
+      "target": "paper_perplexity_prompts_6_specific_recommendations",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "16d6adbd20063d9cb7b951ae96c253867ca6ab1d"
+}
